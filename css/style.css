@@ -265,7 +265,7 @@ p {
   height: 40px;
   border-radius: 50%;
   border: 1.5px solid var(--brass-gold);
-  background: var(--white);
+  background: transparent;
   object-fit: contain;
   padding: 2px;
 }
@@ -707,7 +707,7 @@ p {
   height: 36px;
   border-radius: 50%;
   border: 1.5px solid var(--brass-gold);
-  background: var(--white);
+  background: transparent;
   object-fit: contain;
   padding: 2px;
 }
