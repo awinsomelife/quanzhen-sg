@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Events and activities at Quan Zhen Cultural Society (全真教化協會) — monthly Lidou rituals, Zhong Yuan Jie, Thank Taisui ritual, and weekly scripture chanting classes in Singapore.">
+  <meta property="og:title" content="Events and Activities — Quan Zhen Cultural Society">
+  <meta property="og:description" content="Join us for monthly Lidou rituals, annual Taoist ceremonies, and weekly scripture chanting classes — open to members and the public in Singapore.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://quanzhen.sg/events.html">
+  <title>Events and Activities — Quan Zhen Cultural Society · 全真教化協會</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/png" href="assets/images/logo-transparent-512.png">
+  <style>
+    .page-hero {
+      background: var(--navy-primary);
+      padding: 140px 0 80px;
+      border-bottom: 1px solid rgba(201,168,76,0.2);
+    }
+    .page-hero-inner { max-width: 640px; }
+    .page-hero h1 { color: var(--rice-paper); margin-bottom: 16px; }
+    .page-hero p { color: var(--muted-sky); font-size: 16px; line-height: 1.75; }
+
+    /* Filter tabs */
+    .filter-bar {
+      background: var(--navy-deep);
+      border-bottom: 1px solid rgba(201,168,76,0.15);
+      position: sticky;
+      top: 64px;
+      z-index: 100;
+    }
+    .filter-bar-inner {
+      display: flex;
+      gap: 0;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    .filter-tabs { display: flex; }
+    .filter-tab {
+      padding: 16px 24px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted-sky);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s;
+      white-space: nowrap;
+      background: none;
+      border-left: none;
+      border-right: none;
+      border-top: none;
+      font-family: var(--font-body);
+    }
+    .filter-tab:hover,
+    .filter-tab.active {
+      color: var(--brass-gold);
+      border-bottom-color: var(--brass-gold);
+    }
+    .wa-enquiry {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      color: #25D366;
+      text-decoration: none;
+      padding: 0 24px;
+      white-space: nowrap;
+    }
+    .wa-enquiry-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #25D366;
+    }
+
+    /* Event type badge */
+    .badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      padding: 3px 10px;
+      border-radius: 20px;
+    }
+    .badge-ritual {
+      background: rgba(139,42,42,0.1);
+      color: var(--cinnabar);
+    }
+    .badge-class {
+      background: rgba(26,39,68,0.08);
+      color: var(--navy-primary);
+    }
+    .badge-annual {
+      background: rgba(201,168,76,0.12);
+      color: #7A5F1A;
+    }
+    .badge-open {
+      background: rgba(15,110,86,0.1);
+      color: #0F6E56;
+    }
+
+    /* Recurring events — featured cards */
+    .recurring-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 48px;
+    }
+    .recurring-card {
+      background: var(--white);
+      border: 0.5px solid rgba(26,39,68,0.1);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+    .recurring-card:hover {
+      border-color: rgba(201,168,76,0.35);
+    }
+    .recurring-card-head {
+      background: var(--navy-primary);
+      padding: 20px 24px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .recurring-card-head-left {}
+    .recurring-card-cn {
+      font-family: var(--font-cn);
+      font-size: 22px;
+      color: var(--brass-gold);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .recurring-card-title {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--rice-paper);
+      line-height: 1.3;
+    }
+    .recurring-freq {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted-sky);
+      background: rgba(143,163,200,0.1);
+      padding: 4px 10px;
+      border-radius: 20px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .recurring-card-body {
+      padding: 20px 24px;
+    }
+    .recurring-card-body p {
+      font-size: 13px;
+      color: #555;
+      line-height: 1.75;
+      margin-bottom: 16px;
+    }
+    .recurring-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .recurring-meta-row {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      font-size: 12px;
+    }
+    .meta-label {
+      color: var(--brass-gold);
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      min-width: 64px;
+      flex-shrink: 0;
+    }
+    .meta-value {
+      color: #444;
+      line-height: 1.5;
+    }
+    .recurring-badges {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    /* Class schedule — special layout */
+    .class-schedule {
+      background: var(--white);
+      border: 0.5px solid rgba(26,39,68,0.1);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin-bottom: 48px;
+    }
+    .class-schedule-head {
+      background: var(--navy-primary);
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .class-schedule-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--rice-paper);
+    }
+    .class-schedule-cn {
+      font-family: var(--font-cn);
+      font-size: 13px;
+      color: var(--brass-gold);
+      letter-spacing: 0.1em;
+    }
+    .class-schedule-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .class-slot {
+      padding: 24px;
+      border-right: 0.5px solid rgba(26,39,68,0.08);
+      border-bottom: 0.5px solid rgba(26,39,68,0.08);
+    }
+    .class-slot:nth-child(2n) { border-right: none; }
+    .class-slot:nth-last-child(-n+2) { border-bottom: none; }
+    .class-slot-time {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 500;
+      color: var(--navy-primary);
+      margin-bottom: 4px;
+    }
+    .class-slot-day {
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--brass-gold);
+      margin-bottom: 10px;
+    }
+    .class-slot-name {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--navy-primary);
+      margin-bottom: 4px;
+    }
+    .class-slot-cn {
+      font-family: var(--font-cn);
+      font-size: 11px;
+      color: var(--brass-gold);
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+    }
+    .class-slot-desc {
+      font-size: 12px;
+      color: #666;
+      line-height: 1.65;
+    }
+
+    /* Annual events */
+    .annual-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .annual-card {
+      background: var(--white);
+      border: 0.5px solid rgba(26,39,68,0.1);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      display: grid;
+      grid-template-columns: 80px 1fr auto;
+      gap: 20px;
+      align-items: start;
+      transition: border-color 0.2s;
+    }
+    .annual-card:hover {
+      border-color: rgba(201,168,76,0.35);
+    }
+    .annual-period {
+      text-align: center;
+    }
+    .annual-period-cn {
+      font-family: var(--font-cn);
+      font-size: 20px;
+      color: var(--brass-gold);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .annual-period-label {
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      color: var(--muted-sky);
+      line-height: 1.4;
+      text-align: center;
+    }
+    .annual-body {}
+    .annual-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--navy-primary);
+      margin-bottom: 4px;
+    }
+    .annual-cn {
+      font-family: var(--font-cn);
+      font-size: 12px;
+      color: var(--brass-gold);
+      letter-spacing: 0.1em;
+      margin-bottom: 10px;
+    }
+    .annual-desc {
+      font-size: 13px;
+      color: #555;
+      line-height: 1.7;
+      max-width: 520px;
+    }
+    .annual-action {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
+    }
+
+    /* Enquiry note */
+    .enquiry-note {
+      background: rgba(201,168,76,0.06);
+      border: 0.5px solid rgba(201,168,76,0.2);
+      border-radius: var(--radius-lg);
+      padding: 20px 24px;
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      margin-top: 32px;
+    }
+    .enquiry-note-icon {
+      font-family: var(--font-cn);
+      font-size: 24px;
+      color: var(--brass-gold);
+      flex-shrink: 0;
+    }
+    .enquiry-note-text {
+      font-size: 13px;
+      color: #555;
+      line-height: 1.65;
+    }
+    .enquiry-note-text strong {
+      color: var(--navy-primary);
+      font-weight: 500;
+    }
+
+    @media (max-width: 768px) {
+      .recurring-grid { grid-template-columns: 1fr; }
+      .class-schedule-body { grid-template-columns: 1fr; }
+      .class-slot { border-right: none; }
+      .class-slot:nth-last-child(-n+2) { border-bottom: 0.5px solid rgba(26,39,68,0.08); }
+      .class-slot:last-child { border-bottom: none; }
+      .annual-card { grid-template-columns: 60px 1fr; }
+      .annual-action { display: none; }
+      .filter-bar-inner { flex-direction: column; align-items: flex-start; }
+      .wa-enquiry { padding: 12px 24px; border-top: 0.5px solid rgba(201,168,76,0.1); width: 100%; }
+    }
+
+    @media (max-width: 480px) {
+      .annual-card { grid-template-columns: 1fr; }
+      .annual-period { display: flex; align-items: center; gap: 12px; text-align: left; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Navigation ──────────────────────────────────────── -->
+  <nav class="site-nav" id="site-nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo">
+          <img src="assets/images/logo-white-120.png"
+               alt="Quan Zhen Cultural Society logo"
+               class="nav-logo-img"
+               width="40" height="40">
+          <div class="nav-logo-text">
+            <span class="nav-logo-en">Quan Zhen Cultural Society</span>
+            <span class="nav-logo-cn">全真教化協會</span>
+          </div>
+        </a>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="tradition.html">Our Tradition</a></li>
+          <li><a href="events.html" class="active">Events</a></li>
+          <li><a href="learn.html">Learn</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+        </ul>
+        <div class="nav-right">
+          <div class="lang-toggle">
+            <a href="#" class="active">EN</a>
+            <span class="divider">/</span>
+            <a href="/zh/">中文</a>
+          </div>
+          <a href="contact.html" class="btn btn-outline-gold">Contact Us</a>
+          <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile nav drawer -->
+  <div class="mobile-nav" id="mobile-nav">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="tradition.html">Our Tradition</a>
+    <a href="events.html">Events</a>
+    <a href="learn.html">Learn</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="contact.html">Contact Us</a>
+  </div>
+
+  <main>
+
+    <!-- ── Page Hero ──────────────────────────────────────── -->
+    <section class="page-hero">
+      <div class="container">
+        <div class="page-hero-inner">
+          <p class="eyebrow" style="margin-bottom:12px;">Come practise with us · 共修</p>
+          <span class="cn-text" style="display:block; font-size:13px; margin-bottom:16px;">活動與科儀</span>
+          <h1>Events and Activities</h1>
+          <p>From weekly scripture classes to annual ritual ceremonies — our doors are open to practitioners, students, and all who wish to learn more about the Quanzhen Longmen tradition.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Filter bar ─────────────────────────────────────── -->
+    <div class="filter-bar">
+      <div class="container">
+        <div class="filter-bar-inner">
+          <div class="filter-tabs">
+            <button class="filter-tab active" data-filter="all">All</button>
+            <button class="filter-tab" data-filter="ritual">Rituals</button>
+            <button class="filter-tab" data-filter="class">Classes</button>
+            <button class="filter-tab" data-filter="annual">Annual</button>
+          </div>
+          <a href="https://wa.me/YOUR_NUMBER" class="wa-enquiry" target="_blank" rel="noopener">
+            <span class="wa-enquiry-dot"></span>
+            Enquire via WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Weekly Classes ─────────────────────────────────── -->
+    <section class="section section-paper" id="section-class" data-category="class">
+      <div class="container">
+        <p class="eyebrow" style="margin-bottom:12px;">Every Sunday</p>
+        <h2 style="margin-bottom:6px;">Scripture chanting and ritual class</h2>
+        <p class="cn-text" style="font-size:13px; margin-bottom:16px;">每週日誦經科儀班</p>
+        <p style="color:#555; max-width:580px; margin-bottom:32px; font-size:15px; line-height:1.8;">
+          Our weekly class is the heart of our community practice — bringing together ordained priests and new students every Sunday for scripture chanting and ritual training in the Quanzhen Longmen tradition.
+        </p>
+
+        <div class="class-schedule">
+          <div class="class-schedule-head">
+            <div>
+              <div class="class-schedule-title">Sunday Schedule</div>
+              <div class="class-schedule-cn">每週日課程表</div>
+            </div>
+            <span class="badge badge-class">Weekly · Every Sunday</span>
+          </div>
+          <div class="class-schedule-body">
+            <div class="class-slot">
+              <div class="class-slot-time">10:00 – 12:00</div>
+              <div class="class-slot-day">Sunday Morning</div>
+              <div class="class-slot-name">Ordained Priests Class</div>
+              <div class="class-slot-cn">道士科儀班</div>
+              <p class="class-slot-desc">Advanced scripture recitation and ritual practice for ordained priests. Covers Quanzhen Longmen liturgical texts, ritual protocols, and ceremonial performance in accordance with our lineage tradition.</p>
+            </div>
+            <div class="class-slot">
+              <div class="class-slot-time">12:00 – 14:00</div>
+              <div class="class-slot-day">Sunday Afternoon</div>
+              <div class="class-slot-name">New Students Class</div>
+              <div class="class-slot-cn">新生入門班</div>
+              <p class="class-slot-desc">Introduction to Taoist scripture chanting and ritual practice for new students. No prior experience required. Learn foundational texts, correct chanting form, and the meaning behind Quanzhen Longmen practices.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="enquiry-note">
+          <div class="enquiry-note-icon">問</div>
+          <p class="enquiry-note-text">
+            <strong>Interested in joining a class?</strong> Both sessions are held at our regular venue every Sunday. Please contact us via WhatsApp or the contact form to confirm the venue address and to register your attendance before your first visit.
+          </p>
+          <a href="https://wa.me/YOUR_NUMBER" class="btn btn-outline-gold" style="flex-shrink:0;" target="_blank" rel="noopener">Enquire now</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Monthly Rituals ────────────────────────────────── -->
+    <section class="section" style="background:#F0E6CF;" id="section-ritual" data-category="ritual">
+      <div class="container">
+        <p class="eyebrow" style="margin-bottom:12px;">Every month</p>
+        <h2 style="margin-bottom:6px;">Monthly rituals</h2>
+        <p class="cn-text" style="font-size:13px; margin-bottom:32px;">每月科儀</p>
+
+        <div class="recurring-grid">
+
+          <div class="recurring-card">
+            <div class="recurring-card-head">
+              <div class="recurring-card-head-left">
+                <div class="recurring-card-cn">禮斗</div>
+                <div class="recurring-card-title">Monthly Lidou Ritual</div>
+              </div>
+              <span class="recurring-freq">Monthly</span>
+            </div>
+            <div class="recurring-card-body">
+              <p>The Lidou ritual (禮斗科儀) is a communal ceremony venerating the 大聖北斗七元君 — the Seven Lords of the North Dipper. Performed on the last Sunday of every month, this ritual invokes the collective power of the Seven Lords to resolve disasters, extend life, and bestow blessings upon participants and their families.</p>
+              <div class="recurring-meta">
+                <div class="recurring-meta-row">
+                  <span class="meta-label">When</span>
+                  <span class="meta-value">Last Sunday of every month</span>
+                </div>
+                <div class="recurring-meta-row">
+                  <span class="meta-label">Duration</span>
+                  <span class="meta-value">Approximately 2 hours</span>
+                </div>
+                <div class="recurring-meta-row">
+                  <span class="meta-label">Open to</span>
+                  <span class="meta-value">Members and public — registration required</span>
+                </div>
+              </div>
+              <div class="recurring-badges">
+                <span class="badge badge-ritual">Ritual</span>
+                <span class="badge badge-open">Open to public</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="enquiry-note">
+          <div class="enquiry-note-icon">禮</div>
+          <p class="enquiry-note-text">
+            <strong>Registration is required for all rituals.</strong> Please contact us via WhatsApp at least 3 days before the ritual date to register your attendance. Participants are encouraged to arrive 15 minutes early.
+          </p>
+          <a href="https://wa.me/YOUR_NUMBER" class="btn btn-outline-gold" style="flex-shrink:0;" target="_blank" rel="noopener">Register</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Annual Ceremonies ──────────────────────────────── -->
+    <section class="section section-paper" id="section-annual" data-category="annual">
+      <div class="container">
+        <p class="eyebrow" style="margin-bottom:12px;">Every year</p>
+        <h2 style="margin-bottom:6px;">Annual ritual ceremonies</h2>
+        <p class="cn-text" style="font-size:13px; margin-bottom:32px;">年度科儀</p>
+
+        <div class="annual-list">
+
+          <!-- Zhong Yuan Jie -->
+          <div class="annual-card">
+            <div class="annual-period">
+              <div class="annual-period-cn">中元</div>
+              <div class="annual-period-label">Lunar 7th Month</div>
+            </div>
+            <div class="annual-body">
+              <div class="annual-title">Zhong Yuan Jie Ritual</div>
+              <div class="annual-cn">中元節科儀</div>
+              <p class="annual-desc">
+                The Zhong Yuan Festival (中元節) falls on the 15th day of the 7th lunar month — the midpoint of the Ghost Month and one of the three Yuan festivals in the Taoist calendar. Our annual Zhong Yuan ritual honours 太乙救苦天尊 (Taiyi Jiuku Tianzun), the Celestial Worthy of Universal Salvation, and performs rites for the welfare of the deceased and the relief of suffering across all realms. This is one of the most significant rituals in the Quanzhen liturgical calendar.
+              </p>
+              <div style="margin-top:12px; display:flex; gap:8px; flex-wrap:wrap;">
+                <span class="badge badge-annual">Annual</span>
+                <span class="badge badge-ritual">Ritual</span>
+                <span class="badge badge-open">Open to public</span>
+              </div>
+            </div>
+            <div class="annual-action">
+              <a href="https://wa.me/YOUR_NUMBER" class="btn btn-outline-gold" target="_blank" rel="noopener">Enquire</a>
+            </div>
+          </div>
+
+          <!-- Thank Taisui -->
+          <div class="annual-card">
+            <div class="annual-period">
+              <div class="annual-period-cn">謝歲</div>
+              <div class="annual-period-label">Before Winter Solstice</div>
+            </div>
+            <div class="annual-body">
+              <div class="annual-title">Thank Taisui Ritual</div>
+              <div class="annual-cn">謝太歲科儀</div>
+              <p class="annual-desc">
+                The Thank Taisui ritual (謝太歲) is performed annually before the Winter Solstice (冬至) to give thanks to the Taisui deity (太歲) — the Grand Duke Jupiter — who presides over the year's fortunes and afflictions. Those who had their Taisui afflicted during the year (犯太歲) come to offer gratitude and formally close the year's cycle of protection. A deeply meaningful ritual that marks the turning of the year and the renewal of blessings for the year ahead.
+              </p>
+              <div style="margin-top:12px; display:flex; gap:8px; flex-wrap:wrap;">
+                <span class="badge badge-annual">Annual</span>
+                <span class="badge badge-ritual">Ritual</span>
+                <span class="badge badge-open">Open to public</span>
+              </div>
+            </div>
+            <div class="annual-action">
+              <a href="https://wa.me/YOUR_NUMBER" class="btn btn-outline-gold" target="_blank" rel="noopener">Enquire</a>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="enquiry-note" style="margin-top:32px;">
+          <div class="enquiry-note-icon">歲</div>
+          <p class="enquiry-note-text">
+            <strong>Exact dates for annual ceremonies</strong> are determined by the lunar calendar each year. Follow us on Facebook and Instagram or contact us via WhatsApp to be notified when dates are confirmed.
+          </p>
+          <a href="https://wa.me/YOUR_NUMBER" class="btn btn-outline-gold" style="flex-shrink:0;" target="_blank" rel="noopener">Follow updates</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Join CTA ───────────────────────────────────────── -->
+    <section class="section-sm section-navy" style="text-align:center;">
+      <div class="container" style="max-width:600px;">
+        <p class="eyebrow" style="margin-bottom:12px;">Not sure where to start?</p>
+        <h2 style="color:var(--rice-paper); margin-bottom:16px;">Come for a Sunday class</h2>
+        <p style="color:var(--muted-sky); margin-bottom:32px;">
+          The Sunday new students class at 12pm is the easiest entry point — no experience needed, and our members will welcome you. Get in touch and we'll take care of the rest.
+        </p>
+        <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+          <a href="https://wa.me/YOUR_NUMBER" class="btn btn-gold" target="_blank" rel="noopener">WhatsApp us to join</a>
+          <a href="join.html" class="btn btn-outline-light">Learn about membership</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── Footer ─────────────────────────────────────────────── -->
+  <footer class="site-footer">
+    <div class="footer-main">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <div class="footer-brand-logo-row">
+              <img src="assets/images/logo-white-120.png"
+                   alt="Quan Zhen Cultural Society"
+                   class="footer-brand-logo"
+                   width="36" height="36">
+              <div>
+                <div class="footer-brand-name">Quan Zhen Cultural Society</div>
+                <div class="footer-brand-cn">全真教化協會</div>
+              </div>
+            </div>
+            <p class="footer-brand-desc">A Singapore Quanzhen Longmen organisation dedicated to the study, practice, and cultural preservation of the Taoist tradition. Est. 2016.</p>
+            <a href="https://wa.me/YOUR_NUMBER" class="footer-wa-btn" target="_blank" rel="noopener">
+              <span class="footer-wa-dot"></span>WhatsApp us
+            </a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">Explore</div>
+            <a href="about.html">About us</a>
+            <a href="tradition.html">Our Tradition</a>
+            <a href="events.html">Events</a>
+            <a href="learn.html">Learn</a>
+            <a href="gallery.html">Gallery</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">Get involved</div>
+            <a href="join.html">Join as member</a>
+            <a href="join.html#volunteer">Volunteer</a>
+            <a href="contact.html">Contact us</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">Follow us</div>
+            <a href="https://facebook.com/YOUR_PAGE" target="_blank" rel="noopener">Facebook</a>
+            <a href="https://instagram.com/YOUR_HANDLE" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://youtube.com/YOUR_CHANNEL" target="_blank" rel="noopener">YouTube</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <div class="footer-bottom-inner">
+          <p class="footer-copy">© 2026 Quan Zhen Cultural Society · 全真教化協會. All rights reserved.</p>
+          <div class="footer-legal">
+            <a href="privacy.html">Privacy Policy</a>
+            <span>·</span>
+            <a href="terms.html">Terms of Use</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── WhatsApp Float ──────────────────────────────────────── -->
+  <a href="https://wa.me/YOUR_NUMBER" class="wa-float" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+    <span>WhatsApp us</span>
+  </a>
+
+  <script>
+    // Nav scroll
+    const nav = document.getElementById('site-nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    // Mobile hamburger
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobile-nav');
+    hamburger.addEventListener('click', () => mobileNav.classList.toggle('open'));
+    mobileNav.querySelectorAll('a').forEach(l => l.addEventListener('click', () => mobileNav.classList.remove('open')));
+
+    // Filter tabs
+    const filterTabs = document.querySelectorAll('.filter-tab');
+    const sections = document.querySelectorAll('[data-category]');
+
+    filterTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        filterTabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const filter = tab.dataset.filter;
+        sections.forEach(section => {
+          if (filter === 'all' || section.dataset.category === filter) {
+            section.style.display = '';
+          } else {
+            section.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
