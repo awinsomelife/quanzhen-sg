@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="About Quan Zhen Cultural Society (全真教化協會) — our history, mission, and the committee behind Singapore's Quanzhen Longmen organisation since 2016.">
+  <meta property="og:title" content="About Us — Quan Zhen Cultural Society">
+  <meta property="og:description" content="Learn about Quan Zhen Cultural Society — our founding in 2016, our mission to preserve and transmit the Quanzhen Longmen tradition in Singapore, and our committee.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://quanzhen.sg/about.html">
+  <title>About Us — Quan Zhen Cultural Society · 全真教化協會</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/png" href="assets/images/logo-transparent-512.png">
+  <style>
+    /* ── Page-specific styles ── */
+    .page-hero {
+      background: var(--navy-primary);
+      padding: 140px 0 80px;
+      border-bottom: 1px solid rgba(201,168,76,0.2);
+    }
+    .page-hero-inner {
+      max-width: 640px;
+    }
+    .page-hero h1 {
+      color: var(--rice-paper);
+      margin-bottom: 16px;
+    }
+    .page-hero p {
+      color: var(--muted-sky);
+      font-size: 16px;
+      line-height: 1.75;
+    }
+    .page-hero .cn-text {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 16px;
+    }
+
+    /* Mission section */
+    .mission-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+    .mission-intro {
+      font-size: 16px;
+      line-height: 1.85;
+      color: #444;
+    }
+    .mission-aims {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .aim-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    .aim-number {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--navy-primary);
+      color: var(--brass-gold);
+      font-size: 12px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .aim-text {
+      font-size: 13px;
+      color: #555;
+      line-height: 1.7;
+    }
+
+    /* Timeline */
+    .timeline {
+      position: relative;
+      padding-left: 32px;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      bottom: 8px;
+      width: 1px;
+      background: rgba(201,168,76,0.3);
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 40px;
+    }
+    .timeline-item:last-child {
+      margin-bottom: 0;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -36px;
+      top: 8px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--brass-gold);
+      border: 2px solid var(--navy-primary);
+      box-shadow: 0 0 0 3px rgba(201,168,76,0.2);
+    }
+    .timeline-year {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      color: var(--brass-gold);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .timeline-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--navy-primary);
+      margin-bottom: 6px;
+    }
+    .timeline-desc {
+      font-size: 13px;
+      color: #666;
+      line-height: 1.7;
+      max-width: 480px;
+    }
+
+    /* Committee grid */
+    .committee-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    .committee-card {
+      background: var(--white);
+      border: 0.5px solid rgba(26,39,68,0.1);
+      border-radius: var(--radius-lg);
+      padding: 20px 16px;
+      text-align: center;
+      transition: border-color 0.2s;
+    }
+    .committee-card:hover {
+      border-color: rgba(201,168,76,0.4);
+    }
+    .committee-card.chairman {
+      grid-column: span 2;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      text-align: left;
+      padding: 24px;
+    }
+    .committee-avatar {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--navy-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 18px;
+      color: var(--brass-gold);
+      flex-shrink: 0;
+      margin: 0 auto 12px;
+    }
+    .committee-card.chairman .committee-avatar {
+      width: 64px;
+      height: 64px;
+      font-size: 22px;
+      margin: 0;
+    }
+    .committee-role {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--brass-gold);
+      margin-bottom: 6px;
+    }
+    .committee-name {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--navy-primary);
+      line-height: 1.3;
+    }
+    .committee-card.chairman .committee-name {
+      font-size: 20px;
+    }
+
+    @media (max-width: 1024px) {
+      .committee-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .committee-card.chairman {
+        grid-column: span 3;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .mission-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      .committee-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .committee-card.chairman {
+        grid-column: span 2;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .committee-grid {
+        grid-template-columns: 1fr;
+      }
+      .committee-card.chairman {
+        grid-column: span 1;
+        flex-direction: column;
+        text-align: center;
+      }
+      .committee-card.chairman .committee-avatar {
+        margin: 0 auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Navigation ──────────────────────────────────────── -->
+  <nav class="site-nav" id="site-nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="/" class="nav-logo">
+          <img src="assets/images/logo-white-120.png"
+               alt="Quan Zhen Cultural Society logo"
+               class="nav-logo-img"
+               width="40" height="40">
+          <div class="nav-logo-text">
+            <span class="nav-logo-en">Quan Zhen Cultural Society</span>
+            <span class="nav-logo-cn">全真教化協會</span>
+          </div>
+        </a>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html" class="active">About</a></li>
+          <li><a href="tradition.html">Our Tradition</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="learn.html">Learn</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+        </ul>
+        <div class="nav-right">
+          <div class="lang-toggle">
+            <a href="#" class="active">EN</a>
+            <span class="divider">/</span>
+            <a href="/zh/">中文</a>
+          </div>
+          <a href="contact.html" class="btn btn-outline-gold">Contact Us</a>
+          <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile nav drawer -->
+  <div class="mobile-nav" id="mobile-nav">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="tradition.html">Our Tradition</a>
+    <a href="events.html">Events</a>
+    <a href="learn.html">Learn</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="contact.html">Contact Us</a>
+  </div>
+
+  <main>
+
+    <!-- ── Page Hero ──────────────────────────────────────── -->
+    <section class="page-hero">
+      <div class="container">
+        <div class="page-hero-inner">
+          <p class="eyebrow" style="margin-bottom:12px;">Who we are</p>
+          <span class="cn-text">關於我們</span>
+          <h1>About Quan Zhen<br>Cultural Society</h1>
+          <p>Founded in Singapore in 2016, Quan Zhen Cultural Society is dedicated to the study, practice, and cultural preservation of the Quanzhen Longmen Taoist tradition — building a community of learners, practitioners, and custodians of heritage.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Mission ────────────────────────────────────────── -->
+    <section class="section section-paper">
+      <div class="container">
+        <div class="mission-grid">
+          <div>
+            <p class="eyebrow" style="margin-bottom:12px;">Our purpose</p>
+            <h2 style="margin-bottom:16px;">Mission and aims</h2>
+            <p class="cn-text" style="font-size:13px; margin-bottom:24px;">宗旨與目標</p>
+            <div class="gold-divider"></div>
+            <p class="mission-intro">
+              Quan Zhen Cultural Society exists to propagate, preserve, and transmit the Taoist Quanzhen Longmen tradition in Singapore. We serve as a living bridge between an ancient lineage and a modern society — nurturing the next generation of Taoist practitioners, leaders, and cultural custodians.
+            </p>
+            <p class="mission-intro" style="margin-top:16px;">
+              We are open to all — whether you are a lifelong practitioner, a curious beginner, or simply someone who wishes to understand more about Taoism and its role in Chinese cultural heritage.
+            </p>
+          </div>
+          <div class="mission-aims">
+            <div class="aim-item">
+              <div class="aim-number">1</div>
+              <p class="aim-text">Propagate Taoism through educational courses, public lectures, forums, and community events.</p>
+            </div>
+            <div class="aim-item">
+              <div class="aim-number">2</div>
+              <p class="aim-text">Serve as a platform for young Taoists — providing a space for learning, dialogue, and community connection.</p>
+            </div>
+            <div class="aim-item">
+              <div class="aim-number">3</div>
+              <p class="aim-text">Preserve the culture and practice of the Quanzhen Longmen Dragon Gate Sect's rites and rituals.</p>
+            </div>
+            <div class="aim-item">
+              <div class="aim-number">4</div>
+              <p class="aim-text">Instil leadership qualities among members and provide guidance and support to other Taoist organisations.</p>
+            </div>
+            <div class="aim-item">
+              <div class="aim-number">5</div>
+              <p class="aim-text">Affiliate, liaise, and cooperate with similar bodies locally and overseas that share our objectives and aspirations.</p>
+            </div>
+            <div class="aim-item">
+              <div class="aim-number">6</div>
+              <p class="aim-text">Train members in social service, offer Taoist teachings, and provide healthy and meaningful community activities.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Timeline ───────────────────────────────────────── -->
+    <section class="section" style="background:#F0E6CF;">
+      <div class="container">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:start;">
+          <div>
+            <p class="eyebrow" style="margin-bottom:12px;">Our story</p>
+            <h2 style="margin-bottom:16px;">A decade of tradition</h2>
+            <p class="cn-text" style="font-size:13px; margin-bottom:24px;">十年傳承</p>
+            <div class="gold-divider"></div>
+            <p style="color:#555; line-height:1.8; font-size:15px;">
+              From a small circle of dedicated practitioners to a registered cultural society with a growing community, Quan Zhen Cultural Society has spent a decade building something that matters — a living tradition, practised with rigour and shared with openness.
+            </p>
+            <p style="color:#555; line-height:1.8; font-size:15px; margin-top:16px;">
+              In 2026 we celebrated our 10th anniversary — a milestone that reflects not just the passage of time, but the depth of commitment from every member, teacher, and supporter who has been part of this journey.
+            </p>
+          </div>
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-year">2016</div>
+              <div class="timeline-title">Society established</div>
+              <p class="timeline-desc">Quan Zhen Cultural Society was formally registered in Singapore, bringing together a community of Quanzhen Longmen practitioners committed to the study and preservation of the Taoist tradition.</p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-year">2016 – 2025</div>
+              <div class="timeline-title">A decade of growth</div>
+              <p class="timeline-desc">Nine years of rituals, scripture classes, public education, and community building — steadily growing our membership and deepening our practice across Singapore.</p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-year">2026</div>
+              <div class="timeline-title">10th anniversary</div>
+              <p class="timeline-desc">Quan Zhen Cultural Society celebrates a decade of service to the Taoist community in Singapore — marking ten years of heritage preserved, teachings shared, and a tradition kept alive.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Committee ──────────────────────────────────────── -->
+    <section class="section section-paper">
+      <div class="container">
+        <p class="eyebrow" style="margin-bottom:12px;">Leadership</p>
+        <h2 style="margin-bottom:6px;">Our committee</h2>
+        <p class="cn-text" style="font-size:13px; margin-bottom:40px;">執行委員會</p>
+
+        <div class="committee-grid">
+
+          <!-- Chairman — spans 2 columns -->
+          <div class="committee-card chairman">
+            <div class="committee-avatar">鍾</div>
+            <div>
+              <div class="committee-role">Chairman</div>
+              <div class="committee-name">Master Chung Kwong Tong</div>
+            </div>
+          </div>
+
+          <div class="committee-card">
+            <div class="committee-avatar">陳</div>
+            <div class="committee-role">Treasurer</div>
+            <div class="committee-name">Master Chin Kwee Yong</div>
+          </div>
+
+          <div class="committee-card">
+            <div class="committee-avatar">法</div>
+            <div class="committee-role">Secretary General</div>
+            <div class="committee-name">Master Jason Fat</div>
+          </div>
+
+          <div class="committee-card">
+            <div class="committee-avatar">蘇</div>
+            <div class="committee-role">Exco Member</div>
+            <div class="committee-name">Master Jason Su</div>
+          </div>
+
+          <div class="committee-card">
+            <div class="committee-avatar">王</div>
+            <div class="committee-role">Exco Member</div>
+            <div class="committee-name">Master Steven Ong</div>
+          </div>
+
+          <div class="committee-card">
+            <div class="committee-avatar">沈</div>
+            <div class="committee-role">Exco Member</div>
+            <div class="committee-name">Master Elan Sim</div>
+          </div>
+
+          <div class="committee-card">
+            <div class="committee-avatar">李</div>
+            <div class="committee-role">Exco Member</div>
+            <div class="committee-name">Master Melvin Lee</div>
+          </div>
+
+          <div class="committee-card">
+            <div class="committee-avatar">李</div>
+            <div class="committee-role">Exco Member</div>
+            <div class="committee-name">Master Lee Chee Tong</div>
+          </div>
+
+          <div class="committee-card">
+            <div class="committee-avatar">符</div>
+            <div class="committee-role">Exco Member</div>
+            <div class="committee-name">Master Foo Siew Bieh</div>
+          </div>
+
+          <div class="committee-card">
+            <div class="committee-avatar">陳</div>
+            <div class="committee-role">Exco Member</div>
+            <div class="committee-name">Master Tan Kiang Lan</div>
+          </div>
+
+        </div>
+
+        <p style="font-size:12px; color:#888; margin-top:24px; font-style:italic;">
+          Note: Avatar characters are illustrative initials in Traditional Chinese. Committee portraits will be added in a future update.
+        </p>
+      </div>
+    </section>
+
+    <!-- ── Join CTA ───────────────────────────────────────── -->
+    <section class="section-sm section-navy" style="text-align:center;">
+      <div class="container" style="max-width:600px;">
+        <p class="eyebrow" style="margin-bottom:12px;">Get involved</p>
+        <h2 style="color:var(--rice-paper); margin-bottom:16px;">Become part of the community</h2>
+        <p style="color:var(--muted-sky); margin-bottom:32px;">
+          Whether you are a practitioner, a student of Taoism, or simply curious — we welcome you.
+        </p>
+        <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+          <a href="join.html" class="btn btn-gold">Join as member</a>
+          <a href="contact.html" class="btn btn-outline-light">Get in touch</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── Footer ─────────────────────────────────────────────── -->
+  <footer class="site-footer">
+    <div class="footer-main">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <div class="footer-brand-logo-row">
+              <img src="assets/images/logo-white-120.png"
+                   alt="Quan Zhen Cultural Society"
+                   class="footer-brand-logo"
+                   width="36" height="36">
+              <div>
+                <div class="footer-brand-name">Quan Zhen Cultural Society</div>
+                <div class="footer-brand-cn">全真教化協會</div>
+              </div>
+            </div>
+            <p class="footer-brand-desc">A Singapore Quanzhen Longmen organisation dedicated to the study, practice, and cultural preservation of the Taoist tradition. Est. 2016.</p>
+            <a href="https://wa.me/YOUR_NUMBER" class="footer-wa-btn" target="_blank" rel="noopener">
+              <span class="footer-wa-dot"></span>WhatsApp us
+            </a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">Explore</div>
+            <a href="about.html">About us</a>
+            <a href="tradition.html">Our Tradition</a>
+            <a href="events.html">Events</a>
+            <a href="learn.html">Learn</a>
+            <a href="gallery.html">Gallery</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">Get involved</div>
+            <a href="join.html">Join as member</a>
+            <a href="join.html#volunteer">Volunteer</a>
+            <a href="contact.html">Contact us</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">Follow us</div>
+            <a href="https://facebook.com/YOUR_PAGE" target="_blank" rel="noopener">Facebook</a>
+            <a href="https://instagram.com/YOUR_HANDLE" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://youtube.com/YOUR_CHANNEL" target="_blank" rel="noopener">YouTube</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <div class="footer-bottom-inner">
+          <p class="footer-copy">© 2026 Quan Zhen Cultural Society · 全真教化協會. All rights reserved.</p>
+          <div class="footer-legal">
+            <a href="privacy.html">Privacy Policy</a>
+            <span>·</span>
+            <a href="terms.html">Terms of Use</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── WhatsApp Float ──────────────────────────────────────── -->
+  <a href="https://wa.me/YOUR_NUMBER" class="wa-float" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+    <span>WhatsApp us</span>
+  </a>
+
+  <script>
+    const nav = document.getElementById('site-nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    });
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobile-nav');
+    hamburger.addEventListener('click', () => {
+      mobileNav.classList.toggle('open');
+    });
+    mobileNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => mobileNav.classList.remove('open'));
+    });
+  </script>
+
+</body>
+</html>
