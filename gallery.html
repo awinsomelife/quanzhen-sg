@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Photo gallery of Quan Zhen Cultural Society (全真教化協會) — events, rituals, classes, and community gatherings in Singapore.">
+  <meta property="og:title" content="Gallery — Quan Zhen Cultural Society">
+  <meta property="og:description" content="Photos from Quan Zhen Cultural Society events, rituals, and community gatherings in Singapore.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://quanzhen.sg/gallery.html">
+  <title>Gallery — Quan Zhen Cultural Society · 全真教化協會</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/png" href="assets/images/logo-transparent-512.png">
+  <style>
+    .page-hero {
+      background: var(--navy-primary);
+      padding: 140px 0 80px;
+      border-bottom: 1px solid rgba(201,168,76,0.2);
+    }
+    .page-hero-inner { max-width: 640px; }
+    .page-hero h1 { color: var(--rice-paper); margin-bottom: 16px; }
+    .page-hero p { color: var(--muted-sky); font-size: 16px; line-height: 1.75; }
+
+    /* Filter bar */
+    .filter-bar {
+      background: var(--navy-deep);
+      border-bottom: 1px solid rgba(201,168,76,0.15);
+      position: sticky;
+      top: 64px;
+      z-index: 100;
+    }
+    .filter-bar-inner {
+      display: flex;
+      gap: 0;
+      flex-wrap: wrap;
+    }
+    .filter-tab {
+      padding: 16px 24px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted-sky);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s;
+      white-space: nowrap;
+      background: none;
+      border-left: none;
+      border-right: none;
+      border-top: none;
+      font-family: var(--font-body);
+    }
+    .filter-tab:hover,
+    .filter-tab.active {
+      color: var(--brass-gold);
+      border-bottom-color: var(--brass-gold);
+    }
+
+    /* Album grid */
+    .album-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .album-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 0.5px solid rgba(26,39,68,0.1);
+      cursor: pointer;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .album-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(201,168,76,0.4);
+    }
+    .album-cover {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      display: block;
+      background: var(--navy-primary);
+    }
+    .album-cover-placeholder {
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: linear-gradient(135deg, #1A2744 0%, #111D38 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .album-cover-placeholder-cn {
+      font-family: var(--font-cn);
+      font-size: 36px;
+      color: rgba(201,168,76,0.3);
+      line-height: 1;
+    }
+    .album-cover-placeholder-note {
+      font-size: 10px;
+      color: rgba(143,163,200,0.4);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .album-info {
+      padding: 16px;
+    }
+    .album-tag {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      padding: 2px 8px;
+      border-radius: 20px;
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+    .tag-ritual { background: rgba(139,42,42,0.08); color: var(--cinnabar); }
+    .tag-class { background: rgba(26,39,68,0.08); color: var(--navy-primary); }
+    .tag-community { background: rgba(201,168,76,0.12); color: #7A5F1A; }
+    .tag-annual { background: rgba(15,110,86,0.1); color: #0F6E56; }
+    .album-title {
+      font-family: var(--font-display);
+      font-size: 17px;
+      font-weight: 500;
+      color: var(--navy-primary);
+      margin-bottom: 4px;
+      line-height: 1.3;
+    }
+    .album-date {
+      font-size: 11px;
+      color: #888;
+      margin-bottom: 6px;
+    }
+    .album-count {
+      font-size: 11px;
+      color: var(--muted-sky);
+    }
+
+    /* Lightbox overlay */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(17,29,56,0.97);
+      z-index: 2000;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox-header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(17,29,56,0.8);
+      border-bottom: 0.5px solid rgba(201,168,76,0.15);
+    }
+    .lightbox-title {
+      font-family: var(--font-display);
+      font-size: 16px;
+      color: var(--rice-paper);
+    }
+    .lightbox-close {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(245,237,216,0.1);
+      border: 0.5px solid rgba(245,237,216,0.2);
+      color: var(--rice-paper);
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .lightbox-close:hover { background: rgba(245,237,216,0.2); }
+    .lightbox-photos {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 8px;
+      width: 100%;
+      max-width: 1000px;
+      max-height: calc(100vh - 120px);
+      overflow-y: auto;
+      margin-top: 60px;
+      padding: 20px 0;
+    }
+    .lightbox-photo {
+      aspect-ratio: 1;
+      object-fit: cover;
+      border-radius: var(--radius-md);
+      cursor: zoom-in;
+      transition: transform 0.2s;
+    }
+    .lightbox-photo:hover { transform: scale(1.02); }
+    .lightbox-placeholder {
+      aspect-ratio: 1;
+      background: rgba(245,237,216,0.04);
+      border: 1px dashed rgba(201,168,76,0.2);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: rgba(143,163,200,0.4);
+      letter-spacing: 0.06em;
+      text-align: center;
+      padding: 12px;
+    }
+
+    /* How to add photos note */
+    .how-to-note {
+      background: rgba(201,168,76,0.06);
+      border: 0.5px solid rgba(201,168,76,0.2);
+      border-radius: var(--radius-lg);
+      padding: 20px 24px;
+      margin-top: 40px;
+    }
+    .how-to-title {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--navy-primary);
+      margin-bottom: 12px;
+    }
+    .how-to-step {
+      display: flex;
+      gap: 10px;
+      font-size: 12px;
+      color: #555;
+      line-height: 1.6;
+      margin-bottom: 8px;
+    }
+    .how-to-num {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--navy-primary);
+      color: var(--brass-gold);
+      font-size: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .code-inline {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      background: rgba(26,39,68,0.08);
+      padding: 1px 6px;
+      border-radius: 3px;
+      color: var(--navy-primary);
+    }
+
+    @media (max-width: 900px) {
+      .album-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .album-grid { grid-template-columns: 1fr; }
+      .lightbox-photos { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Navigation ──────────────────────────────────────── -->
+  <nav class="site-nav" id="site-nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo">
+          <img src="assets/images/logo-white-120.png"
+               alt="Quan Zhen Cultural Society logo"
+               class="nav-logo-img"
+               width="40" height="40">
+          <div class="nav-logo-text">
+            <span class="nav-logo-en">Quan Zhen Cultural Society</span>
+            <span class="nav-logo-cn">全真教化協會</span>
+          </div>
+        </a>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="tradition.html">Our Tradition</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="learn.html">Learn</a></li>
+          <li><a href="gallery.html" class="active">Gallery</a></li>
+        </ul>
+        <div class="nav-right">
+          <div class="lang-toggle">
+            <a href="#" class="active">EN</a>
+            <span class="divider">/</span>
+            <a href="/zh/">中文</a>
+          </div>
+          <a href="contact.html" class="btn btn-outline-gold">Contact Us</a>
+          <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile nav drawer -->
+  <div class="mobile-nav" id="mobile-nav">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="tradition.html">Our Tradition</a>
+    <a href="events.html">Events</a>
+    <a href="learn.html">Learn</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="contact.html">Contact Us</a>
+  </div>
+
+  <main>
+
+    <!-- ── Page Hero ──────────────────────────────────────── -->
+    <section class="page-hero">
+      <div class="container">
+        <div class="page-hero-inner">
+          <p class="eyebrow" style="margin-bottom:12px;">In pictures · 圖集</p>
+          <span class="cn-text" style="display:block; font-size:13px; margin-bottom:16px;">活動相簿</span>
+          <h1>Gallery</h1>
+          <p>A visual record of our community — rituals, classes, festivals, and the people who make Quan Zhen Cultural Society what it is. Browse by album below.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Filter bar ─────────────────────────────────────── -->
+    <div class="filter-bar">
+      <div class="container">
+        <div class="filter-bar-inner">
+          <button class="filter-tab active" data-filter="all">All albums</button>
+          <button class="filter-tab" data-filter="ritual">Rituals</button>
+          <button class="filter-tab" data-filter="class">Classes</button>
+          <button class="filter-tab" data-filter="community">Community</button>
+          <button class="filter-tab" data-filter="annual">Annual events</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Albums ─────────────────────────────────────────── -->
+    <section class="section section-paper">
+      <div class="container">
+
+        <div class="album-grid" id="album-grid">
+
+          <!--
+            HOW TO ADD A REAL ALBUM:
+            1. Upload photos to Google Drive folder
+            2. Right-click the cover photo → Share → Anyone with link → Copy link
+            3. Convert the Drive share link to a direct image link:
+               Share link:  https://drive.google.com/file/d/FILE_ID/view
+               Direct link: https://drive.google.com/uc?export=view&id=FILE_ID
+            4. Replace COVER_IMAGE_URL below with the direct link
+            5. Add photo URLs to the data-photos attribute (comma-separated direct links)
+            6. Update title, date, count, and category accordingly
+          -->
+
+          <!-- ALBUM 1 — placeholder -->
+          <div class="album-card"
+               data-category="annual"
+               data-title="10th Anniversary Celebration"
+               data-photos="PHOTO_URL_1,PHOTO_URL_2,PHOTO_URL_3"
+               onclick="openAlbum(this)">
+            <div class="album-cover-placeholder">
+              <div class="album-cover-placeholder-cn">慶</div>
+              <div class="album-cover-placeholder-note">Add cover photo</div>
+            </div>
+            <!-- Once you have a cover photo, replace the div above with:
+            <img src="COVER_IMAGE_URL" alt="10th Anniversary Celebration" class="album-cover" loading="lazy">
+            -->
+            <div class="album-info">
+              <span class="album-tag tag-annual">Annual event</span>
+              <div class="album-title">10th Anniversary Celebration</div>
+              <div class="album-date">2026</div>
+              <div class="album-count">Photos coming soon</div>
+            </div>
+          </div>
+
+          <!-- ALBUM 2 — placeholder -->
+          <div class="album-card"
+               data-category="ritual"
+               data-title="北斗禮斗科儀 · Monthly Lidou Ritual"
+               data-photos="PHOTO_URL_1,PHOTO_URL_2,PHOTO_URL_3"
+               onclick="openAlbum(this)">
+            <div class="album-cover-placeholder">
+              <div class="album-cover-placeholder-cn">禮</div>
+              <div class="album-cover-placeholder-note">Add cover photo</div>
+            </div>
+            <div class="album-info">
+              <span class="album-tag tag-ritual">Ritual</span>
+              <div class="album-title">北斗禮斗科儀 · Monthly Lidou Ritual</div>
+              <div class="album-date">Recurring · Last Sunday of month</div>
+              <div class="album-count">Photos coming soon</div>
+            </div>
+          </div>
+
+          <!-- ALBUM 3 — placeholder -->
+          <div class="album-card"
+               data-category="annual"
+               data-title="中元節科儀 · Zhong Yuan Jie"
+               data-photos="PHOTO_URL_1,PHOTO_URL_2,PHOTO_URL_3"
+               onclick="openAlbum(this)">
+            <div class="album-cover-placeholder">
+              <div class="album-cover-placeholder-cn">中</div>
+              <div class="album-cover-placeholder-note">Add cover photo</div>
+            </div>
+            <div class="album-info">
+              <span class="album-tag tag-annual">Annual event</span>
+              <div class="album-title">中元節科儀 · Zhong Yuan Jie</div>
+              <div class="album-date">Lunar 7th Month</div>
+              <div class="album-count">Photos coming soon</div>
+            </div>
+          </div>
+
+          <!-- ALBUM 4 — placeholder -->
+          <div class="album-card"
+               data-category="annual"
+               data-title="謝太歲科儀 · Thank Taisui Ritual"
+               data-photos="PHOTO_URL_1,PHOTO_URL_2,PHOTO_URL_3"
+               onclick="openAlbum(this)">
+            <div class="album-cover-placeholder">
+              <div class="album-cover-placeholder-cn">謝</div>
+              <div class="album-cover-placeholder-note">Add cover photo</div>
+            </div>
+            <div class="album-info">
+              <span class="album-tag tag-annual">Annual event</span>
+              <div class="album-title">謝太歲科儀 · Thank Taisui Ritual</div>
+              <div class="album-date">Before Winter Solstice</div>
+              <div class="album-count">Photos coming soon</div>
+            </div>
+          </div>
+
+          <!-- ALBUM 5 — placeholder -->
+          <div class="album-card"
+               data-category="class"
+               data-title="Sunday Scripture Classes · 週日誦經班"
+               data-photos="PHOTO_URL_1,PHOTO_URL_2,PHOTO_URL_3"
+               onclick="openAlbum(this)">
+            <div class="album-cover-placeholder">
+              <div class="album-cover-placeholder-cn">誦</div>
+              <div class="album-cover-placeholder-note">Add cover photo</div>
+            </div>
+            <div class="album-info">
+              <span class="album-tag tag-class">Class</span>
+              <div class="album-title">Sunday Scripture Classes · 週日誦經班</div>
+              <div class="album-date">Every Sunday</div>
+              <div class="album-count">Photos coming soon</div>
+            </div>
+          </div>
+
+          <!-- ALBUM 6 — placeholder -->
+          <div class="album-card"
+               data-category="community"
+               data-title="Community Gatherings · 社群活動"
+               data-photos="PHOTO_URL_1,PHOTO_URL_2,PHOTO_URL_3"
+               onclick="openAlbum(this)">
+            <div class="album-cover-placeholder">
+              <div class="album-cover-placeholder-cn">聚</div>
+              <div class="album-cover-placeholder-note">Add cover photo</div>
+            </div>
+            <div class="album-info">
+              <span class="album-tag tag-community">Community</span>
+              <div class="album-title">Community Gatherings · 社群活動</div>
+              <div class="album-date">Various</div>
+              <div class="album-count">Photos coming soon</div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- How to add photos — developer note rendered on page -->
+        <div class="how-to-note">
+          <div class="how-to-title">📁 How to add real photos to this gallery</div>
+          <div class="how-to-step">
+            <div class="how-to-num">1</div>
+            <span>Upload photos to your Google Drive folder <code class="code-inline">QZCS Website/gallery/album-name/</code></span>
+          </div>
+          <div class="how-to-step">
+            <div class="how-to-num">2</div>
+            <span>Right-click the cover photo → Share → Anyone with the link → Copy link. The link looks like: <code class="code-inline">https://drive.google.com/file/d/FILE_ID/view</code></span>
+          </div>
+          <div class="how-to-step">
+            <div class="how-to-num">3</div>
+            <span>Convert to a direct image link by replacing the end: <code class="code-inline">https://drive.google.com/uc?export=view&id=FILE_ID</code></span>
+          </div>
+          <div class="how-to-step">
+            <div class="how-to-num">4</div>
+            <span>In <code class="code-inline">gallery.html</code>, replace the placeholder div with an <code class="code-inline">&lt;img&gt;</code> tag using the direct link, and add all photo direct links to <code class="code-inline">data-photos</code>.</span>
+          </div>
+          <div class="how-to-step">
+            <div class="how-to-num">5</div>
+            <span>Once all albums have real photos, delete this note from the HTML.</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── Lightbox ───────────────────────────────────────────── -->
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-header">
+      <div class="lightbox-title" id="lightbox-title"></div>
+      <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close">✕</button>
+    </div>
+    <div class="lightbox-photos" id="lightbox-photos"></div>
+  </div>
+
+  <!-- ── Footer ─────────────────────────────────────────────── -->
+  <footer class="site-footer">
+    <div class="footer-main">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <div class="footer-brand-logo-row">
+              <img src="assets/images/logo-white-120.png"
+                   alt="Quan Zhen Cultural Society"
+                   class="footer-brand-logo"
+                   width="36" height="36">
+              <div>
+                <div class="footer-brand-name">Quan Zhen Cultural Society</div>
+                <div class="footer-brand-cn">全真教化協會</div>
+              </div>
+            </div>
+            <p class="footer-brand-desc">A Singapore Quanzhen Longmen organisation dedicated to the study, practice, and cultural preservation of the Taoist tradition. Est. 2016.</p>
+            <a href="https://wa.me/YOUR_NUMBER" class="footer-wa-btn" target="_blank" rel="noopener">
+              <span class="footer-wa-dot"></span>WhatsApp us
+            </a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">Explore</div>
+            <a href="about.html">About us</a>
+            <a href="tradition.html">Our Tradition</a>
+            <a href="events.html">Events</a>
+            <a href="learn.html">Learn</a>
+            <a href="gallery.html">Gallery</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">Get involved</div>
+            <a href="join.html">Join as member</a>
+            <a href="join.html#volunteer-form">Volunteer</a>
+            <a href="contact.html">Contact us</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">Follow us</div>
+            <a href="https://facebook.com/YOUR_PAGE" target="_blank" rel="noopener">Facebook</a>
+            <a href="https://instagram.com/YOUR_HANDLE" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://youtube.com/YOUR_CHANNEL" target="_blank" rel="noopener">YouTube</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <div class="footer-bottom-inner">
+          <p class="footer-copy">© 2026 Quan Zhen Cultural Society · 全真教化協會. All rights reserved.</p>
+          <div class="footer-legal">
+            <a href="privacy.html">Privacy Policy</a>
+            <span>·</span>
+            <a href="terms.html">Terms of Use</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/YOUR_NUMBER" class="wa-float" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+    <span>WhatsApp us</span>
+  </a>
+
+  <script>
+    // Nav scroll
+    const nav = document.getElementById('site-nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
+
+    // Mobile hamburger
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobile-nav');
+    hamburger.addEventListener('click', () => mobileNav.classList.toggle('open'));
+    mobileNav.querySelectorAll('a').forEach(l => l.addEventListener('click', () => mobileNav.classList.remove('open')));
+
+    // Filter tabs
+    const filterTabs = document.querySelectorAll('.filter-tab');
+    const albumCards = document.querySelectorAll('.album-card');
+    filterTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        filterTabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const filter = tab.dataset.filter;
+        albumCards.forEach(card => {
+          card.style.display = (filter === 'all' || card.dataset.category === filter) ? '' : 'none';
+        });
+      });
+    });
+
+    // Lightbox
+    function openAlbum(card) {
+      const title = card.dataset.title;
+      const photos = card.dataset.photos.split(',').filter(p => p && p !== 'PHOTO_URL_1' && p !== 'PHOTO_URL_2' && p !== 'PHOTO_URL_3');
+      const container = document.getElementById('lightbox-photos');
+      document.getElementById('lightbox-title').textContent = title;
+      container.innerHTML = '';
+
+      if (photos.length === 0) {
+        container.innerHTML = '<div style="color:rgba(143,163,200,0.6); font-size:14px; text-align:center; padding:40px; grid-column:1/-1;">Photos for this album are coming soon.</div>';
+      } else {
+        photos.forEach(url => {
+          const img = document.createElement('img');
+          img.src = url.trim();
+          img.className = 'lightbox-photo';
+          img.loading = 'lazy';
+          container.appendChild(img);
+        });
+      }
+      document.getElementById('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // Close lightbox on escape key
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeLightbox();
+    });
+
+    // Close lightbox on background click
+    document.getElementById('lightbox').addEventListener('click', function(e) {
+      if (e.target === this) closeLightbox();
+    });
+  </script>
+
+</body>
+</html>

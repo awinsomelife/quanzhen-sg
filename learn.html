@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learn about Taoism and the Quanzhen Longmen tradition — articles, scripture introductions, and learning resources from Quan Zhen Cultural Society (全真教化協會) Singapore.">
+  <meta property="og:title" content="Learn — Quan Zhen Cultural Society">
+  <meta property="og:description" content="Taoist learning resources from Quan Zhen Cultural Society — articles, scripture introductions, and guides to Quanzhen thought and practice.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://quanzhen.sg/learn.html">
+  <title>Learn — Quan Zhen Cultural Society · 全真教化協會</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/png" href="assets/images/logo-transparent-512.png">
+  <style>
+    .page-hero {
+      background: var(--navy-primary);
+      padding: 140px 0 80px;
+      border-bottom: 1px solid rgba(201,168,76,0.2);
+    }
+    .page-hero-inner { max-width: 640px; }
+    .page-hero h1 { color: var(--rice-paper); margin-bottom: 16px; }
+    .page-hero p { color: var(--muted-sky); font-size: 16px; line-height: 1.75; }
+
+    /* Section tabs */
+    .section-tabs {
+      background: var(--navy-deep);
+      border-bottom: 1px solid rgba(201,168,76,0.15);
+      position: sticky;
+      top: 64px;
+      z-index: 100;
+    }
+    .section-tabs-inner { display: flex; }
+    .section-tab {
+      padding: 16px 28px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted-sky);
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .section-tab:hover,
+    .section-tab.active {
+      color: var(--brass-gold);
+      border-bottom-color: var(--brass-gold);
+    }
+
+    /* Article cards */
+    .article-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .article-card {
+      background: var(--white);
+      border: 0.5px solid rgba(26,39,68,0.1);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: border-color 0.2s, transform 0.2s;
+      text-decoration: none;
+      display: block;
+    }
+    .article-card:hover {
+      border-color: rgba(201,168,76,0.4);
+      transform: translateY(-2px);
+    }
+    .article-card-cover {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: linear-gradient(135deg, #1A2744 0%, #111D38 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-cn);
+      font-size: 40px;
+      color: rgba(201,168,76,0.25);
+    }
+    .article-card-body {
+      padding: 18px;
+    }
+    .article-category {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--brass-gold);
+      margin-bottom: 8px;
+    }
+    .article-title {
+      font-family: var(--font-display);
+      font-size: 17px;
+      font-weight: 500;
+      color: var(--navy-primary);
+      line-height: 1.35;
+      margin-bottom: 8px;
+    }
+    .article-excerpt {
+      font-size: 12px;
+      color: #666;
+      line-height: 1.65;
+      margin-bottom: 12px;
+    }
+    .article-meta {
+      font-size: 11px;
+      color: #aaa;
+    }
+
+    /* Scripture cards */
+    .scripture-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .scripture-card {
+      background: var(--white);
+      border: 0.5px solid rgba(26,39,68,0.1);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      display: grid;
+      grid-template-columns: 80px 1fr auto;
+      gap: 24px;
+      align-items: start;
+      transition: border-color 0.2s;
+    }
+    .scripture-card:hover {
+      border-color: rgba(201,168,76,0.35);
+    }
+    .scripture-symbol {
+      font-family: var(--font-cn);
+      font-size: 36px;
+      color: var(--brass-gold);
+      line-height: 1;
+      text-align: center;
+    }
+    .scripture-body {}
+    .scripture-title-cn {
+      font-family: var(--font-cn);
+      font-size: 16px;
+      color: var(--navy-primary);
+      letter-spacing: 0.08em;
+      margin-bottom: 3px;
+    }
+    .scripture-title-en {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--navy-primary);
+      margin-bottom: 8px;
+    }
+    .scripture-desc {
+      font-size: 13px;
+      color: #555;
+      line-height: 1.7;
+      max-width: 520px;
+    }
+    .scripture-tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+    .scripture-tag {
+      font-size: 10px;
+      padding: 2px 8px;
+      border-radius: 20px;
+      background: rgba(26,39,68,0.06);
+      color: var(--navy-primary);
+    }
+    .scripture-action {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-items: flex-end;
+      flex-shrink: 0;
+    }
+
+    /* Coming soon placeholder */
+    .coming-soon-note {
+      background: rgba(201,168,76,0.05);
+      border: 1.5px dashed rgba(201,168,76,0.3);
+      border-radius: var(--radius-lg);
+      padding: 40px 24px;
+      text-align: center;
+      margin-top: 20px;
+    }
+    .coming-soon-cn {
+      font-family: var(--font-cn);
+      font-size: 32px;
+      color: rgba(201,168,76,0.3);
+      margin-bottom: 12px;
+    }
+    .coming-soon-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      color: var(--navy-primary);
+      margin-bottom: 8px;
+    }
+    .coming-soon-desc {
+      font-size: 13px;
+      color: #888;
+      max-width: 400px;
+      margin: 0 auto 20px;
+      line-height: 1.65;
+    }
+
+    /* Notify form */
+    .notify-form {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      flex-wrap: wrap;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 900px) {
+      .article-grid { grid-template-columns: repeat(2, 1fr); }
+      .scripture-card { grid-template-columns: 60px 1fr; }
+      .scripture-action { display: none; }
+    }
+    @media (max-width: 600px) {
+      .article-grid { grid-template-columns: 1fr; }
+      .scripture-card { grid-template-columns: 1fr; }
+      .scripture-symbol { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Navigation ──────────────────────────────────────── -->
+  <nav class="site-nav" id="site-nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo">
+          <img src="assets/images/logo-white-120.png"
+               alt="Quan Zhen Cultural Society logo"
+               class="nav-logo-img"
+               width="40" height="40">
+          <div class="nav-logo-text">
+            <span class="nav-logo-en">Quan Zhen Cultural Society</span>
+            <span class="nav-logo-cn">全真教化協會</span>
+          </div>
+        </a>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="tradition.html">Our Tradition</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="learn.html" class="active">Learn</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+        </ul>
+        <div class="nav-right">
+          <div class="lang-toggle">
+            <a href="#" class="active">EN</a>
+            <span class="divider">/</span>
+            <a href="/zh/">中文</a>
+          </div>
+          <a href="contact.html" class="btn btn-outline-gold">Contact Us</a>
+          <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile nav drawer -->
+  <div class="mobile-nav" id="mobile-nav">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="tradition.html">Our Tradition</a>
+    <a href="events.html">Events</a>
+    <a href="learn.html">Learn</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="contact.html">Contact Us</a>
+  </div>
+
+  <main>
+
+    <!-- ── Page Hero ──────────────────────────────────────── -->
+    <section class="page-hero">
+      <div class="container">
+        <div class="page-hero-inner">
+          <p class="eyebrow" style="margin-bottom:12px;">Knowledge and practice · 學習資源</p>
+          <span class="cn-text" style="display:block; font-size:13px; margin-bottom:16px;">研習道學</span>
+          <h1>Learn</h1>
+          <p>Introductions to Taoist scripture, articles on Quanzhen philosophy and practice, and resources for both new learners and experienced practitioners of the Longmen tradition.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Section tabs ───────────────────────────────────── -->
+    <div class="section-tabs">
+      <div class="container">
+        <div class="section-tabs-inner">
+          <a href="#articles" class="section-tab active">Articles</a>
+          <a href="#scriptures" class="section-tab">Scripture introductions</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Articles ───────────────────────────────────────── -->
+    <section class="section section-paper" id="articles">
+      <div class="container">
+        <p class="eyebrow" style="margin-bottom:12px;">Insights and explanations</p>
+        <h2 style="margin-bottom:6px;">Articles</h2>
+        <p class="cn-text" style="font-size:13px; margin-bottom:16px;">道學文章</p>
+        <p style="color:#555; max-width:580px; margin-bottom:40px; font-size:15px; line-height:1.8;">
+          Thought pieces and explanations on Taoist philosophy, Quanzhen teachings, and the role of Taoism in everyday modern life — written by Quan Zhen Cultural Society.
+        </p>
+
+        <!-- Placeholder articles — replace with real content -->
+        <div class="article-grid">
+
+          <a href="#" class="article-card">
+            <div class="article-card-cover">道</div>
+            <div class="article-card-body">
+              <div class="article-category">Introduction · Taoism</div>
+              <div class="article-title">What is the Quanzhen school? An introduction for beginners</div>
+              <p class="article-excerpt">The Quanzhen tradition is one of Taoism's great scholarly lineages — but what does that actually mean in practice? We explain the core ideas.</p>
+              <div class="article-meta">Coming soon</div>
+            </div>
+          </a>
+
+          <a href="#" class="article-card">
+            <div class="article-card-cover">修</div>
+            <div class="article-card-body">
+              <div class="article-category">Practice · Inner cultivation</div>
+              <div class="article-title">Inner alchemy in the Longmen tradition — a brief overview</div>
+              <p class="article-excerpt">內丹 (inner alchemy) sits at the heart of Quanzhen practice. We outline what it means, how it is practised, and why it matters.</p>
+              <div class="article-meta">Coming soon</div>
+            </div>
+          </a>
+
+          <a href="#" class="article-card">
+            <div class="article-card-cover">斗</div>
+            <div class="article-card-body">
+              <div class="article-category">Deities · North Dipper</div>
+              <div class="article-title">Understanding the 北斗七元君 — the Seven Lords of the North Dipper</div>
+              <p class="article-excerpt">The Seven Lords of the North Dipper are central to Quanzhen ritual life. We explain who they are, what they govern, and how the Lidou ritual venerates them.</p>
+              <div class="article-meta">Coming soon</div>
+            </div>
+          </a>
+
+          <a href="#" class="article-card">
+            <div class="article-card-cover">清</div>
+            <div class="article-card-body">
+              <div class="article-category">Scripture · Qing Jing Jing</div>
+              <div class="article-title">清靜經 — the Scripture of Clarity and Stillness, explained</div>
+              <p class="article-excerpt">One of the most recited texts in the Quanzhen tradition, the Qing Jing Jing offers a profound teaching on stillness and the nature of the Dao.</p>
+              <div class="article-meta">Coming soon</div>
+            </div>
+          </a>
+
+          <a href="#" class="article-card">
+            <div class="article-card-cover">元</div>
+            <div class="article-card-body">
+              <div class="article-category">Festival · Zhong Yuan</div>
+              <div class="article-title">Zhong Yuan Jie — more than the Ghost Festival</div>
+              <p class="article-excerpt">Many know it as Ghost Month, but in Taoism the Zhong Yuan Festival carries a deeper meaning of salvation, compassion, and universal liberation.</p>
+              <div class="article-meta">Coming soon</div>
+            </div>
+          </a>
+
+          <a href="#" class="article-card">
+            <div class="article-card-cover">歲</div>
+            <div class="article-card-body">
+              <div class="article-category">Practice · Taisui</div>
+              <div class="article-title">What does it mean to 犯太歲 — clash with the Taisui?</div>
+              <p class="article-excerpt">Each year, certain zodiac signs are said to be in conflict with the Grand Duke Jupiter. We explain the concept and the ritual of giving thanks.</p>
+              <div class="article-meta">Coming soon</div>
+            </div>
+          </a>
+
+        </div>
+
+        <div class="coming-soon-note" style="margin-top:32px;">
+          <div class="coming-soon-cn">文</div>
+          <div class="coming-soon-title">More articles coming soon</div>
+          <p class="coming-soon-desc">We are building a library of accessible, accurate resources on Quanzhen Taoism in English and Traditional Chinese. Follow us on social media to be notified when new articles are published.</p>
+          <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+            <a href="https://facebook.com/YOUR_PAGE" class="btn btn-outline-gold" target="_blank" rel="noopener">Follow on Facebook</a>
+            <a href="contact.html" class="btn btn-outline-gold">Get notified</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── Scripture Introductions ────────────────────────── -->
+    <section class="section" style="background:#F0E6CF;" id="scriptures">
+      <div class="container">
+        <p class="eyebrow" style="margin-bottom:12px;">Key texts of the Longmen tradition</p>
+        <h2 style="margin-bottom:6px;">Scripture introductions</h2>
+        <p class="cn-text" style="font-size:13px; margin-bottom:16px;">經典導讀</p>
+        <p style="color:#555; max-width:580px; margin-bottom:40px; font-size:15px; line-height:1.8;">
+          An introduction to the major Taoist scriptures studied and recited within the Quanzhen Longmen tradition — with context on their significance and core teachings.
+        </p>
+
+        <div class="scripture-list">
+
+          <div class="scripture-card">
+            <div class="scripture-symbol">道德</div>
+            <div class="scripture-body">
+              <div class="scripture-title-cn">道德經</div>
+              <div class="scripture-title-en">Dao De Jing</div>
+              <p class="scripture-desc">
+                The foundational text of Taoist thought, attributed to Laozi (老子). The Dao De Jing's 81 chapters explore the nature of the Dao, the virtue of non-action (無為), and the principles of harmony and balance. It is studied by all practitioners in the Quanzhen tradition as the bedrock of Taoist philosophy.
+              </p>
+              <div class="scripture-tags">
+                <span class="scripture-tag">Foundational text</span>
+                <span class="scripture-tag">Philosophy</span>
+                <span class="scripture-tag">Laozi · 老子</span>
+              </div>
+            </div>
+            <div class="scripture-action">
+              <span class="eyebrow" style="font-size:10px; color:#aaa;">Introduction coming soon</span>
+            </div>
+          </div>
+
+          <div class="scripture-card">
+            <div class="scripture-symbol">清靜</div>
+            <div class="scripture-body">
+              <div class="scripture-title-cn">太上老君說常清靜經</div>
+              <div class="scripture-title-en">Qing Jing Jing · Scripture of Clarity and Stillness</div>
+              <p class="scripture-desc">
+                One of the most frequently recited texts in the Quanzhen tradition. The Qing Jing Jing teaches that the human heart, when freed from desire and agitation, naturally returns to clarity and stillness — and in that stillness, the Dao is revealed. A foundational text for inner cultivation practice.
+              </p>
+              <div class="scripture-tags">
+                <span class="scripture-tag">Recitation text</span>
+                <span class="scripture-tag">Inner cultivation</span>
+                <span class="scripture-tag">Quanzhen core text</span>
+              </div>
+            </div>
+            <div class="scripture-action">
+              <span class="eyebrow" style="font-size:10px; color:#aaa;">Introduction coming soon</span>
+            </div>
+          </div>
+
+          <div class="scripture-card">
+            <div class="scripture-symbol">北斗</div>
+            <div class="scripture-body">
+              <div class="scripture-title-cn">北斗七星延生真經</div>
+              <div class="scripture-title-en">Bei Dou Jing · Scripture of the North Dipper</div>
+              <p class="scripture-desc">
+                The scripture dedicated to the Seven Lords of the North Dipper (北斗七元君). Recited during the monthly Lidou ritual and other ceremonial occasions, the Bei Dou Jing invokes the seven lords for the resolution of karmic obstacles, extension of life, and the bestowal of blessings. Central to Quanzhen Longmen liturgical practice.
+              </p>
+              <div class="scripture-tags">
+                <span class="scripture-tag">Ritual text</span>
+                <span class="scripture-tag">North Dipper</span>
+                <span class="scripture-tag">Recited at Lidou ritual</span>
+              </div>
+            </div>
+            <div class="scripture-action">
+              <span class="eyebrow" style="font-size:10px; color:#aaa;">Introduction coming soon</span>
+            </div>
+          </div>
+
+          <div class="scripture-card">
+            <div class="scripture-symbol">莊子</div>
+            <div class="scripture-body">
+              <div class="scripture-title-cn">莊子</div>
+              <div class="scripture-title-en">Zhuangzi</div>
+              <p class="scripture-desc">
+                Alongside the Dao De Jing, the Zhuangzi is one of the two pillars of classical Taoist literature. Its parables, dialogues, and philosophical explorations on freedom, transformation, and the nature of knowledge have shaped Taoist thought for over two millennia. The Quanzhen school draws heavily on Zhuangzi's vision of naturalness (自然) and the equality of all things (齊物).
+              </p>
+              <div class="scripture-tags">
+                <span class="scripture-tag">Classical text</span>
+                <span class="scripture-tag">Philosophy</span>
+                <span class="scripture-tag">Zhuangzi · 莊周</span>
+              </div>
+            </div>
+            <div class="scripture-action">
+              <span class="eyebrow" style="font-size:10px; color:#aaa;">Introduction coming soon</span>
+            </div>
+          </div>
+
+          <div class="scripture-card">
+            <div class="scripture-symbol">玉皇</div>
+            <div class="scripture-body">
+              <div class="scripture-title-cn">高上玉皇本行集經</div>
+              <div class="scripture-title-en">Yu Huang Jing · Scripture of the Jade Emperor</div>
+              <p class="scripture-desc">
+                The canonical text venerating 玉皇大天尊, the Jade Emperor — supreme ruler of Heaven and Earth in the Taoist pantheon. Recited during major ritual ceremonies, the Yu Huang Jing affirms the sovereignty of the Jade Emperor over the cosmic order and is a key liturgical text in Quanzhen ceremonial practice.
+              </p>
+              <div class="scripture-tags">
+                <span class="scripture-tag">Ritual text</span>
+                <span class="scripture-tag">Jade Emperor</span>
+                <span class="scripture-tag">Liturgical</span>
+              </div>
+            </div>
+            <div class="scripture-action">
+              <span class="eyebrow" style="font-size:10px; color:#aaa;">Introduction coming soon</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── CTA ────────────────────────────────────────────── -->
+    <section class="section-sm section-navy" style="text-align:center;">
+      <div class="container" style="max-width:600px;">
+        <p class="eyebrow" style="margin-bottom:12px;">Learn in person</p>
+        <h2 style="color:var(--rice-paper); margin-bottom:16px;">Join a Sunday class</h2>
+        <p style="color:var(--muted-sky); margin-bottom:32px;">
+          The best way to engage with these scriptures is in a community setting. Our Sunday new students class at 12pm is open to all — no prior knowledge required.
+        </p>
+        <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+          <a href="events.html" class="btn btn-gold">See our events</a>
+          <a href="tradition.html" class="btn btn-outline-light">Explore our tradition</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── Footer ─────────────────────────────────────────────── -->
+  <footer class="site-footer">
+    <div class="footer-main">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <div class="footer-brand-logo-row">
+              <img src="assets/images/logo-white-120.png"
+                   alt="Quan Zhen Cultural Society"
+                   class="footer-brand-logo"
+                   width="36" height="36">
+              <div>
+                <div class="footer-brand-name">Quan Zhen Cultural Society</div>
+                <div class="footer-brand-cn">全真教化協會</div>
+              </div>
+            </div>
+            <p class="footer-brand-desc">A Singapore Quanzhen Longmen organisation dedicated to the study, practice, and cultural preservation of the Taoist tradition. Est. 2016.</p>
+            <a href="https://wa.me/YOUR_NUMBER" class="footer-wa-btn" target="_blank" rel="noopener">
+              <span class="footer-wa-dot"></span>WhatsApp us
+            </a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">Explore</div>
+            <a href="about.html">About us</a>
+            <a href="tradition.html">Our Tradition</a>
+            <a href="events.html">Events</a>
+            <a href="learn.html">Learn</a>
+            <a href="gallery.html">Gallery</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">Get involved</div>
+            <a href="join.html">Join as member</a>
+            <a href="join.html#volunteer-form">Volunteer</a>
+            <a href="contact.html">Contact us</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">Follow us</div>
+            <a href="https://facebook.com/YOUR_PAGE" target="_blank" rel="noopener">Facebook</a>
+            <a href="https://instagram.com/YOUR_HANDLE" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://youtube.com/YOUR_CHANNEL" target="_blank" rel="noopener">YouTube</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <div class="footer-bottom-inner">
+          <p class="footer-copy">© 2026 Quan Zhen Cultural Society · 全真教化協會. All rights reserved.</p>
+          <div class="footer-legal">
+            <a href="privacy.html">Privacy Policy</a>
+            <span>·</span>
+            <a href="terms.html">Terms of Use</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/YOUR_NUMBER" class="wa-float" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+    <span>WhatsApp us</span>
+  </a>
+
+  <script>
+    const nav = document.getElementById('site-nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobile-nav');
+    hamburger.addEventListener('click', () => mobileNav.classList.toggle('open'));
+    mobileNav.querySelectorAll('a').forEach(l => l.addEventListener('click', () => mobileNav.classList.remove('open')));
+
+    // Section tab active state on scroll
+    const tabs = document.querySelectorAll('.section-tab');
+    const sections = ['articles','scriptures'].map(id => document.getElementById(id));
+    window.addEventListener('scroll', () => {
+      let current = 'articles';
+      sections.forEach(s => { if (s && window.scrollY >= s.offsetTop - 140) current = s.id; });
+      tabs.forEach(t => t.classList.toggle('active', t.getAttribute('href') === '#' + current));
+    });
+  </script>
+
+</body>
+</html>
