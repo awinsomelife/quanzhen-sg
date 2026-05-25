@@ -1,0 +1,278 @@
+/* ============================================================
+   QUAN ZHEN — Interactivity Enhancement v1.0
+   Add this as a separate file: css/interactions.css
+   Then link it in every HTML file after style.css:
+   <link rel="stylesheet" href="css/interactions.css">
+   ============================================================ */
+
+/* ── Scroll reveal — base state (hidden) ─────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.reveal-left {
+  transform: translateX(-28px);
+}
+
+.reveal.reveal-right {
+  transform: translateX(28px);
+}
+
+.reveal.reveal-scale {
+  transform: scale(0.96);
+}
+
+/* Visible state — triggered by JS IntersectionObserver */
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Staggered children */
+.reveal-group .reveal:nth-child(1) { transition-delay: 0s; }
+.reveal-group .reveal:nth-child(2) { transition-delay: 0.1s; }
+.reveal-group .reveal:nth-child(3) { transition-delay: 0.2s; }
+.reveal-group .reveal:nth-child(4) { transition-delay: 0.3s; }
+.reveal-group .reveal:nth-child(5) { transition-delay: 0.4s; }
+.reveal-group .reveal:nth-child(6) { transition-delay: 0.5s; }
+
+/* ── Hero — full viewport height ─────────────────────────── */
+.hero {
+  min-height: 100vh !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+/* Hero content fade up on load */
+.hero-content {
+  animation: heroFadeUp 1s ease forwards;
+  animation-delay: 0.2s;
+  opacity: 0;
+}
+
+@keyframes heroFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hero background characters — slow drift */
+.hero-bg-char {
+  animation: charDrift 20s ease-in-out infinite alternate;
+}
+.hero-bg-char:nth-child(1) { animation-delay: 0s; animation-duration: 22s; }
+.hero-bg-char:nth-child(2) { animation-delay: 2s; animation-duration: 18s; }
+.hero-bg-char:nth-child(3) { animation-delay: 4s; animation-duration: 24s; }
+.hero-bg-char:nth-child(4) { animation-delay: 1s; animation-duration: 20s; }
+
+@keyframes charDrift {
+  from { transform: translateY(0px) rotate(0deg); }
+  to   { transform: translateY(-18px) rotate(1.5deg); }
+}
+
+/* ── Gold divider animated width ─────────────────────────── */
+.gold-divider,
+.gold-divider-center {
+  width: 0;
+  transition: width 0.8s ease;
+}
+.gold-divider.visible,
+.gold-divider-center.visible {
+  width: 48px;
+}
+
+/* ── Card hover elevations ────────────────────────────────── */
+.event-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease !important;
+}
+.event-card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 12px 32px rgba(26,39,68,0.12) !important;
+}
+
+.pillar-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease !important;
+  cursor: default;
+}
+.pillar-card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 12px 32px rgba(26,39,68,0.1) !important;
+}
+
+.cta-card {
+  transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease !important;
+}
+.cta-card:hover {
+  background: rgba(245,237,216,0.08) !important;
+  border-color: rgba(201,168,76,0.3) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* ── Stats bar — count-up number pulse ───────────────────── */
+.stat-value {
+  transition: transform 0.3s ease;
+}
+.stat-item:hover .stat-value {
+  transform: scale(1.1);
+}
+
+/* ── Nav link underline slide ─────────────────────────────── */
+.nav-links a {
+  position: relative;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--brass-gold);
+  transition: width 0.25s ease;
+}
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  width: 100%;
+}
+
+/* ── Button press feedback ────────────────────────────────── */
+.btn {
+  transition: all 0.2s ease, transform 0.1s ease !important;
+}
+.btn:active {
+  transform: scale(0.97) !important;
+}
+
+/* ── Page hero sections — parallax-lite ──────────────────── */
+.page-hero {
+  position: relative;
+  overflow: hidden;
+}
+.page-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 70% 50%, rgba(201,168,76,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* ── Section entrance — subtle background shift ──────────── */
+.section-paper {
+  position: relative;
+}
+
+/* ── Lineage connector — animated height ─────────────────── */
+.lineage-connector {
+  height: 0;
+  transition: height 0.6s ease;
+  overflow: hidden;
+}
+.lineage-connector.visible {
+  height: 20px;
+}
+
+/* ── Deity and committee cards — lift on hover ───────────── */
+.deity-card,
+.committee-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease !important;
+}
+.deity-card:hover,
+.committee-card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 8px 24px rgba(26,39,68,0.1) !important;
+}
+
+/* ── Scripture and practice cards ────────────────────────── */
+.scripture-card,
+.practice-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease !important;
+}
+.scripture-card:hover,
+.practice-card:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 8px 24px rgba(26,39,68,0.08) !important;
+}
+
+/* ── Album cards — image zoom on hover ───────────────────── */
+.album-card {
+  overflow: hidden;
+}
+.album-cover {
+  transition: transform 0.4s ease !important;
+}
+.album-card:hover .album-cover {
+  transform: scale(1.05) !important;
+}
+
+/* ── WhatsApp float — pulse ring ─────────────────────────── */
+.wa-float {
+  position: relative;
+}
+.wa-float::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50px;
+  background: rgba(37,211,102,0.2);
+  animation: waPulse 2.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes waPulse {
+  0%   { transform: scale(1);   opacity: 0.6; }
+  50%  { transform: scale(1.08); opacity: 0.2; }
+  100% { transform: scale(1);   opacity: 0.6; }
+}
+
+/* ── Footer links — gold underline on hover ──────────────── */
+.footer-col a {
+  position: relative;
+  padding-bottom: 1px;
+}
+.footer-col a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 0.5px;
+  background: var(--brass-gold);
+  transition: width 0.2s ease;
+}
+.footer-col a:hover::after {
+  width: 100%;
+}
+
+/* ── Eyebrow — slide in from left ────────────────────────── */
+.eyebrow {
+  position: relative;
+  padding-left: 0;
+  transition: padding-left 0.4s ease;
+}
+
+/* ── Reduce motion — respect user preference ─────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .hero-content,
+  .hero-bg-char,
+  .gold-divider,
+  .gold-divider-center,
+  .lineage-connector {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    width: 48px !important;
+    height: 20px !important;
+  }
+  .wa-float::before {
+    animation: none !important;
+  }
+}
