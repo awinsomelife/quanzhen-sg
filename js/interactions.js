@@ -1,44 +1,11 @@
 /**
- * Quan Zhen Cultural Society — Interactions v1.0
- * Save as: js/interactions.js
- * Add to every HTML file before </body>:
- * <script src="js/interactions.js"></script>
+ * Quan Zhen Cultural Society — Interactions v1.1
+ * Fixes: removed hide-on-scroll nav (caused visual issues + broke mobile menu)
+ * Added: image placeholder hover effects
  */
 
-/* ── Scroll reveal ──────────────────────────────────────── */
+/* ── Scroll reveal for cards and sections ───────────────── */
 (function () {
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          // Once revealed, stop observing
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
-  );
-
-  // Observe all reveal elements
-  document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
-
-  // Also observe gold dividers
-  document.querySelectorAll('.gold-divider, .gold-divider-center').forEach((el) =>
-    observer.observe(el)
-  );
-
-  // Observe lineage connectors
-  document.querySelectorAll('.lineage-connector').forEach((el) =>
-    observer.observe(el)
-  );
-})();
-
-/* ── Auto-apply reveal classes to key sections ──────────── */
-(function () {
-  // Elements to reveal on scroll — applied automatically
-  // so you don't have to manually add .reveal to every element
-
   const selectors = [
     '.event-card',
     '.pillar-card',
@@ -61,242 +28,158 @@
     '.lineage-node',
     '.class-slot',
     '.how-to-step',
+    '.lineage-connector',
+    '.gold-divider',
+    '.gold-divider-center',
   ];
 
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0) scale(1)';
           observer.unobserve(entry.target);
         }
       });
     },
-    { threshold: 0.1, rootMargin: '0px 0px -30px 0px' }
+    { threshold: 0.08, rootMargin: '0px 0px -24px 0px' }
   );
 
   selectors.forEach((selector) => {
-    document.querySelectorAll(selector).forEach((el, index) => {
-      // Start hidden
+    document.querySelectorAll(selector).forEach((el, i) => {
+      // Find sibling index for stagger
+      const siblings = Array.from(el.parentElement.children).filter(c =>
+        c.matches(selector)
+      );
+      const siblingIndex = siblings.indexOf(el);
+      const delay = siblingIndex * 0.09;
+
       el.style.opacity = '0';
-      el.style.transform = 'translateY(20px)';
-      el.style.transition = `opacity 0.6s ease ${index * 0.08}s, transform 0.6s ease ${index * 0.08}s`;
-
-      // Only stagger within the same parent container
-      // Reset index for each new parent
-      const siblings = el.parentElement.querySelectorAll(selector);
-      const siblingIndex = Array.from(siblings).indexOf(el);
-      el.style.transitionDelay = `${siblingIndex * 0.1}s`;
-
+      el.style.transform = 'translateY(22px)';
+      el.style.transition = `opacity 0.55s ease ${delay}s, transform 0.55s ease ${delay}s`;
       observer.observe(el);
-    });
-  });
-
-  // Add visible class when intersecting
-  const visibilityObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
-          visibilityObserver.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.1, rootMargin: '0px 0px -30px 0px' }
-  );
-
-  selectors.forEach((selector) => {
-    document.querySelectorAll(selector).forEach((el) => {
-      visibilityObserver.observe(el);
     });
   });
 })();
 
 /* ── Section headings reveal ────────────────────────────── */
 (function () {
-  const headingObserver = new IntersectionObserver(
+  const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.style.opacity = '1';
           entry.target.style.transform = 'translateY(0)';
-          headingObserver.unobserve(entry.target);
+          observer.unobserve(entry.target);
         }
       });
     },
-    { threshold: 0.2 }
+    { threshold: 0.15 }
   );
 
   document.querySelectorAll('h2, .eyebrow').forEach((el) => {
-    // Skip hero headings — they have their own animation
-    if (el.closest('.hero')) return;
+    if (el.closest('.hero')) return; // skip hero — has own animation
     el.style.opacity = '0';
-    el.style.transform = 'translateY(16px)';
-    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    headingObserver.observe(el);
+    el.style.transform = 'translateY(14px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
   });
 })();
 
 /* ── Stats counter animation ────────────────────────────── */
 (function () {
-  const statsObserver = new IntersectionObserver(
+  const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const statValue = entry.target.querySelector('.stat-value');
-          if (!statValue) return;
+        if (!entry.isIntersecting) return;
+        const statValue = entry.target.querySelector('.stat-value');
+        if (!statValue) return;
 
-          const text = statValue.textContent.trim();
-          const num = parseFloat(text);
+        const text = statValue.textContent.trim();
+        const hasPlus = text.includes('+');
+        const num = parseFloat(text);
 
-          // Only animate pure numbers
-          if (!isNaN(num) && text === num.toString() ||
-              text.endsWith('+') && !isNaN(parseFloat(text))) {
-            const hasPlus = text.includes('+');
-            const target = parseFloat(text);
-            const duration = 1500;
-            const start = performance.now();
-
-            const animate = (now) => {
-              const elapsed = now - start;
-              const progress = Math.min(elapsed / duration, 1);
-              // Ease out cubic
-              const eased = 1 - Math.pow(1 - progress, 3);
-              const current = Math.floor(eased * target);
-              statValue.textContent = current + (hasPlus ? '+' : '');
-              if (progress < 1) requestAnimationFrame(animate);
-            };
-            requestAnimationFrame(animate);
-          }
-          statsObserver.unobserve(entry.target);
+        if (!isNaN(num)) {
+          const duration = 1400;
+          const start = performance.now();
+          const animate = (now) => {
+            const progress = Math.min((now - start) / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            statValue.textContent = Math.floor(eased * num) + (hasPlus ? '+' : '');
+            if (progress < 1) requestAnimationFrame(animate);
+          };
+          requestAnimationFrame(animate);
         }
+        observer.unobserve(entry.target);
       });
     },
     { threshold: 0.5 }
   );
 
-  document.querySelectorAll('.stat-item').forEach((el) =>
-    statsObserver.observe(el)
-  );
+  document.querySelectorAll('.stat-item').forEach((el) => observer.observe(el));
 })();
 
 /* ── Smooth scroll for anchor links ─────────────────────── */
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   anchor.addEventListener('click', function (e) {
-    const target = document.querySelector(this.getAttribute('href'));
+    const href = this.getAttribute('href');
+    if (href === '#') return;
+    const target = document.querySelector(href);
     if (target) {
       e.preventDefault();
-      const offset = 120; // account for sticky nav + tabs
+      const offset = 120;
       const top = target.getBoundingClientRect().top + window.scrollY - offset;
       window.scrollTo({ top, behavior: 'smooth' });
     }
   });
 });
 
-/* ── Active nav link highlight based on scroll ──────────── */
-(function () {
-  const navLinks = document.querySelectorAll('.nav-links a');
-  const currentPath = window.location.pathname.split('/').pop() || 'index.html';
-
-  navLinks.forEach((link) => {
-    const href = link.getAttribute('href');
-    if (href === currentPath ||
-        (currentPath === '' && href === 'index.html') ||
-        (currentPath === 'index.html' && href === '/')) {
-      link.classList.add('active');
-    }
-  });
-})();
-
-/* ── Hover ripple on buttons ─────────────────────────────── */
-document.querySelectorAll('.btn').forEach((btn) => {
-  btn.addEventListener('click', function (e) {
-    const ripple = document.createElement('span');
-    const rect = this.getBoundingClientRect();
-    const size = Math.max(rect.width, rect.height);
-    const x = e.clientX - rect.left - size / 2;
-    const y = e.clientY - rect.top - size / 2;
-
-    ripple.style.cssText = `
-      position: absolute;
-      width: ${size}px;
-      height: ${size}px;
-      left: ${x}px;
-      top: ${y}px;
-      background: rgba(255,255,255,0.15);
-      border-radius: 50%;
-      transform: scale(0);
-      animation: ripple 0.5s ease forwards;
-      pointer-events: none;
-    `;
-
-    if (!this.style.position || this.style.position === 'static') {
-      this.style.position = 'relative';
-    }
-    this.style.overflow = 'hidden';
-    this.appendChild(ripple);
-    setTimeout(() => ripple.remove(), 500);
-  });
-});
-
-// Inject ripple keyframe
-const style = document.createElement('style');
-style.textContent = `
-  @keyframes ripple {
-    to { transform: scale(2.5); opacity: 0; }
-  }
-`;
-document.head.appendChild(style);
-
-/* ── Navbar hide on scroll down, show on scroll up ─────── */
+/* ── Nav scrolled state only (no hide/show) ─────────────── */
 (function () {
   const nav = document.getElementById('site-nav');
   if (!nav) return;
-
-  let lastScroll = 0;
-  let ticking = false;
-
+  // Only toggle the .scrolled class for background change
+  // No transform/hide behaviour — that caused the visual issues
   window.addEventListener('scroll', () => {
-    if (!ticking) {
-      requestAnimationFrame(() => {
-        const current = window.scrollY;
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive: true });
+})();
 
-        if (current > lastScroll && current > 200) {
-          // Scrolling down — hide nav
-          nav.style.transform = 'translateY(-100%)';
-        } else {
-          // Scrolling up — show nav
-          nav.style.transform = 'translateY(0)';
-        }
+/* ── Button ripple effect ────────────────────────────────── */
+(function () {
+  const style = document.createElement('style');
+  style.textContent = '@keyframes qz-ripple { to { transform: scale(2.5); opacity: 0; } }';
+  document.head.appendChild(style);
 
-        nav.style.transition = 'transform 0.3s ease, background 0.2s ease';
-        lastScroll = current;
-        ticking = false;
-      });
-      ticking = true;
-    }
+  document.querySelectorAll('.btn').forEach((btn) => {
+    btn.style.position = 'relative';
+    btn.style.overflow = 'hidden';
+
+    btn.addEventListener('click', function (e) {
+      const rect = this.getBoundingClientRect();
+      const size = Math.max(rect.width, rect.height);
+      const ripple = document.createElement('span');
+      ripple.style.cssText = `
+        position:absolute;
+        width:${size}px; height:${size}px;
+        left:${e.clientX - rect.left - size / 2}px;
+        top:${e.clientY - rect.top - size / 2}px;
+        background:rgba(255,255,255,0.15);
+        border-radius:50%;
+        transform:scale(0);
+        animation:qz-ripple 0.5s ease forwards;
+        pointer-events:none;
+      `;
+      this.appendChild(ripple);
+      setTimeout(() => ripple.remove(), 500);
+    });
   });
 })();
 
-/* ── Image lazy load with fade-in ───────────────────────── */
+/* ── Image placeholder click-to-upload hint ─────────────── */
 (function () {
-  const imgObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const img = entry.target;
-          img.style.transition = 'opacity 0.5s ease';
-          img.style.opacity = '1';
-          imgObserver.unobserve(img);
-        }
-      });
-    },
-    { threshold: 0.1 }
-  );
-
-  document.querySelectorAll('img[loading="lazy"]').forEach((img) => {
-    img.style.opacity = '0';
-    imgObserver.observe(img);
+  document.querySelectorAll('.img-placeholder').forEach((el) => {
+    el.setAttribute('title', 'Replace src attribute with your image URL');
   });
 })();

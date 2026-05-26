@@ -276,3 +276,88 @@
     animation: none !important;
   }
 }
+
+/* ── Nav fix — remove any transform that hides it ───────── */
+.site-nav {
+  transform: none !important;
+}
+
+/* ── Image placeholders ──────────────────────────────────── */
+.img-placeholder {
+  width: 100%;
+  display: block;
+  background: linear-gradient(135deg, #1A2744 0%, #111D38 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.img-placeholder::before {
+  content: attr(data-label);
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-body, sans-serif);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(201,168,76,0.5);
+  text-align: center;
+  padding: 12px;
+  line-height: 1.5;
+}
+
+.img-placeholder::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1.5px dashed rgba(201,168,76,0.25);
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+/* Aspect ratios */
+.img-placeholder.ratio-hero    { aspect-ratio: 21/9; }
+.img-placeholder.ratio-wide    { aspect-ratio: 16/9; }
+.img-placeholder.ratio-square  { aspect-ratio: 1/1; }
+.img-placeholder.ratio-4-3     { aspect-ratio: 4/3; }
+.img-placeholder.ratio-3-2     { aspect-ratio: 3/2; }
+.img-placeholder.ratio-portrait{ aspect-ratio: 3/4; }
+
+/* Hero image overlay — tinted over photo */
+.hero-img-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  opacity: 0.18;
+}
+
+/* Section image — sits beside text */
+.section-img {
+  width: 100%;
+  border-radius: var(--radius-lg, 8px);
+  object-fit: cover;
+  display: block;
+}
+
+/* Event card photo strip */
+.event-card-img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  border-radius: var(--radius-lg, 8px) var(--radius-lg, 8px) 0 0;
+  display: block;
+}
+
+/* Team photo */
+.team-photo {
+  width: 100%;
+  aspect-ratio: 3/2;
+  object-fit: cover;
+  border-radius: var(--radius-lg, 8px);
+  display: block;
+}
