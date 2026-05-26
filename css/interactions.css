@@ -1,36 +1,17 @@
 /* ============================================================
-   QUAN ZHEN — Interactivity Enhancement v1.0
-   Add this as a separate file: css/interactions.css
-   Then link it in every HTML file after style.css:
-   <link rel="stylesheet" href="css/interactions.css">
+   QUAN ZHEN — Interactivity Enhancement v1.1
    ============================================================ */
 
-/* ── Scroll reveal — base state (hidden) ─────────────────── */
+/* ── Scroll reveal base state ─────────────────────────────── */
 .reveal {
   opacity: 0;
   transform: translateY(28px);
   transition: opacity 0.7s ease, transform 0.7s ease;
 }
-
-.reveal.reveal-left {
-  transform: translateX(-28px);
-}
-
-.reveal.reveal-right {
-  transform: translateX(28px);
-}
-
-.reveal.reveal-scale {
-  transform: scale(0.96);
-}
-
-/* Visible state — triggered by JS IntersectionObserver */
 .reveal.visible {
   opacity: 1;
   transform: none;
 }
-
-/* Staggered children */
 .reveal-group .reveal:nth-child(1) { transition-delay: 0s; }
 .reveal-group .reveal:nth-child(2) { transition-delay: 0.1s; }
 .reveal-group .reveal:nth-child(3) { transition-delay: 0.2s; }
@@ -38,183 +19,125 @@
 .reveal-group .reveal:nth-child(5) { transition-delay: 0.4s; }
 .reveal-group .reveal:nth-child(6) { transition-delay: 0.5s; }
 
-/* ── Hero — full viewport height ─────────────────────────── */
+/* ── Hero — full viewport, mobile safe ───────────────────── */
 .hero {
-  min-height: 100vh !important;
-  display: flex !important;
-  align-items: center !important;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
 }
 
-/* Hero content fade up on load */
+/* Hero content animation */
 .hero-content {
-  animation: heroFadeUp 1s ease forwards;
-  animation-delay: 0.2s;
-  opacity: 0;
+  animation: heroFadeUp 1s ease 0.2s both;
 }
-
 @keyframes heroFadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(32px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Hero background characters — slow drift */
-.hero-bg-char {
-  animation: charDrift 20s ease-in-out infinite alternate;
-}
-.hero-bg-char:nth-child(1) { animation-delay: 0s; animation-duration: 22s; }
-.hero-bg-char:nth-child(2) { animation-delay: 2s; animation-duration: 18s; }
-.hero-bg-char:nth-child(3) { animation-delay: 4s; animation-duration: 24s; }
-.hero-bg-char:nth-child(4) { animation-delay: 1s; animation-duration: 20s; }
-
+/* Hero background character drift */
+.hero-bg-char:nth-child(1) { animation: charDrift 22s ease-in-out infinite alternate; }
+.hero-bg-char:nth-child(2) { animation: charDrift 18s ease-in-out 2s infinite alternate; }
+.hero-bg-char:nth-child(3) { animation: charDrift 24s ease-in-out 4s infinite alternate; }
+.hero-bg-char:nth-child(4) { animation: charDrift 20s ease-in-out 1s infinite alternate; }
 @keyframes charDrift {
-  from { transform: translateY(0px) rotate(0deg); }
+  from { transform: translateY(0) rotate(0deg); }
   to   { transform: translateY(-18px) rotate(1.5deg); }
 }
 
-/* ── Gold divider animated width ─────────────────────────── */
+/* ── Gold dividers ───────────────────────────────────────── */
 .gold-divider,
 .gold-divider-center {
-  width: 0;
-  transition: width 0.8s ease;
-}
-.gold-divider.visible,
-.gold-divider-center.visible {
   width: 48px;
+  height: 1px;
+  background: var(--brass-gold);
+  margin: var(--space-lg, 24px) 0;
+}
+.gold-divider-center {
+  margin: var(--space-lg, 24px) auto;
 }
 
-/* ── Card hover elevations ────────────────────────────────── */
+/* ── Lineage connector ───────────────────────────────────── */
+.lineage-connector {
+  width: 1px;
+  height: 20px;
+  background: rgba(201,168,76,0.3);
+  margin-left: 20px;
+}
+
+/* ── Card hover elevations ───────────────────────────────── */
 .event-card {
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease !important;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 .event-card:hover {
-  transform: translateY(-4px) !important;
-  box-shadow: 0 12px 32px rgba(26,39,68,0.12) !important;
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(26,39,68,0.12);
 }
 
 .pillar-card {
-  transition: transform 0.25s ease, box-shadow 0.25s ease !important;
-  cursor: default;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 .pillar-card:hover {
-  transform: translateY(-4px) !important;
-  box-shadow: 0 12px 32px rgba(26,39,68,0.1) !important;
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(26,39,68,0.1);
 }
 
 .cta-card {
-  transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease !important;
+  transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
 }
 .cta-card:hover {
-  background: rgba(245,237,216,0.08) !important;
-  border-color: rgba(201,168,76,0.3) !important;
-  transform: translateY(-2px) !important;
+  background: rgba(245,237,216,0.08);
+  border-color: rgba(201,168,76,0.3);
+  transform: translateY(-2px);
 }
 
-/* ── Stats bar — count-up number pulse ───────────────────── */
-.stat-value {
-  transition: transform 0.3s ease;
+.deity-card,
+.committee-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
-.stat-item:hover .stat-value {
-  transform: scale(1.1);
+.deity-card:hover,
+.committee-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(26,39,68,0.1);
 }
 
-/* ── Nav link underline slide ─────────────────────────────── */
-.nav-links a {
-  position: relative;
+.scripture-card,
+.practice-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
+.scripture-card:hover,
+.practice-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(26,39,68,0.08);
+}
+
+.album-card { overflow: hidden; }
+.album-cover { transition: transform 0.4s ease; }
+.album-card:hover .album-cover { transform: scale(1.05); }
+
+/* ── Nav ─────────────────────────────────────────────────── */
+.site-nav {
+  transform: none !important;
+}
+
+.nav-links a { position: relative; }
 .nav-links a::after {
   content: '';
   position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 1px;
+  bottom: -2px; left: 0;
+  width: 0; height: 1px;
   background: var(--brass-gold);
   transition: width 0.25s ease;
 }
 .nav-links a:hover::after,
-.nav-links a.active::after {
-  width: 100%;
-}
+.nav-links a.active::after { width: 100%; }
 
-/* ── Button press feedback ────────────────────────────────── */
-.btn {
-  transition: all 0.2s ease, transform 0.1s ease !important;
-}
-.btn:active {
-  transform: scale(0.97) !important;
-}
+/* ── Buttons ─────────────────────────────────────────────── */
+.btn { transition: all 0.2s ease; }
+.btn:active { transform: scale(0.97); }
 
-/* ── Page hero sections — parallax-lite ──────────────────── */
-.page-hero {
-  position: relative;
-  overflow: hidden;
-}
-.page-hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse at 70% 50%, rgba(201,168,76,0.06) 0%, transparent 70%);
-  pointer-events: none;
-}
-
-/* ── Section entrance — subtle background shift ──────────── */
-.section-paper {
-  position: relative;
-}
-
-/* ── Lineage connector — animated height ─────────────────── */
-.lineage-connector {
-  height: 0;
-  transition: height 0.6s ease;
-  overflow: hidden;
-}
-.lineage-connector.visible {
-  height: 20px;
-}
-
-/* ── Deity and committee cards — lift on hover ───────────── */
-.deity-card,
-.committee-card {
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease !important;
-}
-.deity-card:hover,
-.committee-card:hover {
-  transform: translateY(-4px) !important;
-  box-shadow: 0 8px 24px rgba(26,39,68,0.1) !important;
-}
-
-/* ── Scripture and practice cards ────────────────────────── */
-.scripture-card,
-.practice-card {
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease !important;
-}
-.scripture-card:hover,
-.practice-card:hover {
-  transform: translateY(-3px) !important;
-  box-shadow: 0 8px 24px rgba(26,39,68,0.08) !important;
-}
-
-/* ── Album cards — image zoom on hover ───────────────────── */
-.album-card {
-  overflow: hidden;
-}
-.album-cover {
-  transition: transform 0.4s ease !important;
-}
-.album-card:hover .album-cover {
-  transform: scale(1.05) !important;
-}
-
-/* ── WhatsApp float — pulse ring ─────────────────────────── */
-.wa-float {
-  position: relative;
-}
+/* ── WhatsApp float pulse ────────────────────────────────── */
+.wa-float { position: relative; }
 .wa-float::before {
   content: '';
   position: absolute;
@@ -224,63 +147,35 @@
   animation: waPulse 2.5s ease-in-out infinite;
   pointer-events: none;
 }
-
 @keyframes waPulse {
-  0%   { transform: scale(1);   opacity: 0.6; }
-  50%  { transform: scale(1.08); opacity: 0.2; }
-  100% { transform: scale(1);   opacity: 0.6; }
+  0%,100% { transform: scale(1); opacity: 0.6; }
+  50%      { transform: scale(1.08); opacity: 0.2; }
 }
 
-/* ── Footer links — gold underline on hover ──────────────── */
-.footer-col a {
-  position: relative;
-  padding-bottom: 1px;
-}
+/* ── Footer link hover underline ─────────────────────────── */
+.footer-col a { position: relative; padding-bottom: 1px; }
 .footer-col a::after {
   content: '';
   position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 0.5px;
+  bottom: 0; left: 0;
+  width: 0; height: 0.5px;
   background: var(--brass-gold);
   transition: width 0.2s ease;
 }
-.footer-col a:hover::after {
-  width: 100%;
+.footer-col a:hover::after { width: 100%; }
+
+/* ── Page hero glow ──────────────────────────────────────── */
+.page-hero { position: relative; overflow: hidden; }
+.page-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 70% 50%, rgba(201,168,76,0.06) 0%, transparent 70%);
+  pointer-events: none;
 }
 
-/* ── Eyebrow — slide in from left ────────────────────────── */
-.eyebrow {
-  position: relative;
-  padding-left: 0;
-  transition: padding-left 0.4s ease;
-}
-
-/* ── Reduce motion — respect user preference ─────────────── */
-@media (prefers-reduced-motion: reduce) {
-  .reveal,
-  .hero-content,
-  .hero-bg-char,
-  .gold-divider,
-  .gold-divider-center,
-  .lineage-connector {
-    animation: none !important;
-    transition: none !important;
-    opacity: 1 !important;
-    transform: none !important;
-    width: 48px !important;
-    height: 20px !important;
-  }
-  .wa-float::before {
-    animation: none !important;
-  }
-}
-
-/* ── Nav fix — remove any transform that hides it ───────── */
-.site-nav {
-  transform: none !important;
-}
+/* ── Stat value hover ────────────────────────────────────── */
+.stat-item:hover .stat-value { transform: scale(1.08); transition: transform 0.3s ease; }
 
 /* ── Image placeholders ──────────────────────────────────── */
 .img-placeholder {
@@ -290,7 +185,6 @@
   position: relative;
   overflow: hidden;
 }
-
 .img-placeholder::before {
   content: attr(data-label);
   position: absolute;
@@ -298,7 +192,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-body, sans-serif);
   font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -307,7 +200,6 @@
   padding: 12px;
   line-height: 1.5;
 }
-
 .img-placeholder::after {
   content: '';
   position: absolute;
@@ -316,16 +208,13 @@
   border-radius: inherit;
   pointer-events: none;
 }
-
-/* Aspect ratios */
 .img-placeholder.ratio-hero    { aspect-ratio: 21/9; }
 .img-placeholder.ratio-wide    { aspect-ratio: 16/9; }
-.img-placeholder.ratio-square  { aspect-ratio: 1/1; }
+.img-placeholder.ratio-square  { aspect-ratio: 1; }
 .img-placeholder.ratio-4-3     { aspect-ratio: 4/3; }
 .img-placeholder.ratio-3-2     { aspect-ratio: 3/2; }
 .img-placeholder.ratio-portrait{ aspect-ratio: 3/4; }
 
-/* Hero image overlay — tinted over photo */
 .hero-img-bg {
   position: absolute;
   inset: 0;
@@ -335,25 +224,12 @@
   height: 100%;
   opacity: 0.18;
 }
-
-/* Section image — sits beside text */
 .section-img {
   width: 100%;
   border-radius: var(--radius-lg, 8px);
   object-fit: cover;
   display: block;
 }
-
-/* Event card photo strip */
-.event-card-img {
-  width: 100%;
-  aspect-ratio: 16/9;
-  object-fit: cover;
-  border-radius: var(--radius-lg, 8px) var(--radius-lg, 8px) 0 0;
-  display: block;
-}
-
-/* Team photo */
 .team-photo {
   width: 100%;
   aspect-ratio: 3/2;
@@ -361,7 +237,8 @@
   border-radius: var(--radius-lg, 8px);
   display: block;
 }
-/* ── Mobile burger — ensure visibility ───────────────── */
+
+/* ── Mobile burger — guaranteed visible ──────────────────── */
 @media (max-width: 1024px) {
   .nav-hamburger {
     display: flex !important;
@@ -371,8 +248,8 @@
     padding: 4px !important;
     background: none !important;
     border: none !important;
+    z-index: 1001 !important;
   }
-
   .nav-hamburger span {
     display: block !important;
     width: 22px !important;
@@ -380,4 +257,12 @@
     background: #8FA3C8 !important;
     border-radius: 1px !important;
   }
+}
+
+/* ── Reduce motion ───────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .hero-content { animation: none; opacity: 1; }
+  .hero-bg-char { animation: none; }
+  .wa-float::before { animation: none; }
+  .reveal { transition: none; opacity: 1; transform: none; }
 }
