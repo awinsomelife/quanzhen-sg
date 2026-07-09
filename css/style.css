@@ -646,41 +646,6 @@ p {
   margin-bottom: var(--space-lg);
 }
 
-/* ── WhatsApp Float ───────────────────────────────────────── */
-.wa-float {
-  position: fixed;
-  bottom: 28px;
-  right: 28px;
-  z-index: 900;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: #25D366;
-  color: white;
-  padding: 12px 20px;
-  border-radius: 50px;
-  font-size: 13px;
-  font-weight: 500;
-  text-decoration: none;
-  box-shadow: 0 4px 16px rgba(37,211,102,0.35);
-  transition: background 0.2s ease, transform 0.2s ease;
-  width: auto;
-  max-width: 200px;
-  white-space: nowrap;
-}
-
-.wa-float:hover {
-  background: #20ba5a;
-  color: white;
-  transform: translateY(-2px);
-}
-
-.wa-float svg {
-  width: 18px;
-  height: 18px;
-  flex-shrink: 0;
-}
-
 /* ── Footer ───────────────────────────────────────────────── */
 .site-footer {
   background: var(--navy-primary);

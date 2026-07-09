@@ -136,26 +136,6 @@
 .btn { transition: all 0.2s ease; }
 .btn:active { transform: scale(0.97); }
 
-/* ── WhatsApp float pulse ────────────────────────────────── */
-.wa-float {
-  position: fixed;
-  isolation: isolate;
-}
-.wa-float::before {
-  content: '';
-  position: absolute;
-  inset: -4px;
-  border-radius: 50px;
-  background: rgba(37,211,102,0.2);
-  animation: waPulse 2.5s ease-in-out infinite;
-  pointer-events: none;
-  z-index: -1;
-}
-@keyframes waPulse {
-  0%,100% { transform: scale(1); opacity: 0.6; }
-  50%      { transform: scale(1.06); opacity: 0.2; }
-}
-
 /* ── Footer link hover underline ─────────────────────────── */
 .footer-col a { position: relative; padding-bottom: 1px; }
 .footer-col a::after {
@@ -267,6 +247,5 @@
 @media (prefers-reduced-motion: reduce) {
   .hero-content { animation: none; opacity: 1; }
   .hero-bg-char { animation: none; }
-  .wa-float::before { animation: none; }
   .reveal { transition: none; opacity: 1; transform: none; }
 }
