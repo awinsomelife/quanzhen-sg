@@ -338,28 +338,17 @@
   </script>
   <script src="js/interactions.js"></script>
 
-  <!-- Facebook Messenger Chat Plugin — Page ID: 670694326367406 -->
-<div id="fb-root"></div>
-<div id="fb-customer-chat"
-     class="fb-customerchat"
-     attribution="biz_inbox"
-     page_id="670694326367406"
-     theme_color="#C9A84C"
-     logged_in_greeting="Hi! Welcome to Quan Zhen Cultural Society 全真教化協會. How can we help you?"
-     logged_out_greeting="Hi! Welcome to Quan Zhen Cultural Society 全真教化協會. How can we help you?">
-</div>
-<script>
-  window.fbAsyncInit = function() {
-    FB.init({ xfbml: true, version: "v18.0" });
-  };
-  (function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
-    fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));
-</script>
+  <!-- Facebook Messenger floating button -->
+<a href="https://m.me/670694326367406"
+   class="messenger-float"
+   target="_blank"
+   rel="noopener"
+   aria-label="Message us on Facebook Messenger">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="white" aria-hidden="true">
+    <path d="M12 2C6.477 2 2 6.145 2 11.243c0 2.914 1.318 5.52 3.396 7.29V22l3.199-1.754c.874.237 1.8.366 2.757.366 5.523 0 10-4.145 10-9.243C22 6.145 17.523 2 12 2zm1.008 12.445l-2.545-2.694-4.971 2.694 5.467-5.799 2.606 2.694 4.91-2.694-5.467 5.799z"/>
+  </svg>
+  <span>Message us</span>
+</a>
 
 </body>
 </html>
