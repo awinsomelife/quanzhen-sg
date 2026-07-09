@@ -9,5 +9,29 @@
 </head>
 <body>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+
+<!-- Facebook Messenger Chat Plugin — Page ID: 670694326367406 -->
+<div id="fb-root"></div>
+<div id="fb-customer-chat"
+     class="fb-customerchat"
+     attribution="biz_inbox"
+     page_id="670694326367406"
+     theme_color="#C9A84C"
+     logged_in_greeting="Hi! Welcome to Quan Zhen Cultural Society 全真教化協會. How can we help you?"
+     logged_out_greeting="Hi! Welcome to Quan Zhen Cultural Society 全真教化協會. How can we help you?">
+</div>
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({ xfbml: true, version: "v18.0" });
+  };
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
 </body>
 </html>
