@@ -1,0 +1,228 @@
+backend:
+  name: github
+  repo: awinsomelife/quanzhen-sg
+  branch: main
+  base_url: https://sveltia-cms-auth.qzcs-cms-auth.melvin-ocs.workers.dev
+
+# Uncomment below if using Netlify Identity instead
+# backend:
+#   name: git-gateway
+#   branch: main
+
+media_folder: "assets/images/uploads"
+public_folder: "/assets/images/uploads"
+
+site_url: https://quanzhen.sg
+display_url: https://quanzhen.sg
+logo_url: https://quanzhen.sg/assets/images/logo-transparent-512.png
+
+locale: en
+
+collections:
+
+  # ── EVENTS ──────────────────────────────────────────────
+  - name: "events"
+    label: "Events"
+    label_singular: "Event"
+    folder: "content/events"
+    create: true
+    delete: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - label: "Event title (English)"
+        name: "title"
+        widget: "string"
+        hint: "e.g. North Dipper Ritual · 北斗禮斗科儀"
+
+      - label: "Event title (Chinese)"
+        name: "title_cn"
+        widget: "string"
+        required: false
+        hint: "e.g. 北斗禮斗科儀"
+
+      - label: "Event date"
+        name: "date"
+        widget: "datetime"
+        date_format: "DD MMM YYYY"
+        time_format: "hh:mm A"
+        hint: "Date and time of the event"
+
+      - label: "Lunar date (optional)"
+        name: "lunar_date"
+        widget: "string"
+        required: false
+        hint: "e.g. 農曆六月十五日"
+
+      - label: "Event type"
+        name: "type"
+        widget: "select"
+        options:
+          - { label: "Ritual · 科儀", value: "ritual" }
+          - { label: "Class · 課程", value: "class" }
+          - { label: "Annual ceremony · 年度科儀", value: "annual" }
+          - { label: "Community · 社群活動", value: "community" }
+
+      - label: "Short description"
+        name: "description"
+        widget: "text"
+        hint: "1–2 sentences shown on the events listing. Keep it concise."
+
+      - label: "Full details"
+        name: "body"
+        widget: "markdown"
+        required: false
+        hint: "Full event details — shown on the individual event page if you create one."
+
+      - label: "Registration required?"
+        name: "registration"
+        widget: "boolean"
+        default: true
+
+      - label: "Open to public?"
+        name: "public"
+        widget: "boolean"
+        default: true
+
+      - label: "Event photo"
+        name: "photo"
+        widget: "image"
+        required: false
+        hint: "Upload a photo for this event. Best size: 1200×675px (16:9 ratio)."
+
+      - label: "Registration link (optional)"
+        name: "registration_url"
+        widget: "string"
+        required: false
+        hint: "Paste a HitPay or Google Form link here if registration is online."
+
+      - label: "Published?"
+        name: "published"
+        widget: "boolean"
+        default: true
+        hint: "Uncheck to save as draft without showing on the site."
+
+  # ── ARTICLES ─────────────────────────────────────────────
+  - name: "articles"
+    label: "Articles"
+    label_singular: "Article"
+    folder: "content/articles"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    fields:
+      - label: "Article title (English)"
+        name: "title"
+        widget: "string"
+
+      - label: "Article title (Chinese)"
+        name: "title_cn"
+        widget: "string"
+        required: false
+
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        options:
+          - { label: "Introduction · Taoism basics", value: "introduction" }
+          - { label: "Practice · Cultivation", value: "practice" }
+          - { label: "Deities · Pantheon", value: "deities" }
+          - { label: "Scripture · Texts", value: "scripture" }
+          - { label: "Festival · Calendar", value: "festival" }
+          - { label: "Lineage · History", value: "lineage" }
+
+      - label: "Short summary"
+        name: "summary"
+        widget: "text"
+        hint: "2–3 sentences shown on the Learn page article card."
+
+      - label: "Article body"
+        name: "body"
+        widget: "markdown"
+        hint: "Full article content. Use headings, paragraphs, and Traditional Chinese terms as needed."
+
+      - label: "Cover photo"
+        name: "photo"
+        widget: "image"
+        required: false
+        hint: "Article cover image. Best size: 1200×675px (16:9 ratio)."
+
+      - label: "Author"
+        name: "author"
+        widget: "string"
+        default: "Quan Zhen Cultural Society"
+
+      - label: "Publish date"
+        name: "date"
+        widget: "datetime"
+        date_format: "DD MMM YYYY"
+        time_format: false
+
+      - label: "Featured article?"
+        name: "featured"
+        widget: "boolean"
+        default: false
+        hint: "Featured articles appear first on the Learn page."
+
+      - label: "Published?"
+        name: "published"
+        widget: "boolean"
+        default: true
+
+  # ── GALLERY ──────────────────────────────────────────────
+  - name: "gallery"
+    label: "Gallery Albums"
+    label_singular: "Album"
+    folder: "content/gallery"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    fields:
+      - label: "Album title (English)"
+        name: "title"
+        widget: "string"
+        hint: "e.g. North Dipper Ritual · July 2026"
+
+      - label: "Album title (Chinese)"
+        name: "title_cn"
+        widget: "string"
+        required: false
+
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        options:
+          - { label: "Ritual · 科儀", value: "ritual" }
+          - { label: "Class · 課程", value: "class" }
+          - { label: "Annual event · 年度活動", value: "annual" }
+          - { label: "Community · 社群", value: "community" }
+
+      - label: "Date"
+        name: "date"
+        widget: "datetime"
+        date_format: "DD MMM YYYY"
+        time_format: false
+
+      - label: "Album description"
+        name: "description"
+        widget: "text"
+        required: false
+
+      - label: "Cover photo"
+        name: "cover"
+        widget: "image"
+        hint: "The main photo shown on the gallery grid. Best size: 800×600px (4:3 ratio)."
+
+      - label: "Photos"
+        name: "photos"
+        widget: "list"
+        allow_add: true
+        field:
+          label: "Photo"
+          name: "photo"
+          widget: "image"
+        hint: "Upload all photos for this album. You can add more later."
+
+      - label: "Published?"
+        name: "published"
+        widget: "boolean"
+        default: true
