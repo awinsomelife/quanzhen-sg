@@ -888,14 +888,6 @@ p {
   .lang-toggle {
     display: none;
   }
-  .wa-float span {
-    display: none;
-  }
-  .wa-float {
-    padding: 14px;
-    border-radius: 50%;
-  }
-}
 
 @media (max-width: 640px) {
   .footer-grid {

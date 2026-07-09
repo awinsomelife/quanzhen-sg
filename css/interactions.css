@@ -249,3 +249,10 @@
   .hero-bg-char { animation: none; }
   .reveal { transition: none; opacity: 1; transform: none; }
 }
+
+/* ── Messenger float — exempt from scroll reveal ─────────── */
+.messenger-float {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: background 0.2s ease, transform 0.2s ease !important;
+}
