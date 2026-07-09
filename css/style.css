@@ -652,7 +652,7 @@ p {
   bottom: 28px;
   right: 28px;
   z-index: 900;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 8px;
   background: #25D366;
@@ -663,7 +663,10 @@ p {
   font-weight: 500;
   text-decoration: none;
   box-shadow: 0 4px 16px rgba(37,211,102,0.35);
-  transition: all var(--transition);
+  transition: background 0.2s ease, transform 0.2s ease;
+  width: auto;
+  max-width: 200px;
+  white-space: nowrap;
 }
 
 .wa-float:hover {
