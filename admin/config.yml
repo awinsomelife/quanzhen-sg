@@ -2,7 +2,7 @@ backend:
   name: github
   repo: awinsomelife/quanzhen-sg
   branch: main
-  base_url: https://sveltia-cms-auth.qzcs-cms-auth.melvin-ocs.workers.dev
+  base_url: https://qzcs-cms-auth.melvin-ocs.workers.dev
 
 # Uncomment below if using Netlify Identity instead
 # backend:
