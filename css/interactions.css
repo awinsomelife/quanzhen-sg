@@ -256,3 +256,21 @@
   transform: none !important;
   transition: background 0.2s ease, transform 0.2s ease !important;
 }
+/* ── Bilingual — hide Chinese by default until JS runs ── */
+[data-zh] { display: none; }
+[data-en] { display: inline; }
+.lang-toggle button { 
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-body, sans-serif);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--muted-sky, #8FA3C8);
+  padding: 0;
+  transition: color 0.2s;
+}
+.lang-toggle button:hover,
+.lang-toggle button.active {
+  color: var(--brass-gold, #C9A84C);
+}

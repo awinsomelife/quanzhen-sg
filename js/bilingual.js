@@ -1,35 +1,32 @@
 /**
- * Quan Zhen Cultural Society — Bilingual Toggle v1.0
- * Handles EN / 中文 switching across all pages
- * Save as: js/bilingual.js
- * Add to every HTML file: <script src="js/bilingual.js"></script>
+ * Quan Zhen Cultural Society — Bilingual Toggle v1.1
+ * Fixed: uses 'inline' instead of '' to properly show spans
  */
 
 (function () {
   const LANG_KEY = 'qzcs_lang';
   const DEFAULT_LANG = 'en';
 
-  // Get saved language or default to English
   function getLang() {
     return localStorage.getItem(LANG_KEY) || DEFAULT_LANG;
   }
 
-  // Save language preference
   function setLang(lang) {
     localStorage.setItem(LANG_KEY, lang);
   }
 
-  // Apply language to the page
   function applyLang(lang) {
-    // Show/hide language spans
+    // Show/hide English spans
     document.querySelectorAll('[data-en]').forEach(el => {
-      el.style.display = lang === 'en' ? '' : 'none';
-    });
-    document.querySelectorAll('[data-zh]').forEach(el => {
-      el.style.display = lang === 'zh' ? '' : 'none';
+      el.style.display = lang === 'en' ? 'inline' : 'none';
     });
 
-    // Update toggle active states
+    // Show/hide Chinese spans
+    document.querySelectorAll('[data-zh]').forEach(el => {
+      el.style.display = lang === 'zh' ? 'inline' : 'none';
+    });
+
+    // Update toggle button active states
     document.querySelectorAll('.lang-en-btn').forEach(el => {
       el.classList.toggle('active', lang === 'en');
     });
@@ -37,7 +34,7 @@
       el.classList.toggle('active', lang === 'zh');
     });
 
-    // Update html lang attribute
+    // Update html lang attribute for accessibility
     document.documentElement.lang = lang === 'zh' ? 'zh-Hant' : 'en';
 
     // Update page title if bilingual title exists
@@ -51,21 +48,20 @@
     }
   }
 
-  // Toggle between languages
-  function toggleLang(lang) {
+  // Expose toggle function globally
+  window.qzSetLang = function(lang) {
     setLang(lang);
     applyLang(lang);
-  }
+  };
 
-  // Expose toggle function globally
-  window.qzSetLang = toggleLang;
-
-  // Apply on page load
-  document.addEventListener('DOMContentLoaded', function () {
+  // Apply on DOMContentLoaded to ensure all elements exist
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function () {
+      applyLang(getLang());
+    });
+  } else {
+    // DOM already ready
     applyLang(getLang());
-  });
-
-  // Also apply immediately for elements already in DOM
-  applyLang(getLang());
+  }
 
 })();
