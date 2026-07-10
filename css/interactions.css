@@ -256,10 +256,10 @@
   transform: none !important;
   transition: background 0.2s ease, transform 0.2s ease !important;
 }
-/* ── Bilingual — hide Chinese by default until JS runs ── */
+/* ── Bilingual default state ─────────────────────────────── */
 [data-zh] { display: none; }
 [data-en] { display: inline; }
-.lang-toggle button { 
+.lang-toggle button {
   background: none;
   border: none;
   cursor: pointer;
