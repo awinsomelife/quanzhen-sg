@@ -328,6 +328,25 @@
       align-items: flex-end;
       gap: 8px;
     }
+    .annual-occasions {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: 12px;
+    }
+    .annual-occasion-row {
+      display: flex;
+      gap: 8px;
+      align-items: baseline;
+      font-size: 12px;
+      color: #444;
+    }
+    .annual-occasion-label {
+      color: var(--brass-gold);
+      font-weight: 500;
+      min-width: 130px;
+      flex-shrink: 0;
+    }
 
     /* Enquiry note */
     .enquiry-note {
@@ -545,10 +564,11 @@
         <div class="enquiry-note">
           <div class="enquiry-note-icon">禮</div>
           <p class="enquiry-note-text">
-          <strong>Registration is required for all rituals.</strong> Please register and pay online at least 3 days before the ritual date. Participants are encouraged to arrive 15 minutes early.
-            </p>
-        <a href="https://events.quanzhen.sg" class="btn btn-outline-gold" style="flex-shrink:0;" target="_blank" rel="noopener">Register</a>
+            <strong>Registration is required for all rituals.</strong> Please register and pay online at least 3 days before the ritual date. Participants are encouraged to arrive 15 minutes early.
+          </p>
+          <a href="https://events.quanzhen.sg" class="btn btn-outline-gold" style="flex-shrink:0;" target="_blank" rel="noopener">Register</a>
         </div>
+      </div>
     </section>
 
     <!-- ── Annual Ceremonies ──────────────────────────────── -->
@@ -583,18 +603,28 @@
             </div>
           </div>
 
-          <!-- Thank Taisui -->
+          <!-- Taisui Prayers (consolidated) -->
           <div class="annual-card">
             <div class="annual-period">
-              <div class="annual-period-cn">謝歲</div>
-              <div class="annual-period-label">Before Winter Solstice</div>
+              <div class="annual-period-cn">太歲</div>
+              <div class="annual-period-label">Twice Yearly</div>
             </div>
             <div class="annual-body">
-              <div class="annual-title">Thank Taisui Ritual</div>
-              <div class="annual-cn">謝太歲科儀</div>
+              <div class="annual-title">Taisui Prayers</div>
+              <div class="annual-cn">太歲科儀</div>
               <p class="annual-desc">
-                The Thank Taisui ritual (謝太歲) is performed annually before the Winter Solstice (冬至) to give thanks to the Taisui deity (太歲) — the Grand Duke Jupiter — who presides over the year's fortunes and afflictions. Those who had their Taisui afflicted during the year (犯太歲) come to offer gratitude and formally close the year's cycle of protection. A deeply meaningful ritual that marks the turning of the year and the renewal of blessings for the year ahead.
+                Prayers to the Taisui (太歲) — the presiding deity of the year — observed at two points in the year. At Lunar New Year, members petition the incoming Taisui for protection and blessings (安太歲), particularly if their zodiac sign is in conflict with the year (犯太歲). Before Winter Solstice, members return to give thanks (謝太歲) and formally close the year's cycle of protection.
               </p>
+              <div class="annual-occasions">
+                <div class="annual-occasion-row">
+                  <span class="annual-occasion-label">Lunar New Year</span>
+                  <span>安太歲 — petition for the year ahead</span>
+                </div>
+                <div class="annual-occasion-row">
+                  <span class="annual-occasion-label">Before Winter Solstice</span>
+                  <span>謝太歲 — thanksgiving and closing</span>
+                </div>
+              </div>
               <div style="margin-top:12px; display:flex; gap:8px; flex-wrap:wrap;">
                 <span class="badge badge-annual">Annual</span>
                 <span class="badge badge-ritual">Ritual</span>
