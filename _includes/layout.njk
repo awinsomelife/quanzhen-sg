@@ -16,6 +16,30 @@
 {{ pageStyle | safe }}
   </style>
 {% endif %}
+<style>
+    @media (max-width: 1024px) {
+      .nav-right .btn-outline-gold { display: none !important; }
+      .nav-right .lang-toggle { display: none !important; }
+      .nav-hamburger {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 5px !important;
+        background: none !important;
+        border: none !important;
+        padding: 8px !important;
+        cursor: pointer !important;
+        z-index: 1001 !important;
+      }
+      .nav-hamburger span {
+        display: block !important;
+        width: 24px !important;
+        height: 2px !important;
+        background: #8FA3C8 !important;
+        border-radius: 1px !important;
+      }
+    }
+  </style>
+</head>
 </head>
 <body>
 
