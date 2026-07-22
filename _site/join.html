@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Join Quan Zhen Cultural Society (全真教化協會) — become a member or volunteer with Singapore&#39;s Quan Zhen Cultural Society. Register online today.">
+  <meta property="og:title" content="Join Us — Quan Zhen Cultural Society">
+  <meta property="og:description" content="Become part of Quan Zhen Cultural Society — join as a member or volunteer with our Singapore Quan Zhen Cultural Society.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://quanzhen.sg/join.html">
+  <title>Join Us — Quan Zhen Cultural Society · 全真教化協會</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/interactions.css">
+  <link rel="icon" type="image/png" href="/assets/images/logo-transparent-512.png">
+  <style>
+.page-hero { background: var(--navy-primary); padding: 140px 0 80px; border-bottom: 1px solid rgba(201,168,76,0.2); }
+.page-hero-inner { max-width: 640px; }
+.page-hero h1 { color: var(--rice-paper); margin-bottom: 16px; }
+.page-hero p { color: var(--muted-sky); font-size: 16px; line-height: 1.75; }
+
+.join-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 64px; }
+.join-card { background: var(--white); border: 0.5px solid rgba(26,39,68,0.1); border-radius: var(--radius-lg); overflow: hidden; transition: border-color 0.2s; }
+.join-card:hover { border-color: rgba(201,168,76,0.35); }
+.join-card-head { background: var(--navy-primary); padding: 24px; }
+.join-card-cn { font-family: var(--font-cn); font-size: 20px; color: var(--brass-gold); margin-bottom: 8px; line-height: 1; }
+.join-card-title { font-family: var(--font-display); font-size: 22px; font-weight: 500; color: var(--rice-paper); }
+.join-card-body { padding: 24px; }
+.join-card-body p { font-size: 13px; color: #555; line-height: 1.75; margin-bottom: 20px; }
+.join-benefits { display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px; }
+.join-benefit { display: flex; gap: 10px; align-items: flex-start; font-size: 12px; color: #444; line-height: 1.5; }
+.benefit-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--brass-gold); flex-shrink: 0; margin-top: 6px; }
+
+.form-section { background: var(--white); border: 0.5px solid rgba(26,39,68,0.1); border-radius: var(--radius-lg); overflow: hidden; margin-bottom: 32px; }
+.form-section-head { background: var(--navy-primary); padding: 20px 24px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.form-section-title { font-family: var(--font-display); font-size: 20px; font-weight: 500; color: var(--rice-paper); }
+.form-section-cn { font-family: var(--font-cn); font-size: 12px; color: var(--brass-gold); letter-spacing: 0.1em; }
+.form-section-body { padding: 32px 24px; text-align: center; }
+.form-placeholder { background: var(--color-background-secondary, #f8f6f0); border: 1.5px dashed rgba(201,168,76,0.4); border-radius: var(--radius-lg); padding: 40px 24px; margin-bottom: 20px; }
+.form-placeholder-icon { font-family: var(--font-cn); font-size: 32px; color: var(--brass-gold); opacity: 0.5; margin-bottom: 12px; }
+.form-placeholder-title { font-size: 14px; font-weight: 500; color: var(--navy-primary); margin-bottom: 6px; }
+.form-placeholder-note { font-size: 12px; color: #888; line-height: 1.6; max-width: 400px; margin: 0 auto 20px; }
+.form-cta-btn {
+  display: inline-flex; align-items: center; gap: 8px; padding: 12px 28px; background: var(--brass-gold); color: var(--navy-deep);
+  border-radius: var(--radius-sm); font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: background 0.2s;
+}
+.form-cta-btn:hover { background: #b8943e; color: var(--navy-deep); }
+.form-cta-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+.form-alt-note { font-size: 12px; color: #888; margin-top: 16px; }
+.form-alt-note a { color: var(--brass-gold); text-decoration: underline; }
+
+.process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.process-step { text-align: center; padding: 20px 12px; }
+.process-number {
+  width: 40px; height: 40px; border-radius: 50%; background: var(--navy-primary); color: var(--brass-gold);
+  font-family: var(--font-display); font-size: 18px; font-weight: 500; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px;
+}
+.process-title { font-size: 13px; font-weight: 500; color: var(--navy-primary); margin-bottom: 6px; }
+.process-desc { font-size: 12px; color: #666; line-height: 1.6; }
+
+@media (max-width: 768px) {
+  .join-grid { grid-template-columns: 1fr; }
+  .process-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) {
+  .process-grid { grid-template-columns: 1fr; }
+}
+
+  </style>
+
+</head>
+<body>
+
+  <!-- ── Navigation ──────────────────────────────────────── -->
+  <nav class="site-nav" id="site-nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="/" class="nav-logo">
+          <img src="/assets/images/logo-white-120.png"
+               alt="Quan Zhen Cultural Society logo"
+               class="nav-logo-img"
+               width="40" height="40">
+          <div class="nav-logo-text">
+            <span class="nav-logo-en">Quan Zhen Cultural Society</span>
+            <span class="nav-logo-cn">全真教化協會</span>
+          </div>
+        </a>
+        <ul class="nav-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/about.html">About</a></li>
+          <li><a href="/tradition.html">Our Tradition</a></li>
+          <li><a href="/events.html">Events</a></li>
+          <li><a href="/learn.html">Learn</a></li>
+          <li><a href="/services.html">Services</a></li>
+          <li><a href="/gallery.html">Gallery</a></li>
+          
+        </ul>
+        <div class="nav-right">
+          <div class="lang-toggle">
+          
+            <a href="#" class="active">EN</a>
+            <span class="divider">/</span>
+            <a href="/zh/">中文</a>
+          
+          </div>
+          <a href="/contact.html" class="btn btn-outline-gold">
+            Contact Us
+          </a>
+          <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile nav drawer -->
+  <div class="mobile-nav" id="mobile-nav">
+    <a href="/">Home</a>
+    <a href="/about.html">About</a>
+    <a href="/tradition.html">Our Tradition</a>
+    <a href="/events.html">Events</a>
+    <a href="/learn.html">Learn</a>
+    <a href="/services.html">Services</a>
+    <a href="/gallery.html">Gallery</a>
+    
+    <a href="/contact.html">Contact Us</a>
+  </div>
+
+  <main>
+
+    <!-- ── Page Hero ──────────────────────────────────────── -->
+    <section class="page-hero">
+      <div class="container">
+        <div class="page-hero-inner">
+          <p class="eyebrow" style="margin-bottom:12px;">Be part of the tradition · 加入我們</p>
+          <span class="cn-text" style="display:block; font-size:13px; margin-bottom:16px;">入會與義工</span>
+          <h1>Join Us</h1>
+          <p>Whether you are drawn to the practice, the community, or the cultural heritage of Taoism — there is a place for you at Quan Zhen Cultural Society. Join as a member or volunteer with us.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Join Options ───────────────────────────────────── -->
+    <section class="section section-paper">
+      <div class="container">
+        <p class="eyebrow" style="margin-bottom:12px;">Two ways to get involved</p>
+        <h2 style="margin-bottom:6px;">Membership and Volunteering</h2>
+        <p class="cn-text" style="font-size:13px; margin-bottom:40px;">會員與義工</p>
+
+        <div class="join-grid">
+
+          <div class="join-card">
+            <div class="join-card-head">
+              <div class="join-card-cn">入會</div>
+              <div class="join-card-title">Become a Member</div>
+            </div>
+            <div class="join-card-body">
+              <p>Membership gives you full access to our community, classes, rituals, and resources. As a member of Quan Zhen Cultural Society, you become part of a living Taoist lineage community in Singapore.</p>
+              <div class="join-benefits">
+                <div class="join-benefit"><div class="benefit-dot"></div>Access to weekly Sunday scripture classes</div>
+                <div class="join-benefit"><div class="benefit-dot"></div>Priority registration for rituals and ceremonies</div>
+                <div class="join-benefit"><div class="benefit-dot"></div>Access to learning resources and study materials</div>
+                <div class="join-benefit"><div class="benefit-dot"></div>Invitations to members-only events and gatherings</div>
+                <div class="join-benefit"><div class="benefit-dot"></div>Be part of a registered Quanzhen Longmen community</div>
+              </div>
+              <a href="#membership-form" class="btn btn-gold" style="width:100%; justify-content:center;">Apply for membership</a>
+            </div>
+          </div>
+
+          <div class="join-card">
+            <div class="join-card-head">
+              <div class="join-card-cn">義工</div>
+              <div class="join-card-title">Volunteer with Us</div>
+            </div>
+            <div class="join-card-body">
+              <p>Our volunteers are the backbone of everything we do — from setting up for rituals to supporting events, managing social media, and helping new members feel welcome. No experience needed, just willingness.</p>
+              <div class="join-benefits">
+                <div class="join-benefit"><div class="benefit-dot"></div>Support rituals and ceremonial events</div>
+                <div class="join-benefit"><div class="benefit-dot"></div>Event setup, logistics, and coordination</div>
+                <div class="join-benefit"><div class="benefit-dot"></div>Photography, videography, and social media</div>
+                <div class="join-benefit"><div class="benefit-dot"></div>Administrative and community support</div>
+                <div class="join-benefit"><div class="benefit-dot"></div>Teaching assistant roles for scripture classes</div>
+              </div>
+              <a href="#volunteer-form" class="btn btn-outline-gold" style="width:100%; justify-content:center;">Register as volunteer</a>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Membership process -->
+        <p class="eyebrow" style="margin-bottom:24px;">How membership works</p>
+        <div class="process-grid" style="margin-bottom:64px;">
+          <div class="process-step">
+            <div class="process-number">1</div>
+            <div class="process-title">Submit enquiry</div>
+            <p class="process-desc">Fill in the membership enquiry form below — tell us a little about yourself and your interest in Taoism.</p>
+          </div>
+          <div class="process-step">
+            <div class="process-number">2</div>
+            <div class="process-title">We get in touch</div>
+            <p class="process-desc">A committee member will reach out via email within a few days to answer any questions.</p>
+          </div>
+          <div class="process-step">
+            <div class="process-number">3</div>
+            <div class="process-title">Come for a visit</div>
+            <p class="process-desc">We invite you to join a Sunday class or an upcoming event — so you can experience the community before committing.</p>
+          </div>
+          <div class="process-step">
+            <div class="process-number">4</div>
+            <div class="process-title">Complete registration</div>
+            <p class="process-desc">Once you're ready, complete your formal membership registration and payment to become an official member.</p>
+          </div>
+        </div>
+
+        <!-- Membership enquiry form -->
+        <div class="form-section" id="membership-form">
+          <div class="form-section-head">
+            <div>
+              <div class="form-section-title">Membership Enquiry</div>
+              <div class="form-section-cn">入會查詢</div>
+            </div>
+          </div>
+          <div class="form-section-body">
+            <div class="form-placeholder">
+              <div class="form-placeholder-icon">入</div>
+              <div class="form-placeholder-title">Membership Enquiry Form</div>
+              <p class="form-placeholder-note">
+                Click the button below to open the membership enquiry form. Your response will be sent directly to our committee and stored securely in our Google Workspace.
+              </p>
+              <a href="https://forms.gle/L2YyKX4mVq21LhMw8"
+                 class="form-cta-btn"
+                 target="_blank"
+                 rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/>
+                </svg>
+                Open membership form
+              </a>
+            </div>
+            <p class="form-alt-note">
+              Prefer to reach out directly?
+              <a href="https://m.me/670694326367406" target="_blank" rel="noopener">Message us</a>
+              or <a href="contact.html">send us a message</a>.
+            </p>
+          </div>
+        </div>
+
+        <!-- Volunteer form -->
+        <div class="form-section" id="volunteer-form">
+          <div class="form-section-head">
+            <div>
+              <div class="form-section-title">Volunteer Registration</div>
+              <div class="form-section-cn">義工登記</div>
+            </div>
+          </div>
+          <div class="form-section-body">
+            <div class="form-placeholder">
+              <div class="form-placeholder-icon">義</div>
+              <div class="form-placeholder-title">Volunteer Registration Form</div>
+              <p class="form-placeholder-note">
+                Click the button below to open the volunteer registration form. Tell us about yourself, your availability, and how you'd like to contribute.
+              </p>
+              <a href="https://forms.gle/oKc6hg7TAtNGF8yK6"
+                 class="form-cta-btn"
+                 target="_blank"
+                 rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/>
+                </svg>
+                Open volunteer form
+              </a>
+            </div>
+            <p class="form-alt-note">
+              Questions about volunteering?
+              <a href="https://m.me/670694326367406" target="_blank" rel="noopener">Message us</a> anytime.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── CTA ────────────────────────────────────────────── -->
+    <section class="section-sm section-navy" style="text-align:center;">
+      <div class="container" style="max-width:600px;">
+        <p class="eyebrow" style="margin-bottom:12px;">Not sure yet?</p>
+        <h2 style="color:var(--rice-paper); margin-bottom:16px;">Come and see for yourself</h2>
+        <p style="color:var(--muted-sky); margin-bottom:32px;">
+          The best way to understand what we do is to experience it. Join us for a Sunday class or an upcoming ritual — no commitment required.
+        </p>
+        <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+          <a href="events.html" class="btn btn-gold">See upcoming events</a>
+          <a href="contact.html" class="btn btn-outline-light">Ask us a question</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── Footer ─────────────────────────────────────────────── -->
+  <footer class="site-footer">
+    <div class="footer-main">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <div class="footer-brand-logo-row">
+              <img src="/assets/images/logo-white-120.png"
+                   alt="Quan Zhen Cultural Society"
+                   class="footer-brand-logo"
+                   width="36" height="36">
+              <div>
+                <div class="footer-brand-name">Quan Zhen Cultural Society</div>
+                <div class="footer-brand-cn">全真教化協會</div>
+              </div>
+            </div>
+            <p class="footer-brand-desc">Quan Zhen Cultural Society is dedicated to the study, practice, and cultural preservation of the Taoist tradition. Est. 2016.</p>
+            <a href="https://m.me/670694326367406" class="footer-wa-btn" target="_blank" rel="noopener">
+              <span class="footer-wa-dot" style="background:#0084FF;"></span>Message us on Facebook
+            </a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">Explore</div>
+            <a href="/about.html">About us</a>
+            <a href="/tradition.html">Our Tradition</a>
+            <a href="/events.html">Events</a>
+            <a href="/learn.html">Learn</a>
+            <a href="/services.html">Services</a>
+            <a href="/gallery.html">Gallery</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">Get involved</div>
+            <a href="/join.html">Join as Member</a>
+            <a href="/join.html#volunteer-form">Volunteer</a>
+            <a href="/contact.html">Contact Us</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">Follow us</div>
+            <a href="https://www.facebook.com/quanzhensg" target="_blank" rel="noopener">Facebook</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <div class="footer-bottom-inner">
+          <p class="footer-copy">
+            © 2026 Quan Zhen Cultural Society · 全真教化協會. All rights reserved.
+          </p>
+          <div class="footer-legal">
+            <a href="/privacy.html">Privacy Policy</a>
+            <span>·</span>
+            <a href="/terms.html">Terms of Use</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('site-nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    });
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobile-nav');
+    hamburger.addEventListener('click', () => {
+      mobileNav.classList.toggle('open');
+    });
+    mobileNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => mobileNav.classList.remove('open'));
+    });
+
+  </script>
+  <script src="/js/interactions.js"></script>
+  
+
+  <!-- Facebook Messenger floating button -->
+  <a href="https://m.me/670694326367406"
+     class="messenger-float"
+     target="_blank"
+     rel="noopener"
+     aria-label="Message us on Facebook Messenger">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="white" aria-hidden="true">
+      <path d="M12 2C6.477 2 2 6.145 2 11.243c0 2.914 1.318 5.52 3.396 7.29V22l3.199-1.754c.874.237 1.8.366 2.757.366 5.523 0 10-4.145 10-9.243C22 6.145 17.523 2 12 2zm1.008 12.445l-2.545-2.694-4.971 2.694 5.467-5.799 2.606 2.694 4.91-2.694-5.467 5.799z"/>
+    </svg>
+    <span>Message Us</span>
+  </a>
+
+</body>
+</html>

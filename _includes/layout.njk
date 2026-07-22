@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="{{ description }}">
+  <meta property="og:title" content="{{ ogTitle or title }}">
+  <meta property="og:description" content="{{ ogDescription or description }}">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://quanzhen.sg{{ permalink }}">
+  <title>{{ title }}</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/interactions.css">
+  <link rel="icon" type="image/png" href="/assets/images/logo-transparent-512.png">
+{% if pageStyle %}  <style>
+{{ pageStyle | safe }}
+  </style>
+{% endif %}
+</head>
+<body>
+
+  <!-- ── Navigation ──────────────────────────────────────── -->
+  <nav class="site-nav" id="site-nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="/" class="nav-logo">
+          <img src="/assets/images/logo-white-120.png"
+               alt="Quan Zhen Cultural Society logo"
+               class="nav-logo-img"
+               width="40" height="40">
+          <div class="nav-logo-text">
+            <span class="nav-logo-en">Quan Zhen Cultural Society</span>
+            <span class="nav-logo-cn">全真教化協會</span>
+          </div>
+        </a>
+        <ul class="nav-links">
+          <li><a href="/"{% if activeNav == "home" %} class="active"{% endif %}>{% if bilingualNav %}<span data-en>Home</span><span data-zh>首頁</span>{% else %}Home{% endif %}</a></li>
+          <li><a href="/about.html"{% if activeNav == "about" %} class="active"{% endif %}>{% if bilingualNav %}<span data-en>About</span><span data-zh>關於我們</span>{% else %}About{% endif %}</a></li>
+          <li><a href="/tradition.html"{% if activeNav == "tradition" %} class="active"{% endif %}>{% if bilingualNav %}<span data-en>Our Tradition</span><span data-zh>道統傳承</span>{% else %}Our Tradition{% endif %}</a></li>
+          <li><a href="/events.html"{% if activeNav == "events" %} class="active"{% endif %}>{% if bilingualNav %}<span data-en>Events</span><span data-zh>活動</span>{% else %}Events{% endif %}</a></li>
+          <li><a href="/learn.html"{% if activeNav == "learn" %} class="active"{% endif %}>{% if bilingualNav %}<span data-en>Learn</span><span data-zh>學習</span>{% else %}Learn{% endif %}</a></li>
+          <li><a href="/services.html"{% if activeNav == "services" %} class="active"{% endif %}>{% if bilingualNav %}<span data-en>Services</span><span data-zh>服務項目</span>{% else %}Services{% endif %}</a></li>
+          <li><a href="/gallery.html"{% if activeNav == "gallery" %} class="active"{% endif %}>{% if bilingualNav %}<span data-en>Gallery</span><span data-zh>圖集</span>{% else %}Gallery{% endif %}</a></li>
+          {% if showOfferings %}<li><a href="https://events.quanzhen.sg" target="_blank" rel="noopener"><span data-en>Offerings</span><span data-zh>請購</span></a></li>{% endif %}
+        </ul>
+        <div class="nav-right">
+          <div class="lang-toggle">
+          {% if bilingualNav %}
+            <button class="lang-en-btn active" onclick="qzSetLang('en')" aria-label="Switch to English">EN</button>
+            <span class="divider">/</span>
+            <button class="lang-zh-btn" onclick="qzSetLang('zh')" aria-label="切換至中文">中文</button>
+          {% else %}
+            <a href="#" class="active">EN</a>
+            <span class="divider">/</span>
+            <a href="/zh/">中文</a>
+          {% endif %}
+          </div>
+          <a href="/contact.html" class="btn btn-outline-gold">
+            {% if bilingualNav %}<span data-en>Contact Us</span><span data-zh>聯絡我們</span>{% else %}Contact Us{% endif %}
+          </a>
+          <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile nav drawer -->
+  <div class="mobile-nav" id="mobile-nav">
+    <a href="/">{% if bilingualNav %}<span data-en>Home</span><span data-zh>首頁</span>{% else %}Home{% endif %}</a>
+    <a href="/about.html">{% if bilingualNav %}<span data-en>About</span><span data-zh>關於我們</span>{% else %}About{% endif %}</a>
+    <a href="/tradition.html">{% if bilingualNav %}<span data-en>Our Tradition</span><span data-zh>道統傳承</span>{% else %}Our Tradition{% endif %}</a>
+    <a href="/events.html">{% if bilingualNav %}<span data-en>Events</span><span data-zh>活動</span>{% else %}Events{% endif %}</a>
+    <a href="/learn.html">{% if bilingualNav %}<span data-en>Learn</span><span data-zh>學習</span>{% else %}Learn{% endif %}</a>
+    <a href="/services.html">{% if bilingualNav %}<span data-en>Services</span><span data-zh>服務項目</span>{% else %}Services{% endif %}</a>
+    <a href="/gallery.html">{% if bilingualNav %}<span data-en>Gallery</span><span data-zh>圖集</span>{% else %}Gallery{% endif %}</a>
+    {% if showOfferings %}<a href="https://events.quanzhen.sg" target="_blank" rel="noopener">{% if bilingualNav %}<span data-en>Offerings</span><span data-zh>結緣</span>{% else %}Offerings{% endif %}</a>{% endif %}
+    <a href="/contact.html">{% if bilingualNav %}<span data-en>Contact Us</span><span data-zh>聯絡我們</span>{% else %}Contact Us{% endif %}</a>
+  </div>
+
+  <main>
+{{ content | safe }}
+  </main>
+
+  <!-- ── Footer ─────────────────────────────────────────────── -->
+  <footer class="site-footer">
+    <div class="footer-main">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <div class="footer-brand-logo-row">
+              <img src="/assets/images/logo-white-120.png"
+                   alt="Quan Zhen Cultural Society"
+                   class="footer-brand-logo"
+                   width="36" height="36">
+              <div>
+                <div class="footer-brand-name">Quan Zhen Cultural Society</div>
+                <div class="footer-brand-cn">全真教化協會</div>
+              </div>
+            </div>
+            <p class="footer-brand-desc">Quan Zhen Cultural Society is dedicated to the study, practice, and cultural preservation of the Taoist tradition. Est. 2016.</p>
+            <a href="https://m.me/670694326367406" class="footer-wa-btn" target="_blank" rel="noopener">
+              <span class="footer-wa-dot" style="background:#0084FF;"></span>Message us on Facebook
+            </a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">Explore</div>
+            <a href="/about.html">About us</a>
+            <a href="/tradition.html">Our Tradition</a>
+            <a href="/events.html">Events</a>
+            <a href="/learn.html">Learn</a>
+            <a href="/services.html">Services</a>
+            <a href="/gallery.html">Gallery</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">Get involved</div>
+            <a href="/join.html">Join as Member</a>
+            <a href="/join.html#volunteer-form">Volunteer</a>
+            <a href="/contact.html">Contact Us</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">Follow us</div>
+            <a href="https://www.facebook.com/quanzhensg" target="_blank" rel="noopener">Facebook</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <div class="footer-bottom-inner">
+          <p class="footer-copy">
+            © {{ currentYear }} Quan Zhen Cultural Society · 全真教化協會. All rights reserved.
+          </p>
+          <div class="footer-legal">
+            <a href="/privacy.html">Privacy Policy</a>
+            <span>·</span>
+            <a href="/terms.html">Terms of Use</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('site-nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    });
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobile-nav');
+    hamburger.addEventListener('click', () => {
+      mobileNav.classList.toggle('open');
+    });
+    mobileNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => mobileNav.classList.remove('open'));
+    });
+{% if extraScript %}{{ extraScript | safe }}{% endif %}
+  </script>
+  <script src="/js/interactions.js"></script>
+  {% if bilingualNav %}<script src="/js/bilingual.js"></script>{% endif %}
+
+  <!-- Facebook Messenger floating button -->
+  <a href="https://m.me/670694326367406"
+     class="messenger-float"
+     target="_blank"
+     rel="noopener"
+     aria-label="Message us on Facebook Messenger">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="white" aria-hidden="true">
+      <path d="M12 2C6.477 2 2 6.145 2 11.243c0 2.914 1.318 5.52 3.396 7.29V22l3.199-1.754c.874.237 1.8.366 2.757.366 5.523 0 10-4.145 10-9.243C22 6.145 17.523 2 12 2zm1.008 12.445l-2.545-2.694-4.971 2.694 5.467-5.799 2.606 2.694 4.91-2.694-5.467 5.799z"/>
+    </svg>
+    <span>Message Us</span>
+  </a>
+
+</body>
+</html>
