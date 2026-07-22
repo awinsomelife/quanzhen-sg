@@ -38,7 +38,7 @@ collections:
         name: "title_cn"
         widget: "string"
         required: false
-        hint: "e.g. 北斗禮斗科儀"
+        hint: "e.g. 禮斗科儀"
 
       - label: "Event date"
         name: "date"

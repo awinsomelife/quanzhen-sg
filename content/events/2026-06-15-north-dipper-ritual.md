@@ -1,6 +1,6 @@
 ---
 title: "North Dipper Ritual"
-title_cn: "北斗禮斗科儀"
+title_cn: "禮斗科儀"
 date: 2026-06-15
 type: ritual
 description: "Communal ritual venerating the Seven Lords of the North Dipper. Open to all. Registration required."
