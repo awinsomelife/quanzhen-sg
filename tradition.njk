@@ -1,302 +1,79 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="The Quanzhen Longmen tradition — lineage, practices, and deities venerated by Quan Zhen Cultural Society (全真教化協會) in Singapore. Tracing our heritage through Wang Chongyang, Qiu Chuji, and Fung Ying Seen Koon.">
-  <meta property="og:title" content="Our Tradition — Quan Zhen Cultural Society">
-  <meta property="og:description" content="Explore the Quanzhen Longmen tradition — its lineage from Wang Chongyang and Qiu Chuji, its practices, and the deities venerated by our Singapore community.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://quanzhen.sg/tradition.html">
-  <title>Our Tradition — Quan Zhen Cultural Society · 全真教化協會</title>
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/interactions.css">
-  <link rel="icon" type="image/png" href="assets/images/logo-transparent-512.png">
-  <style>
-    .page-hero {
-      background: var(--navy-primary);
-      padding: 140px 0 80px;
-      border-bottom: 1px solid rgba(201,168,76,0.2);
-    }
-    .page-hero-inner { max-width: 640px; }
-    .page-hero h1 { color: var(--rice-paper); margin-bottom: 16px; }
-    .page-hero p { color: var(--muted-sky); font-size: 16px; line-height: 1.75; }
+---
+layout: layout.njk
+permalink: "/tradition.html"
+title: "Our Tradition — Quan Zhen Cultural Society · 全真教化協會"
+description: "The Quanzhen Longmen tradition — lineage, practices, and deities venerated by Quan Zhen Cultural Society (全真教化協會) in Singapore. Tracing our heritage through Wang Chongyang, Qiu Chuji, and Fung Ying Seen Koon."
+ogTitle: "Our Tradition — Quan Zhen Cultural Society"
+ogDescription: "Explore the Quanzhen Longmen tradition — its lineage from Wang Chongyang and Qiu Chuji, its practices, and the deities venerated by our Singapore community."
+activeNav: tradition
+bilingualNav: false
+showOfferings: false
+pageStyle: |
+  .page-hero { background: var(--navy-primary); padding: 140px 0 80px; border-bottom: 1px solid rgba(201,168,76,0.2); }
+  .page-hero-inner { max-width: 640px; }
+  .page-hero h1 { color: var(--rice-paper); margin-bottom: 16px; }
+  .page-hero p { color: var(--muted-sky); font-size: 16px; line-height: 1.75; }
 
-    /* Section nav / anchor tabs */
-    .section-tabs {
-      background: var(--navy-deep);
-      border-bottom: 1px solid rgba(201,168,76,0.15);
-      position: sticky;
-      top: 64px;
-      z-index: 100;
-    }
-    .section-tabs-inner {
-      display: flex;
-      gap: 0;
-    }
-    .section-tab {
-      padding: 16px 28px;
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted-sky);
-      text-decoration: none;
-      border-bottom: 2px solid transparent;
-      transition: all 0.2s;
-      white-space: nowrap;
-    }
-    .section-tab:hover,
-    .section-tab.active {
-      color: var(--brass-gold);
-      border-bottom-color: var(--brass-gold);
-    }
+  .section-tabs { background: var(--navy-deep); border-bottom: 1px solid rgba(201,168,76,0.15); position: sticky; top: 64px; z-index: 100; }
+  .section-tabs-inner { display: flex; gap: 0; }
+  .section-tab {
+    padding: 16px 28px; font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--muted-sky); text-decoration: none; border-bottom: 2px solid transparent; transition: all 0.2s; white-space: nowrap;
+  }
+  .section-tab:hover, .section-tab.active { color: var(--brass-gold); border-bottom-color: var(--brass-gold); }
 
-    /* Lineage */
-    .lineage-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 64px;
-      align-items: start;
-    }
-    .lineage-figure {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-    .lineage-node {
-      background: var(--white);
-      border: 0.5px solid rgba(26,39,68,0.12);
-      border-left: 3px solid var(--brass-gold);
-      border-radius: 0 var(--radius-md) var(--radius-md) 0;
-      padding: 16px 18px;
-      position: relative;
-    }
-    .lineage-node.highlight {
-      background: rgba(201,168,76,0.05);
-      border-left-color: var(--navy-primary);
-    }
-    .lineage-node-role {
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--brass-gold);
-      margin-bottom: 4px;
-    }
-    .lineage-node.highlight .lineage-node-role {
-      color: var(--muted-sky);
-    }
-    .lineage-node-name {
-      font-family: var(--font-display);
-      font-size: 18px;
-      font-weight: 500;
-      color: var(--navy-primary);
-      margin-bottom: 2px;
-    }
-    .lineage-node-cn {
-      font-family: var(--font-cn);
-      font-size: 11px;
-      color: var(--brass-gold);
-      letter-spacing: 0.1em;
-    }
-    .lineage-connector {
-      width: 1px;
-      height: 20px;
-      background: rgba(201,168,76,0.3);
-      margin-left: 20px;
-    }
-    .lineage-desc {
-      font-size: 13px;
-      color: #555;
-      line-height: 1.7;
-      margin-top: 6px;
-    }
+  .lineage-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+  .lineage-figure { display: flex; flex-direction: column; gap: 2px; }
+  .lineage-node {
+    background: var(--white); border: 0.5px solid rgba(26,39,68,0.12); border-left: 3px solid var(--brass-gold);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0; padding: 16px 18px; position: relative;
+  }
+  .lineage-node.highlight { background: rgba(201,168,76,0.05); border-left-color: var(--navy-primary); }
+  .lineage-node-role { font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--brass-gold); margin-bottom: 4px; }
+  .lineage-node.highlight .lineage-node-role { color: var(--muted-sky); }
+  .lineage-node-name { font-family: var(--font-display); font-size: 18px; font-weight: 500; color: var(--navy-primary); margin-bottom: 2px; }
+  .lineage-node-cn { font-family: var(--font-cn); font-size: 11px; color: var(--brass-gold); letter-spacing: 0.1em; }
+  .lineage-connector { width: 1px; height: 20px; background: rgba(201,168,76,0.3); margin-left: 20px; }
+  .lineage-desc { font-size: 13px; color: #555; line-height: 1.7; margin-top: 6px; }
 
-    /* Practices */
-    .practices-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-    .practice-card {
-      background: var(--white);
-      border: 0.5px solid rgba(26,39,68,0.1);
-      border-radius: var(--radius-lg);
-      padding: 24px 20px;
-      transition: border-color 0.2s;
-    }
-    .practice-card:hover {
-      border-color: rgba(201,168,76,0.35);
-    }
-    .practice-icon {
-      font-family: var(--font-cn);
-      font-size: 28px;
-      color: var(--brass-gold);
-      margin-bottom: 12px;
-      line-height: 1;
-    }
-    .practice-title {
-      font-family: var(--font-display);
-      font-size: 18px;
-      font-weight: 500;
-      color: var(--navy-primary);
-      margin-bottom: 4px;
-    }
-    .practice-cn {
-      font-family: var(--font-cn);
-      font-size: 11px;
-      color: var(--brass-gold);
-      letter-spacing: 0.1em;
-      margin-bottom: 12px;
-    }
-    .practice-desc {
-      font-size: 13px;
-      color: #555;
-      line-height: 1.7;
-    }
+  .practices-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .practice-card { background: var(--white); border: 0.5px solid rgba(26,39,68,0.1); border-radius: var(--radius-lg); padding: 24px 20px; transition: border-color 0.2s; }
+  .practice-card:hover { border-color: rgba(201,168,76,0.35); }
+  .practice-icon { font-family: var(--font-cn); font-size: 28px; color: var(--brass-gold); margin-bottom: 12px; line-height: 1; }
+  .practice-title { font-family: var(--font-display); font-size: 18px; font-weight: 500; color: var(--navy-primary); margin-bottom: 4px; }
+  .practice-cn { font-family: var(--font-cn); font-size: 11px; color: var(--brass-gold); letter-spacing: 0.1em; margin-bottom: 12px; }
+  .practice-desc { font-size: 13px; color: #555; line-height: 1.7; }
 
-    /* Deities */
-    .deities-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-    }
-    .deity-card {
-      background: var(--white);
-      border: 0.5px solid rgba(26,39,68,0.1);
-      border-radius: var(--radius-lg);
-      padding: 20px 16px;
-      text-align: center;
-      transition: border-color 0.2s, transform 0.2s;
-    }
-    .deity-card:hover {
-      border-color: rgba(201,168,76,0.4);
-      transform: translateY(-2px);
-    }
-    .deity-card.featured {
-      grid-column: span 2;
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      text-align: left;
-      padding: 24px;
-      background: rgba(201,168,76,0.04);
-      border-color: rgba(201,168,76,0.25);
-    }
-    .deity-symbol {
-      font-family: var(--font-cn);
-      font-size: 32px;
-      color: var(--brass-gold);
-      line-height: 1;
-      margin: 0 auto 12px;
-      display: block;
-    }
-    .deity-card.featured .deity-symbol {
-      font-size: 44px;
-      margin: 0;
-      flex-shrink: 0;
-    }
-    .deity-name-cn {
-      font-family: var(--font-cn);
-      font-size: 13px;
-      color: var(--navy-primary);
-      letter-spacing: 0.08em;
-      margin-bottom: 4px;
-      line-height: 1.4;
-    }
-    .deity-card.featured .deity-name-cn {
-      font-size: 16px;
-    }
-    .deity-name-en {
-      font-size: 11px;
-      color: #888;
-      line-height: 1.4;
-    }
-    .deity-card.featured .deity-name-en {
-      font-size: 13px;
-      color: #666;
-      margin-top: 4px;
-    }
-    .deity-desc {
-      font-size: 12px;
-      color: #666;
-      line-height: 1.6;
-      margin-top: 8px;
-    }
+  .deities-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .deity-card { background: var(--white); border: 0.5px solid rgba(26,39,68,0.1); border-radius: var(--radius-lg); padding: 20px 16px; text-align: center; transition: border-color 0.2s, transform 0.2s; }
+  .deity-card:hover { border-color: rgba(201,168,76,0.4); transform: translateY(-2px); }
+  .deity-card.featured { grid-column: span 2; display: flex; align-items: center; gap: 20px; text-align: left; padding: 24px; background: rgba(201,168,76,0.04); border-color: rgba(201,168,76,0.25); }
+  .deity-symbol { font-family: var(--font-cn); font-size: 32px; color: var(--brass-gold); line-height: 1; margin: 0 auto 12px; display: block; }
+  .deity-card.featured .deity-symbol { font-size: 44px; margin: 0; flex-shrink: 0; }
+  .deity-name-cn { font-family: var(--font-cn); font-size: 13px; color: var(--navy-primary); letter-spacing: 0.08em; margin-bottom: 4px; line-height: 1.4; }
+  .deity-card.featured .deity-name-cn { font-size: 16px; }
+  .deity-name-en { font-size: 11px; color: #888; line-height: 1.4; }
+  .deity-card.featured .deity-name-en { font-size: 13px; color: #666; margin-top: 4px; }
+  .deity-desc { font-size: 12px; color: #666; line-height: 1.6; margin-top: 8px; }
 
-    @media (max-width: 1024px) {
-      .deities-grid { grid-template-columns: repeat(3, 1fr); }
-      .deity-card.featured { grid-column: span 3; }
-      .practices-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (max-width: 768px) {
-      .lineage-grid { grid-template-columns: 1fr; gap: 40px; }
-      .deities-grid { grid-template-columns: repeat(2, 1fr); }
-      .deity-card.featured { grid-column: span 2; flex-direction: column; text-align: center; }
-      .deity-card.featured .deity-symbol { margin: 0 auto; }
-      .section-tab { padding: 14px 16px; font-size: 10px; }
-    }
-    @media (max-width: 480px) {
-      .practices-grid { grid-template-columns: 1fr; }
-      .deities-grid { grid-template-columns: 1fr; }
-      .deity-card.featured { grid-column: span 1; }
-    }
-  </style>
-</head>
-<body>
-
-  <!-- ── Navigation ──────────────────────────────────────── -->
-  <nav class="site-nav" id="site-nav">
-    <div class="container">
-      <div class="nav-inner">
-        <a href="index.html" class="nav-logo">
-          <img src="assets/images/logo-white-120.png"
-               alt="Quan Zhen Cultural Society logo"
-               class="nav-logo-img"
-               width="40" height="40">
-          <div class="nav-logo-text">
-            <span class="nav-logo-en">Quan Zhen Cultural Society</span>
-            <span class="nav-logo-cn">全真教化協會</span>
-          </div>
-        </a>
-        <ul class="nav-links">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="tradition.html" class="active">Our Tradition</a></li>
-          <li><a href="events.html">Events</a></li>
-          <li><a href="learn.html">Learn</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="gallery.html">Gallery</a></li>
-        </ul>
-        <div class="nav-right">
-          <div class="lang-toggle">
-            <a href="#" class="active">EN</a>
-            <span class="divider">/</span>
-            <a href="/zh/">中文</a>
-          </div>
-          <a href="contact.html" class="btn btn-outline-gold">Contact Us</a>
-          <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
-            <span></span><span></span><span></span>
-          </button>
-        </div>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Mobile nav drawer -->
-  <div class="mobile-nav" id="mobile-nav">
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="tradition.html">Our Tradition</a>
-    <a href="events.html">Events</a>
-    <a href="learn.html">Learn</a>
-    <a href="services.html">Services</a>
-    <a href="gallery.html">Gallery</a>
-    <a href="contact.html">Contact Us</a>
-  </div>
-
-  <main>
+  @media (max-width: 1024px) {
+    .deities-grid { grid-template-columns: repeat(3, 1fr); }
+    .deity-card.featured { grid-column: span 3; }
+    .practices-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 768px) {
+    .lineage-grid { grid-template-columns: 1fr; gap: 40px; }
+    .deities-grid { grid-template-columns: repeat(2, 1fr); }
+    .deity-card.featured { grid-column: span 2; flex-direction: column; text-align: center; }
+    .deity-card.featured .deity-symbol { margin: 0 auto; }
+    .section-tab { padding: 14px 16px; font-size: 10px; }
+  }
+  @media (max-width: 480px) {
+    .practices-grid { grid-template-columns: 1fr; }
+    .deities-grid { grid-template-columns: 1fr; }
+    .deity-card.featured { grid-column: span 1; }
+  }
+---
 
     <!-- ── Page Hero ──────────────────────────────────────── -->
     <section class="page-hero">
@@ -412,7 +189,7 @@
             <div class="practice-icon">禮</div>
             <div class="practice-title">Ritual Observance</div>
             <div class="practice-cn">科儀法事</div>
-            <p class="practice-desc">Performance of Taoist rites and ceremonies according to the Quanzhen Longmen liturgical tradition — including communal rituals such as the 北斗禮斗科儀 North Dipper Ritual for blessings and the resolution of karmic obstacles.</p>
+            <p class="practice-desc">Performance of Taoist rites and ceremonies according to the Quanzhen Longmen liturgical tradition — including communal rituals such as the 禮斗科儀 North Dipper Ritual for blessings and the resolution of karmic obstacles.</p>
           </div>
 
           <div class="practice-card">
@@ -483,7 +260,7 @@
             <span class="deity-symbol">斗</span>
             <div class="deity-name-cn">大聖北斗七元君</div>
             <div class="deity-name-en">The Seven Lords of the North Dipper</div>
-            <p class="deity-desc">The seven divine lords of the North Dipper constellation, venerated collectively for the resolution of disasters and the bestowal of blessings. Central to the 北斗禮斗科儀 ritual.</p>
+            <p class="deity-desc">The seven divine lords of the North Dipper constellation, venerated collectively for the resolution of disasters and the bestowal of blessings. Central to the 禮斗科儀 ritual.</p>
           </div>
 
           <div class="deity-card">
@@ -547,105 +324,17 @@
       </div>
     </section>
 
-  </main>
-
-  <!-- ── Footer ─────────────────────────────────────────────── -->
-  <footer class="site-footer">
-    <div class="footer-main">
-      <div class="container">
-        <div class="footer-grid">
-          <div class="footer-brand">
-            <div class="footer-brand-logo-row">
-              <img src="assets/images/logo-white-120.png"
-                   alt="Quan Zhen Cultural Society"
-                   class="footer-brand-logo"
-                   width="36" height="36">
-              <div>
-                <div class="footer-brand-name">Quan Zhen Cultural Society</div>
-                <div class="footer-brand-cn">全真教化協會</div>
-              </div>
-            </div>
-            <p class="footer-brand-desc">Quan Zhen Cultural Society is dedicated to the study, practice, and cultural preservation of the Taoist tradition. Est. 2016.</p>
-            <a href="https://m.me/670694326367406" class="footer-wa-btn" target="_blank" rel="noopener">
-              <span class="footer-wa-dot" style="background:#0084FF;"></span>Message us on Facebook
-            </a>
-          </div>
-          <div class="footer-col">
-            <div class="footer-col-title">Explore</div>
-            <a href="about.html">About us</a>
-            <a href="tradition.html">Our Tradition</a>
-            <a href="events.html">Events</a>
-            <a href="learn.html">Learn</a>
-            <a href="services.html"></a>
-            <a href="gallery.html">Gallery</a>
-          </div>
-          <div class="footer-col">
-            <div class="footer-col-title">Get involved</div>
-            <a href="join.html">Join as Member</a>
-            <a href="join.html#volunteer">Volunteer</a>
-            <a href="contact.html">Contact Us</a>
-          </div>
-          <div class="footer-col">
-            <div class="footer-col-title">Follow us</div>
-            <a href="https://facebook.com/QuanZhenSG" target="_blank" rel="noopener">Facebook</a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <div class="container">
-        <div class="footer-bottom-inner">
-          <p class="footer-copy">© 2026 Quan Zhen Cultural Society · 全真教化協會. All rights reserved.</p>
-          <div class="footer-legal">
-            <a href="privacy.html">Privacy Policy</a>
-            <span>·</span>
-            <a href="terms.html">Terms of Use</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    const nav = document.getElementById('site-nav');
-    window.addEventListener('scroll', () => {
-      nav.classList.toggle('scrolled', window.scrollY > 40);
-    });
-    const hamburger = document.getElementById('hamburger');
-    const mobileNav = document.getElementById('mobile-nav');
-    hamburger.addEventListener('click', () => {
-      mobileNav.classList.toggle('open');
-    });
-    mobileNav.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => mobileNav.classList.remove('open'));
-    });
-
-    // Section tab active state on scroll
-    const tabs = document.querySelectorAll('.section-tab');
-    const sections = ['lineage','practices','deities'].map(id => document.getElementById(id));
-    window.addEventListener('scroll', () => {
-      let current = 'lineage';
-      sections.forEach(s => {
-        if (s && window.scrollY >= s.offsetTop - 140) current = s.id;
+    <script>
+      // Section tab active state on scroll
+      const traditionTabs = document.querySelectorAll('.section-tab');
+      const traditionSections = ['lineage','practices','deities'].map(id => document.getElementById(id));
+      window.addEventListener('scroll', () => {
+        let current = 'lineage';
+        traditionSections.forEach(s => {
+          if (s && window.scrollY >= s.offsetTop - 140) current = s.id;
+        });
+        traditionTabs.forEach(t => {
+          t.classList.toggle('active', t.getAttribute('href') === '#' + current);
+        });
       });
-      tabs.forEach(t => {
-        t.classList.toggle('active', t.getAttribute('href') === '#' + current);
-      });
-    });
-  </script>
-  <script src="js/interactions.js"></script>
-
-  <!-- Facebook Messenger floating button -->
-<a href="https://m.me/670694326367406"
-   class="messenger-float"
-   target="_blank"
-   rel="noopener"
-   aria-label="Message us on Facebook Messenger">
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="white" aria-hidden="true">
-    <path d="M12 2C6.477 2 2 6.145 2 11.243c0 2.914 1.318 5.52 3.396 7.29V22l3.199-1.754c.874.237 1.8.366 2.757.366 5.523 0 10-4.145 10-9.243C22 6.145 17.523 2 12 2zm1.008 12.445l-2.545-2.694-4.971 2.694 5.467-5.799 2.606 2.694 4.91-2.694-5.467 5.799z"/>
-  </svg>
-  <span>Message us</span>
-</a>
-
-</body>
-</html>
+    </script>

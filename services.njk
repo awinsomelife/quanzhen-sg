@@ -1,249 +1,56 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Ritual and educational services offered by Quan Zhen Cultural Society (全真教化協會) — Taoist rites, ceremonies, scripture classes, and community education in Singapore.">
-  <meta property="og:title" content="Our Services — Quan Zhen Cultural Society">
-  <meta property="og:description" content="Ritual services and educational programmes offered by Quan Zhen Cultural Society, a Singapore Quanzhen Longmen organisation.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://quanzhen.sg/services.html">
-  <title data-en="Our Services — Quan Zhen Cultural Society" data-zh="服務項目 — 全真教化協會">Our Services — Quan Zhen Cultural Society · 全真教化協會</title>
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/interactions.css">
-  <link rel="icon" type="image/png" href="assets/images/logo-transparent-512.png">
-  <style>
-    /* ── Page-specific styles ── */
-    .page-hero {
-      background: var(--navy-primary);
-      padding: 140px 0 80px;
-      border-bottom: 1px solid rgba(201,168,76,0.2);
-    }
-    .page-hero-inner {
-      max-width: 640px;
-    }
-    .page-hero h1 {
-      color: var(--rice-paper);
-      margin-bottom: 16px;
-    }
-    .page-hero p {
-      color: var(--muted-sky);
-      font-size: 16px;
-      line-height: 1.75;
-    }
-    .page-hero .cn-text {
-      display: block;
-      font-size: 13px;
-      margin-bottom: 16px;
-    }
+---
+layout: layout.njk
+permalink: "/services.html"
+title: "Our Services — Quan Zhen Cultural Society · 全真教化協會"
+description: "Ritual and educational services offered by Quan Zhen Cultural Society (全真教化協會) — Taoist rites, ceremonies, scripture classes, and community education in Singapore."
+ogTitle: "Our Services — Quan Zhen Cultural Society"
+ogDescription: "Ritual services and educational programmes offered by Quan Zhen Cultural Society, a Singapore Quanzhen Longmen organisation."
+activeNav: services
+bilingualNav: true
+showOfferings: false
+pageStyle: |
+  .page-hero { background: var(--navy-primary); padding: 140px 0 80px; border-bottom: 1px solid rgba(201,168,76,0.2); }
+  .page-hero-inner { max-width: 640px; }
+  .page-hero h1 { color: var(--rice-paper); margin-bottom: 16px; }
+  .page-hero p { color: var(--muted-sky); font-size: 16px; line-height: 1.75; }
+  .page-hero .cn-text { display: block; font-size: 13px; margin-bottom: 16px; }
 
-    /* Service cards */
-    .service-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 24px;
-    }
-    .service-grid.service-grid-3 {
-      grid-template-columns: repeat(3, 1fr);
-    }
-    .service-card {
-      background: var(--white);
-      border: 0.5px solid rgba(26,39,68,0.1);
-      border-radius: var(--radius-lg);
-      padding: 28px;
-      transition: border-color 0.2s;
-    }
-    .service-card:hover {
-      border-color: rgba(201,168,76,0.4);
-    }
-    .service-tag {
-      display: inline-block;
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--brass-gold);
-      background: rgba(201,168,76,0.1);
-      padding: 4px 10px;
-      border-radius: 20px;
-      margin-bottom: 14px;
-    }
-    .service-title {
-      font-family: var(--font-display);
-      font-size: 19px;
-      font-weight: 500;
-      color: var(--navy-primary);
-      margin-bottom: 4px;
-      line-height: 1.35;
-    }
-    .service-cn {
-      font-size: 12px;
-      color: var(--brass-gold);
-      margin-bottom: 12px;
-    }
-    .service-desc {
-      font-size: 13px;
-      color: #555;
-      line-height: 1.7;
-      margin-bottom: 14px;
-    }
-    .service-meta {
-      font-size: 12px;
-      color: #888;
-      display: flex;
-      align-items: flex-start;
-      gap: 6px;
-      padding-top: 14px;
-      border-top: 0.5px solid rgba(26,39,68,0.08);
-    }
-    .service-meta::before {
-      content: '';
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--brass-gold);
-      flex-shrink: 0;
-      margin-top: 5px;
-    }
-    .service-meta-list {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
+  .service-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .service-grid.service-grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .service-card { background: var(--white); border: 0.5px solid rgba(26,39,68,0.1); border-radius: var(--radius-lg); padding: 28px; transition: border-color 0.2s; }
+  .service-card:hover { border-color: rgba(201,168,76,0.4); }
+  .service-tag {
+    display: inline-block; font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--brass-gold); background: rgba(201,168,76,0.1); padding: 4px 10px; border-radius: 20px; margin-bottom: 14px;
+  }
+  .service-title { font-family: var(--font-display); font-size: 19px; font-weight: 500; color: var(--navy-primary); margin-bottom: 4px; line-height: 1.35; }
+  .service-cn { font-size: 12px; color: var(--brass-gold); margin-bottom: 12px; }
+  .service-desc { font-size: 13px; color: #555; line-height: 1.7; margin-bottom: 14px; }
+  .service-meta { font-size: 12px; color: #888; display: flex; align-items: flex-start; gap: 6px; padding-top: 14px; border-top: 0.5px solid rgba(26,39,68,0.08); }
+  .service-meta::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--brass-gold); flex-shrink: 0; margin-top: 5px; }
+  .service-meta-list { display: flex; flex-direction: column; gap: 4px; }
 
-    .service-note {
-      background: #F0E6CF;
-      border-radius: var(--radius-lg);
-      padding: 28px 32px;
-      margin-top: 32px;
-    }
-    .service-note p {
-      font-size: 14px;
-      color: #555;
-      line-height: 1.75;
-      margin: 0;
-    }
+  .service-note { background: #F0E6CF; border-radius: var(--radius-lg); padding: 28px 32px; margin-top: 32px; }
+  .service-note p { font-size: 14px; color: #555; line-height: 1.75; margin: 0; }
 
-    /* Ritual team intro */
-    .ritual-team-block {
-      background: var(--navy-primary);
-      border-radius: var(--radius-lg);
-      padding: 24px 32px;
-      max-width: 720px;
-    }
-    .ritual-team-block p {
-      font-size: 14px;
-      color: var(--muted-sky);
-      line-height: 1.75;
-      margin: 0;
-    }
+  .ritual-team-block { background: var(--navy-primary); border-radius: var(--radius-lg); padding: 24px 32px; max-width: 720px; }
+  .ritual-team-block p { font-size: 14px; color: var(--muted-sky); line-height: 1.75; margin: 0; }
 
-    /* Blessing / Salvation ritual lists */
-    .ritual-list-card {
-      background: var(--white);
-      border: 0.5px solid rgba(26,39,68,0.1);
-      border-radius: var(--radius-lg);
-      padding: 28px 32px;
-    }
-    .ritual-list-title {
-      font-family: var(--font-display);
-      font-size: 19px;
-      font-weight: 500;
-      color: var(--navy-primary);
-      margin-bottom: 18px;
-      padding-bottom: 14px;
-      border-bottom: 1px solid rgba(201,168,76,0.25);
-    }
-    .ritual-list {
-      margin: 0;
-      padding-left: 22px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .ritual-list li {
-      font-size: 13px;
-      color: #555;
-      line-height: 1.65;
-      padding-left: 4px;
-    }
-    .ritual-list li::marker {
-      color: var(--brass-gold);
-      font-weight: 500;
-    }
-    .ritual-list em {
-      font-style: normal;
-      color: #888;
-      font-size: 12px;
-    }
+  .ritual-list-card { background: var(--white); border: 0.5px solid rgba(26,39,68,0.1); border-radius: var(--radius-lg); padding: 28px 32px; }
+  .ritual-list-title {
+    font-family: var(--font-display); font-size: 19px; font-weight: 500; color: var(--navy-primary);
+    margin-bottom: 18px; padding-bottom: 14px; border-bottom: 1px solid rgba(201,168,76,0.25);
+  }
+  .ritual-list { margin: 0; padding-left: 22px; display: flex; flex-direction: column; gap: 12px; }
+  .ritual-list li { font-size: 13px; color: #555; line-height: 1.65; padding-left: 4px; }
+  .ritual-list li::marker { color: var(--brass-gold); font-weight: 500; }
+  .ritual-list em { font-style: normal; color: #888; font-size: 12px; }
 
-    @media (max-width: 768px) {
-      .service-grid,
-      .service-grid.service-grid-3 {
-        grid-template-columns: 1fr;
-      }
-      .ritual-team-block,
-      .ritual-list-card {
-        padding: 22px 20px;
-      }
-    }
-  </style>
-</head>
-<body>
-
-  <!-- ── Navigation ──────────────────────────────────────── -->
-  <nav class="site-nav" id="site-nav">
-    <div class="container">
-      <div class="nav-inner">
-        <a href="/" class="nav-logo">
-          <img src="assets/images/logo-white-120.png"
-               alt="Quan Zhen Cultural Society logo"
-               class="nav-logo-img"
-               width="40" height="40">
-          <div class="nav-logo-text">
-            <span class="nav-logo-en">Quan Zhen Cultural Society</span>
-            <span class="nav-logo-cn">全真教化協會</span>
-          </div>
-        </a>
-        <ul class="nav-links">
-          <li><a href="/"><span data-en>Home</span><span data-zh>首頁</span></a></li>
-          <li><a href="about.html"><span data-en>About</span><span data-zh>關於我們</span></a></li>
-          <li><a href="tradition.html"><span data-en>Our Tradition</span><span data-zh>道統傳承</span></a></li>
-          <li><a href="events.html"><span data-en>Events</span><span data-zh>活動</span></a></li>
-          <li><a href="learn.html"><span data-en>Learn</span><span data-zh>學習</span></a></li>
-          <li><a href="services.html" class="active"><span data-en>Services</span><span data-zh>服務項目</span></a></li>
-          <li><a href="gallery.html"><span data-en>Gallery</span><span data-zh>圖集</span></a></li>
-        </ul>
-        <div class="nav-right">
-          <div class="lang-toggle">
-            <button class="lang-en-btn active" onclick="qzSetLang('en')" aria-label="Switch to English">EN</button>
-            <span class="divider">/</span>
-            <button class="lang-zh-btn" onclick="qzSetLang('zh')" aria-label="切換至中文">中文</button>
-          </div>
-          <a href="contact.html" class="btn btn-outline-gold">
-            <span data-en>Contact Us</span><span data-zh>聯絡我們</span>
-          </a>
-          <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
-            <span></span><span></span><span></span>
-          </button>
-        </div>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Mobile nav drawer -->
-  <div class="mobile-nav" id="mobile-nav">
-    <a href="/"><span data-en>Home</span><span data-zh>首頁</span></a>
-    <a href="about.html"><span data-en>About</span><span data-zh>關於我們</span></a>
-    <a href="tradition.html"><span data-en>Our Tradition</span><span data-zh>道統傳承</span></a>
-    <a href="events.html"><span data-en>Events</span><span data-zh>活動</span></a>
-    <a href="learn.html"><span data-en>Learn</span><span data-zh>學習</span></a>
-    <a href="services.html"><span data-en>Services</span><span data-zh>服務項目</span></a>
-    <a href="gallery.html"><span data-en>Gallery</span><span data-zh>圖集</span></a>
-    <a href="contact.html"><span data-en>Contact Us</span><span data-zh>聯絡我們</span></a>
-  </div>
-
-  <main>
+  @media (max-width: 768px) {
+    .service-grid, .service-grid.service-grid-3 { grid-template-columns: 1fr; }
+    .ritual-team-block, .ritual-list-card { padding: 22px 20px; }
+  }
+---
 
     <!-- ── Page Hero ──────────────────────────────────────── -->
     <section class="page-hero">
@@ -295,7 +102,7 @@
               <span data-en>Blessing Rituals</span><span data-zh>祈福科儀</span>
             </div>
             <ol class="ritual-list">
-              <li><span data-en>Lidou prayers to pray for health <em>(北斗禮斗科儀, monthly)</em></span><span data-zh>北斗禮斗科儀祈求健康 <em>(每月舉行)</em></span></li>
+              <li><span data-en>Lidou prayers to pray for health <em>(禮斗科儀, monthly)</em></span><span data-zh>禮斗科儀祈求健康 <em>(每月舉行)</em></span></li>
               <li><span data-en>Pre-surgery prayers</span><span data-zh>手術前祈福</span></li>
               <li><span data-en>Ground-breaking rituals for construction sites or projects</span><span data-zh>動土科儀（工程或建築項目）</span></li>
               <li><span data-en>Consecration "Kai Guang" rituals for new statues or altars</span><span data-zh>開光科儀（神像或神壇）</span></li>
@@ -338,7 +145,7 @@
 
           <div class="service-card">
             <span class="service-tag"><span data-en>Recurring</span><span data-zh>常設科儀</span></span>
-            <div class="service-title">北斗禮斗科儀 · <span data-en>North Dipper Lidou Ritual</span><span data-zh>北斗禮斗科儀</span></div>
+            <div class="service-title">禮斗科儀 · <span data-en>North Dipper Lidou Ritual</span><span data-zh>禮斗科儀</span></div>
             <p class="service-desc">
               <span data-en>A communal ritual venerating the Seven Lords of the North Dipper, held monthly. Open to all; registration required.</span>
               <span data-zh>禮拜大聖北斗七元君的集體科儀，每月舉行一次，對公眾開放，須提前登記。</span>
@@ -468,101 +275,3 @@
         </div>
       </div>
     </section>
-
-  </main>
-
-  <!-- ── Footer ─────────────────────────────────────────────── -->
-  <footer class="site-footer">
-    <div class="footer-main">
-      <div class="container">
-        <div class="footer-grid">
-          <div class="footer-brand">
-            <div class="footer-brand-logo-row">
-              <img src="assets/images/logo-white-120.png"
-                   alt="Quan Zhen Cultural Society"
-                   class="footer-brand-logo"
-                   width="36" height="36">
-              <div>
-                <div class="footer-brand-name">Quan Zhen Cultural Society</div>
-                <div class="footer-brand-cn">全真教化協會</div>
-              </div>
-            </div>
-            <p class="footer-brand-desc">
-              <span data-en>Quan Zhen Cultural Society is dedicated to the study, practice, and cultural preservation of the Taoist tradition. Est. 2016.</span>
-              <span data-zh>新加坡全真龍門道統組織，致力於道教傳統的研習、修持與文化傳承。創立於2016年。</span>
-            </p>
-            <a href="https://m.me/670694326367406" class="footer-wa-btn" target="_blank" rel="noopener">
-              <span class="footer-wa-dot" style="background:#0084FF;"></span>
-              <span data-en>Message us on Facebook</span><span data-zh>在臉書上聯絡我們</span>
-            </a>
-          </div>
-          <div class="footer-col">
-            <div class="footer-col-title"><span data-en>Explore</span><span data-zh>探索</span></div>
-            <a href="about.html"><span data-en>About us</span><span data-zh>關於我們</span></a>
-            <a href="tradition.html"><span data-en>Our Tradition</span><span data-zh>道統傳承</span></a>
-            <a href="events.html"><span data-en>Events</span><span data-zh>活動</span></a>
-            <a href="learn.html"><span data-en>Learn</span><span data-zh>學習</span></a>
-            <a href="services.html"><span data-en>Services</span><span data-zh>服務項目</span></a>
-            <a href="gallery.html"><span data-en>Gallery</span><span data-zh>圖集</span></a>
-          </div>
-          <div class="footer-col">
-            <div class="footer-col-title"><span data-en>Get involved</span><span data-zh>加入我們</span></div>
-            <a href="join.html"><span data-en>Join as Member</span><span data-zh>申請入會</span></a>
-            <a href="join.html#volunteer-form"><span data-en>Volunteer</span><span data-zh>成為義工</span></a>
-            <a href="contact.html"><span data-en>Contact Us</span><span data-zh>聯絡我們</span></a>
-          </div>
-          <div class="footer-col">
-            <div class="footer-col-title"><span data-en>Follow us</span><span data-zh>追蹤我們</span></div>
-            <a href="https://www.facebook.com/quanzhensg" target="_blank" rel="noopener">Facebook</a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <div class="container">
-        <div class="footer-bottom-inner">
-          <p class="footer-copy">
-            © 2026 Quan Zhen Cultural Society · 全真教化協會.
-            <span data-en>All rights reserved.</span><span data-zh>版權所有。</span>
-          </p>
-          <div class="footer-legal">
-            <a href="privacy.html"><span data-en>Privacy Policy</span><span data-zh>私隱政策</span></a>
-            <span>·</span>
-            <a href="terms.html"><span data-en>Terms of Use</span><span data-zh>使用條款</span></a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    const nav = document.getElementById('site-nav');
-    window.addEventListener('scroll', () => {
-      nav.classList.toggle('scrolled', window.scrollY > 40);
-    });
-    const hamburger = document.getElementById('hamburger');
-    const mobileNav = document.getElementById('mobile-nav');
-    hamburger.addEventListener('click', () => {
-      mobileNav.classList.toggle('open');
-    });
-    mobileNav.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => mobileNav.classList.remove('open'));
-    });
-  </script>
-  <script src="js/interactions.js"></script>
-  <script src="js/bilingual.js"></script>
-
-  <!-- Facebook Messenger floating button -->
-  <a href="https://m.me/670694326367406"
-     class="messenger-float"
-     target="_blank"
-     rel="noopener"
-     aria-label="Message us on Facebook Messenger">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="white" aria-hidden="true">
-      <path d="M12 2C6.477 2 2 6.145 2 11.243c0 2.914 1.318 5.52 3.396 7.29V22l3.199-1.754c.874.237 1.8.366 2.757.366 5.523 0 10-4.145 10-9.243C22 6.145 17.523 2 12 2zm1.008 12.445l-2.545-2.694-4.971 2.694 5.467-5.799 2.606 2.694 4.91-2.694-5.467 5.799z"/>
-    </svg>
-    <span data-en>Message Us</span><span data-zh>聯絡我們</span>
-  </a>
-
-</body>
-</html>

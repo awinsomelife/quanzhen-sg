@@ -1,287 +1,73 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Learn about Taoism and the Quanzhen Longmen tradition — articles, scripture introductions, and learning resources from Quan Zhen Cultural Society (全真教化協會) Singapore.">
-  <meta property="og:title" content="Learn — Quan Zhen Cultural Society">
-  <meta property="og:description" content="Taoist learning resources from Quan Zhen Cultural Society — articles, scripture introductions, and guides to Quanzhen thought and practice.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://quanzhen.sg/learn.html">
-  <title>Learn — Quan Zhen Cultural Society · 全真教化協會</title>
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/interactions.css">
-  <link rel="icon" type="image/png" href="assets/images/logo-transparent-512.png">
-  <style>
-    .page-hero {
-      background: var(--navy-primary);
-      padding: 140px 0 80px;
-      border-bottom: 1px solid rgba(201,168,76,0.2);
-    }
-    .page-hero-inner { max-width: 640px; }
-    .page-hero h1 { color: var(--rice-paper); margin-bottom: 16px; }
-    .page-hero p { color: var(--muted-sky); font-size: 16px; line-height: 1.75; }
+---
+layout: layout.njk
+permalink: "/learn.html"
+title: "Learn — Quan Zhen Cultural Society · 全真教化協會"
+description: "Learn about Taoism and the Quanzhen Longmen tradition — articles, scripture introductions, and learning resources from Quan Zhen Cultural Society (全真教化協會) Singapore."
+ogTitle: "Learn — Quan Zhen Cultural Society"
+ogDescription: "Taoist learning resources from Quan Zhen Cultural Society — articles, scripture introductions, and guides to Quanzhen thought and practice."
+activeNav: learn
+bilingualNav: false
+showOfferings: false
+pageStyle: |
+  .page-hero { background: var(--navy-primary); padding: 140px 0 80px; border-bottom: 1px solid rgba(201,168,76,0.2); }
+  .page-hero-inner { max-width: 640px; }
+  .page-hero h1 { color: var(--rice-paper); margin-bottom: 16px; }
+  .page-hero p { color: var(--muted-sky); font-size: 16px; line-height: 1.75; }
 
-    /* Section tabs */
-    .section-tabs {
-      background: var(--navy-deep);
-      border-bottom: 1px solid rgba(201,168,76,0.15);
-      position: sticky;
-      top: 64px;
-      z-index: 100;
-    }
-    .section-tabs-inner { display: flex; }
-    .section-tab {
-      padding: 16px 28px;
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted-sky);
-      text-decoration: none;
-      border-bottom: 2px solid transparent;
-      transition: all 0.2s;
-      white-space: nowrap;
-    }
-    .section-tab:hover,
-    .section-tab.active {
-      color: var(--brass-gold);
-      border-bottom-color: var(--brass-gold);
-    }
+  .section-tabs { background: var(--navy-deep); border-bottom: 1px solid rgba(201,168,76,0.15); position: sticky; top: 64px; z-index: 100; }
+  .section-tabs-inner { display: flex; }
+  .section-tab {
+    padding: 16px 28px; font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--muted-sky); text-decoration: none; border-bottom: 2px solid transparent; transition: all 0.2s; white-space: nowrap;
+  }
+  .section-tab:hover, .section-tab.active { color: var(--brass-gold); border-bottom-color: var(--brass-gold); }
 
-    /* Article cards */
-    .article-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-    .article-card {
-      background: var(--white);
-      border: 0.5px solid rgba(26,39,68,0.1);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      transition: border-color 0.2s, transform 0.2s;
-      text-decoration: none;
-      display: block;
-    }
-    .article-card:hover {
-      border-color: rgba(201,168,76,0.4);
-      transform: translateY(-2px);
-    }
-    .article-card-cover {
-      width: 100%;
-      aspect-ratio: 16/9;
-      background: linear-gradient(135deg, #1A2744 0%, #111D38 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-cn);
-      font-size: 40px;
-      color: rgba(201,168,76,0.25);
-    }
-    .article-card-body {
-      padding: 18px;
-    }
-    .article-category {
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--brass-gold);
-      margin-bottom: 8px;
-    }
-    .article-title {
-      font-family: var(--font-display);
-      font-size: 17px;
-      font-weight: 500;
-      color: var(--navy-primary);
-      line-height: 1.35;
-      margin-bottom: 8px;
-    }
-    .article-excerpt {
-      font-size: 12px;
-      color: #666;
-      line-height: 1.65;
-      margin-bottom: 12px;
-    }
-    .article-meta {
-      font-size: 11px;
-      color: #aaa;
-    }
+  .article-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .article-card { background: var(--white); border: 0.5px solid rgba(26,39,68,0.1); border-radius: var(--radius-lg); overflow: hidden; transition: border-color 0.2s, transform 0.2s; text-decoration: none; display: block; }
+  .article-card:hover { border-color: rgba(201,168,76,0.4); transform: translateY(-2px); }
+  .article-card-cover {
+    width: 100%; aspect-ratio: 16/9; background: linear-gradient(135deg, #1A2744 0%, #111D38 100%);
+    display: flex; align-items: center; justify-content: center; font-family: var(--font-cn); font-size: 40px; color: rgba(201,168,76,0.25);
+  }
+  .article-card-cover img { width: 100%; height: 100%; object-fit: cover; }
+  .article-card-body { padding: 18px; }
+  .article-category { font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--brass-gold); margin-bottom: 8px; }
+  .article-title { font-family: var(--font-display); font-size: 17px; font-weight: 500; color: var(--navy-primary); line-height: 1.35; margin-bottom: 8px; }
+  .article-excerpt { font-size: 12px; color: #666; line-height: 1.65; margin-bottom: 12px; }
+  .article-meta { font-size: 11px; color: #aaa; }
 
-    /* Scripture cards */
-    .scripture-list {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-    .scripture-card {
-      background: var(--white);
-      border: 0.5px solid rgba(26,39,68,0.1);
-      border-radius: var(--radius-lg);
-      padding: 24px;
-      display: grid;
-      grid-template-columns: 80px 1fr auto;
-      gap: 24px;
-      align-items: start;
-      transition: border-color 0.2s;
-    }
-    .scripture-card:hover {
-      border-color: rgba(201,168,76,0.35);
-    }
-    .scripture-symbol {
-      font-family: var(--font-cn);
-      font-size: 36px;
-      color: var(--brass-gold);
-      line-height: 1;
-      text-align: center;
-    }
-    .scripture-body {}
-    .scripture-title-cn {
-      font-family: var(--font-cn);
-      font-size: 16px;
-      color: var(--navy-primary);
-      letter-spacing: 0.08em;
-      margin-bottom: 3px;
-    }
-    .scripture-title-en {
-      font-family: var(--font-display);
-      font-size: 18px;
-      font-weight: 500;
-      color: var(--navy-primary);
-      margin-bottom: 8px;
-    }
-    .scripture-desc {
-      font-size: 13px;
-      color: #555;
-      line-height: 1.7;
-      max-width: 520px;
-    }
-    .scripture-tags {
-      display: flex;
-      gap: 6px;
-      flex-wrap: wrap;
-      margin-top: 10px;
-    }
-    .scripture-tag {
-      font-size: 10px;
-      padding: 2px 8px;
-      border-radius: 20px;
-      background: rgba(26,39,68,0.06);
-      color: var(--navy-primary);
-    }
-    .scripture-action {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      align-items: flex-end;
-      flex-shrink: 0;
-    }
+  .scripture-list { display: flex; flex-direction: column; gap: 16px; }
+  .scripture-card {
+    background: var(--white); border: 0.5px solid rgba(26,39,68,0.1); border-radius: var(--radius-lg); padding: 24px;
+    display: grid; grid-template-columns: 80px 1fr auto; gap: 24px; align-items: start; transition: border-color 0.2s;
+  }
+  .scripture-card:hover { border-color: rgba(201,168,76,0.35); }
+  .scripture-symbol { font-family: var(--font-cn); font-size: 36px; color: var(--brass-gold); line-height: 1; text-align: center; }
+  .scripture-title-cn { font-family: var(--font-cn); font-size: 16px; color: var(--navy-primary); letter-spacing: 0.08em; margin-bottom: 3px; }
+  .scripture-title-en { font-family: var(--font-display); font-size: 18px; font-weight: 500; color: var(--navy-primary); margin-bottom: 8px; }
+  .scripture-desc { font-size: 13px; color: #555; line-height: 1.7; max-width: 520px; }
+  .scripture-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
+  .scripture-tag { font-size: 10px; padding: 2px 8px; border-radius: 20px; background: rgba(26,39,68,0.06); color: var(--navy-primary); }
+  .scripture-action { display: flex; flex-direction: column; gap: 8px; align-items: flex-end; flex-shrink: 0; }
 
-    /* Coming soon placeholder */
-    .coming-soon-note {
-      background: rgba(201,168,76,0.05);
-      border: 1.5px dashed rgba(201,168,76,0.3);
-      border-radius: var(--radius-lg);
-      padding: 40px 24px;
-      text-align: center;
-      margin-top: 20px;
-    }
-    .coming-soon-cn {
-      font-family: var(--font-cn);
-      font-size: 32px;
-      color: rgba(201,168,76,0.3);
-      margin-bottom: 12px;
-    }
-    .coming-soon-title {
-      font-family: var(--font-display);
-      font-size: 20px;
-      color: var(--navy-primary);
-      margin-bottom: 8px;
-    }
-    .coming-soon-desc {
-      font-size: 13px;
-      color: #888;
-      max-width: 400px;
-      margin: 0 auto 20px;
-      line-height: 1.65;
-    }
+  .coming-soon-note { background: rgba(201,168,76,0.05); border: 1.5px dashed rgba(201,168,76,0.3); border-radius: var(--radius-lg); padding: 40px 24px; text-align: center; margin-top: 20px; }
+  .coming-soon-cn { font-family: var(--font-cn); font-size: 32px; color: rgba(201,168,76,0.3); margin-bottom: 12px; }
+  .coming-soon-title { font-family: var(--font-display); font-size: 20px; color: var(--navy-primary); margin-bottom: 8px; }
+  .coming-soon-desc { font-size: 13px; color: #888; max-width: 400px; margin: 0 auto 20px; line-height: 1.65; }
 
-    /* Notify form */
-    .notify-form {
-      display: flex;
-      gap: 8px;
-      justify-content: center;
-      flex-wrap: wrap;
-      max-width: 400px;
-      margin: 0 auto;
-    }
+  .notify-form { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; max-width: 400px; margin: 0 auto; }
 
-    @media (max-width: 900px) {
-      .article-grid { grid-template-columns: repeat(2, 1fr); }
-      .scripture-card { grid-template-columns: 60px 1fr; }
-      .scripture-action { display: none; }
-    }
-    @media (max-width: 600px) {
-      .article-grid { grid-template-columns: 1fr; }
-      .scripture-card { grid-template-columns: 1fr; }
-      .scripture-symbol { text-align: left; }
-    }
-  </style>
-</head>
-<body>
-
-  <!-- ── Navigation ──────────────────────────────────────── -->
-  <nav class="site-nav" id="site-nav">
-    <div class="container">
-      <div class="nav-inner">
-        <a href="index.html" class="nav-logo">
-          <img src="assets/images/logo-white-120.png"
-               alt="Quan Zhen Cultural Society logo"
-               class="nav-logo-img"
-               width="40" height="40">
-          <div class="nav-logo-text">
-            <span class="nav-logo-en">Quan Zhen Cultural Society</span>
-            <span class="nav-logo-cn">全真教化協會</span>
-          </div>
-        </a>
-        <ul class="nav-links">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="tradition.html">Our Tradition</a></li>
-          <li><a href="events.html">Events</a></li>
-          <li><a href="learn.html" class="active">Learn</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="gallery.html">Gallery</a></li>
-        </ul>
-        <div class="nav-right">
-          <div class="lang-toggle">
-            <a href="#" class="active">EN</a>
-            <span class="divider">/</span>
-            <a href="/zh/">中文</a>
-          </div>
-          <a href="contact.html" class="btn btn-outline-gold">Contact Us</a>
-          <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
-            <span></span><span></span><span></span>
-          </button>
-        </div>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Mobile nav drawer -->
-  <div class="mobile-nav" id="mobile-nav">
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="tradition.html">Our Tradition</a>
-    <a href="events.html">Events</a>
-    <a href="learn.html">Learn</a>
-    <a href="gallery.html">Gallery</a>
-    <a href="services.html">Services</a>
-    <a href="contact.html">Contact Us</a>
-  </div>
-
-  <main>
+  @media (max-width: 900px) {
+    .article-grid { grid-template-columns: repeat(2, 1fr); }
+    .scripture-card { grid-template-columns: 60px 1fr; }
+    .scripture-action { display: none; }
+  }
+  @media (max-width: 600px) {
+    .article-grid { grid-template-columns: 1fr; }
+    .scripture-card { grid-template-columns: 1fr; }
+    .scripture-symbol { text-align: left; }
+  }
+---
 
     <!-- ── Page Hero ──────────────────────────────────────── -->
     <section class="page-hero">
@@ -305,7 +91,7 @@
       </div>
     </div>
 
-    <!-- ── Articles ───────────────────────────────────────── -->
+    <!-- ── Articles (dynamic — sourced from content/articles/*.md) ── -->
     <section class="section section-paper" id="articles">
       <div class="container">
         <p class="eyebrow" style="margin-bottom:12px;">Insights and explanations</p>
@@ -315,7 +101,33 @@
           Thought pieces and explanations on Taoist philosophy, Quanzhen teachings, and the role of Taoism in everyday modern life — written by Quan Zhen Cultural Society.
         </p>
 
-        <!-- Placeholder articles — replace with real content -->
+        {% set articleCategoryLabels = {
+          "introduction": "Introduction · Taoism",
+          "practice": "Practice · Cultivation",
+          "deities": "Deities · Pantheon",
+          "scripture": "Scripture · Texts",
+          "festival": "Festival · Calendar",
+          "lineage": "Lineage · History"
+        } %}
+
+        {% if collections.articles and collections.articles.length %}
+        <div class="article-grid">
+          {% for article in collections.articles %}
+          <a href="#" class="article-card">
+            <div class="article-card-cover">
+              {% if article.data.photo %}<img src="{{ article.data.photo }}" alt="{{ article.data.title }}">{% else %}{{ article.data.title_cn[0] if article.data.title_cn else "道" }}{% endif %}
+            </div>
+            <div class="article-card-body">
+              <div class="article-category">{{ articleCategoryLabels[article.data.category] or article.data.category }}</div>
+              <div class="article-title">{{ article.data.title }}</div>
+              <p class="article-excerpt">{{ article.data.summary }}</p>
+              <div class="article-meta">{{ article.data.date | readableDate }}{% if article.data.author %} · {{ article.data.author }}{% endif %}</div>
+            </div>
+          </a>
+          {% endfor %}
+        </div>
+        {% else %}
+        <!-- No published articles yet — showing planned topics as a preview -->
         <div class="article-grid">
 
           <a href="#" class="article-card">
@@ -389,11 +201,12 @@
             <a href="contact.html" class="btn btn-outline-gold">Get notified</a>
           </div>
         </div>
+        {% endif %}
 
       </div>
     </section>
 
-    <!-- ── Scripture Introductions ────────────────────────── -->
+    <!-- ── Scripture Introductions (static — reference content, not calendar data) ── -->
     <section class="section" style="background:#F0E6CF;" id="scriptures">
       <div class="container">
         <p class="eyebrow" style="margin-bottom:12px;">Key texts of the Longmen tradition</p>
@@ -520,95 +333,12 @@
       </div>
     </section>
 
-  </main>
-
-  <!-- ── Footer ─────────────────────────────────────────────── -->
-  <footer class="site-footer">
-    <div class="footer-main">
-      <div class="container">
-        <div class="footer-grid">
-          <div class="footer-brand">
-            <div class="footer-brand-logo-row">
-              <img src="assets/images/logo-white-120.png"
-                   alt="Quan Zhen Cultural Society"
-                   class="footer-brand-logo"
-                   width="36" height="36">
-              <div>
-                <div class="footer-brand-name">Quan Zhen Cultural Society</div>
-                <div class="footer-brand-cn">全真教化協會</div>
-              </div>
-            </div>
-            <p class="footer-brand-desc">Quan Zhen Cultural Society is dedicated to the study, practice, and cultural preservation of the Taoist tradition. Est. 2016.</p>
-            <a href="https://m.me/670694326367406" class="footer-wa-btn" target="_blank" rel="noopener">
-              <span class="footer-wa-dot" style="background:#0084FF;"></span>Message us on Facebook
-            </a>
-          </div>
-          <div class="footer-col">
-            <div class="footer-col-title">Explore</div>
-            <a href="about.html">About us</a>
-            <a href="tradition.html">Our Tradition</a>
-            <a href="events.html">Events</a>
-            <a href="learn.html">Learn</a>
-            <a href="services.html">Services</a>
-            <a href="gallery.html">Gallery</a>
-          </div>
-          <div class="footer-col">
-            <div class="footer-col-title">Get involved</div>
-            <a href="join.html">Join as Member</a>
-            <a href="join.html#volunteer-form">Volunteer</a>
-            <a href="contact.html">Contact Us</a>
-          </div>
-          <div class="footer-col">
-            <div class="footer-col-title">Follow us</div>
-            <a href="https://facebook.com/QuanZhenSG" target="_blank" rel="noopener">Facebook</a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <div class="container">
-        <div class="footer-bottom-inner">
-          <p class="footer-copy">© 2026 Quan Zhen Cultural Society · 全真教化協會. All rights reserved.</p>
-          <div class="footer-legal">
-            <a href="privacy.html">Privacy Policy</a>
-            <span>·</span>
-            <a href="terms.html">Terms of Use</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    const nav = document.getElementById('site-nav');
-    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
-    const hamburger = document.getElementById('hamburger');
-    const mobileNav = document.getElementById('mobile-nav');
-    hamburger.addEventListener('click', () => mobileNav.classList.toggle('open'));
-    mobileNav.querySelectorAll('a').forEach(l => l.addEventListener('click', () => mobileNav.classList.remove('open')));
-
-    // Section tab active state on scroll
-    const tabs = document.querySelectorAll('.section-tab');
-    const sections = ['articles','scriptures'].map(id => document.getElementById(id));
-    window.addEventListener('scroll', () => {
-      let current = 'articles';
-      sections.forEach(s => { if (s && window.scrollY >= s.offsetTop - 140) current = s.id; });
-      tabs.forEach(t => t.classList.toggle('active', t.getAttribute('href') === '#' + current));
-    });
-  </script>
-  <script src="js/interactions.js"></script>
-
-  <!-- Facebook Messenger floating button -->
-<a href="https://m.me/670694326367406"
-   class="messenger-float"
-   target="_blank"
-   rel="noopener"
-   aria-label="Message us on Facebook Messenger">
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="white" aria-hidden="true">
-    <path d="M12 2C6.477 2 2 6.145 2 11.243c0 2.914 1.318 5.52 3.396 7.29V22l3.199-1.754c.874.237 1.8.366 2.757.366 5.523 0 10-4.145 10-9.243C22 6.145 17.523 2 12 2zm1.008 12.445l-2.545-2.694-4.971 2.694 5.467-5.799 2.606 2.694 4.91-2.694-5.467 5.799z"/>
-  </svg>
-  <span>Message us</span>
-</a>
-
-</body>
-</html>
+    <script>
+      const learnTabs = document.querySelectorAll('.section-tab');
+      const learnSections = ['articles','scriptures'].map(id => document.getElementById(id));
+      window.addEventListener('scroll', () => {
+        let current = 'articles';
+        learnSections.forEach(s => { if (s && window.scrollY >= s.offsetTop - 140) current = s.id; });
+        learnTabs.forEach(t => t.classList.toggle('active', t.getAttribute('href') === '#' + current));
+      });
+    </script>

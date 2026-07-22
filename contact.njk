@@ -1,0 +1,218 @@
+---
+layout: layout.njk
+permalink: "/contact.html"
+title: "Contact Us — Quan Zhen Cultural Society · 全真教化協會"
+description: "Contact Quan Zhen Cultural Society (全真教化協會) — get in touch via Facebook Messenger, email, or our contact form. Find us on Facebook."
+ogTitle: "Contact Us — Quan Zhen Cultural Society"
+ogDescription: "Get in touch with Quan Zhen Cultural Society — enquiries about membership, events, media, and general questions."
+bilingualNav: false
+showOfferings: false
+pageStyle: |
+  .page-hero { background: var(--navy-primary); padding: 140px 0 80px; border-bottom: 1px solid rgba(201,168,76,0.2); }
+  .page-hero-inner { max-width: 640px; }
+  .page-hero h1 { color: var(--rice-paper); margin-bottom: 16px; }
+  .page-hero p { color: var(--muted-sky); font-size: 16px; line-height: 1.75; }
+
+  .contact-layout { display: grid; grid-template-columns: 1fr 1.6fr; gap: 48px; align-items: start; }
+
+  .contact-methods { display: flex; flex-direction: column; gap: 16px; }
+  .contact-method {
+    background: var(--white); border: 0.5px solid rgba(26,39,68,0.1); border-radius: var(--radius-lg); padding: 20px;
+    display: flex; gap: 14px; align-items: flex-start; text-decoration: none; transition: border-color 0.2s, transform 0.2s;
+  }
+  .contact-method:hover { border-color: rgba(201,168,76,0.4); transform: translateY(-1px); }
+  .contact-method-icon { width: 40px; height: 40px; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 16px; }
+  .icon-wa { background: rgba(37,211,102,0.1); }
+  .icon-email { background: rgba(26,39,68,0.08); }
+  .icon-fb { background: rgba(24,119,242,0.1); }
+  .icon-ig { background: rgba(225,48,108,0.1); }
+  .icon-yt { background: rgba(255,0,0,0.08); }
+  .contact-method-label { font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--brass-gold); margin-bottom: 3px; }
+  .contact-method-value { font-size: 14px; font-weight: 500; color: var(--navy-primary); margin-bottom: 3px; }
+  .contact-method-note { font-size: 11px; color: #888; line-height: 1.5; }
+
+  .social-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 8px; }
+  .social-card { background: var(--white); border: 0.5px solid rgba(26,39,68,0.1); border-radius: var(--radius-lg); padding: 16px; text-align: center; text-decoration: none; transition: border-color 0.2s; }
+  .social-card:hover { border-color: rgba(201,168,76,0.4); }
+  .social-icon { font-size: 22px; margin-bottom: 6px; }
+  .social-name { font-size: 11px; font-weight: 500; color: var(--navy-primary); letter-spacing: 0.04em; }
+
+  .form-section { background: var(--white); border: 0.5px solid rgba(26,39,68,0.1); border-radius: var(--radius-lg); overflow: hidden; }
+  .form-section-head { background: var(--navy-primary); padding: 20px 24px; }
+  .form-section-title { font-family: var(--font-display); font-size: 20px; font-weight: 500; color: var(--rice-paper); margin-bottom: 4px; }
+  .form-section-cn { font-family: var(--font-cn); font-size: 12px; color: var(--brass-gold); letter-spacing: 0.1em; }
+  .form-section-body { padding: 32px 24px; text-align: center; }
+  .form-placeholder { background: #f8f6f0; border: 1.5px dashed rgba(201,168,76,0.4); border-radius: var(--radius-lg); padding: 40px 24px; margin-bottom: 20px; }
+  .form-placeholder-icon { font-family: var(--font-cn); font-size: 32px; color: var(--brass-gold); opacity: 0.5; margin-bottom: 12px; }
+  .form-placeholder-title { font-size: 14px; font-weight: 500; color: var(--navy-primary); margin-bottom: 6px; }
+  .form-placeholder-note { font-size: 12px; color: #888; line-height: 1.6; max-width: 400px; margin: 0 auto 20px; }
+  .form-cta-btn {
+    display: inline-flex; align-items: center; gap: 8px; padding: 12px 28px; background: var(--brass-gold); color: var(--navy-deep);
+    border-radius: var(--radius-sm); font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: background 0.2s;
+  }
+  .form-cta-btn:hover { background: #b8943e; color: var(--navy-deep); }
+  .form-cta-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+  .form-alt-note { font-size: 12px; color: #888; margin-top: 16px; }
+  .form-alt-note a { color: var(--brass-gold); text-decoration: underline; }
+
+  .response-note { background: rgba(201,168,76,0.06); border: 0.5px solid rgba(201,168,76,0.2); border-radius: var(--radius-md); padding: 16px 20px; font-size: 12px; color: #555; line-height: 1.65; margin-top: 20px; }
+  .response-note strong { color: var(--navy-primary); font-weight: 500; }
+
+  @media (max-width: 900px) {
+    .contact-layout { grid-template-columns: 1fr; gap: 32px; }
+    .social-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 480px) {
+    .social-grid { grid-template-columns: 1fr; }
+  }
+---
+
+    <!-- ── Page Hero ──────────────────────────────────────── -->
+    <section class="page-hero">
+      <div class="container">
+        <div class="page-hero-inner">
+          <p class="eyebrow" style="margin-bottom:12px;">We'd love to hear from you · 歡迎聯絡</p>
+          <span class="cn-text" style="display:block; font-size:13px; margin-bottom:16px;">聯絡我們</span>
+          <h1>Contact Us</h1>
+          <p>Whether you have a question about our tradition, want to attend a class, or are interested in membership — reach out and we'll get back to you promptly.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Contact Section ────────────────────────────────── -->
+    <section class="section section-paper">
+      <div class="container">
+        <div class="contact-layout">
+
+          <!-- Left — contact methods -->
+          <div>
+            <p class="eyebrow" style="margin-bottom:20px;">Reach us directly</p>
+
+            <div class="contact-methods">
+
+              <!-- Facebook Messenger -->
+              <a href="https://m.me/670694326367406"
+                class="contact-method"
+              target="_blank" rel="noopener">
+              <div class="contact-method-icon" style="background:rgba(0,132,255,0.1);">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="#0084FF" aria-hidden="true">
+              <path d="M12 2C6.477 2 2 6.145 2 11.243c0 2.914 1.318 5.52 3.396 7.29V22l3.199-1.754c.874.237 1.8.366 2.757.366 5.523 0 10-4.145 10-9.243C22 6.145 17.523 2 12 2zm1.008 12.445l-2.545-2.694-4.971 2.694 5.467-5.799 2.606 2.694 4.91-2.694-5.467 5.799z"/>
+                </svg>
+              </div>
+              <div class="contact-method-body">
+              <div class="contact-method-label">Facebook Messenger</div>
+              <div class="contact-method-value">Message us on Facebook</div>
+              <div class="contact-method-note">Fastest response — click to open a Messenger chat with us directly. We typically reply within a few hours.</div>
+              </div>
+                </a>
+
+              <!-- Email -->
+              <a href="mailto:info@quanzhen.sg"
+                 class="contact-method">
+                <div class="contact-method-icon icon-email">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1A2744" stroke-width="2" aria-hidden="true">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                    <polyline points="22,6 12,13 2,6"/>
+                  </svg>
+                </div>
+                <div class="contact-method-body">
+                  <div class="contact-method-label">Email</div>
+                  <div class="contact-method-value">info@quanzhen.sg</div>
+                  <div class="contact-method-note">For formal enquiries, media requests, and partnership matters.</div>
+                </div>
+              </a>
+
+            </div>
+
+            <!-- Social -->
+            <p class="eyebrow" style="margin-top:32px; margin-bottom:16px;">Follow us</p>
+            <div class="social-grid">
+              <a href="https://facebook.com/QuanZhenSG"
+                 class="social-card"
+                 target="_blank" rel="noopener">
+                <div class="social-icon">📘</div>
+                <div class="social-name">Facebook</div>
+              </a>
+            </div>
+
+            <div class="response-note">
+              <strong>Response time:</strong> We aim to respond to all enquiries within 1–2 working days. For urgent matters, Facebook Messenger is the fastest way to reach us.
+            </div>
+
+          </div>
+
+          <!-- Right — contact form -->
+          <div>
+            <p class="eyebrow" style="margin-bottom:20px;">Send us a message</p>
+
+            <div class="form-section">
+              <div class="form-section-head">
+                <div class="form-section-title">General Enquiry</div>
+                <div class="form-section-cn">一般查詢</div>
+              </div>
+              <div class="form-section-body">
+                <div class="form-placeholder">
+                  <div class="form-placeholder-icon">問</div>
+                  <div class="form-placeholder-title">General Contact Form</div>
+                  <p class="form-placeholder-note">
+                    Click the button below to open our contact form. Your message will be sent directly to our committee and stored securely in our Google Workspace.
+                  </p>
+                  <!-- TODO: replace with the real Google Form link, same as the membership/volunteer forms on join.html -->
+                  <a href="YOUR_CONTACT_FORM_URL"
+                     class="form-cta-btn"
+                     target="_blank"
+                     rel="noopener">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                      <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/>
+                    </svg>
+                    Open contact form
+                  </a>
+                </div>
+                <p class="form-alt-note">
+                  For membership enquiries, visit our
+                  <a href="join.html">Join Us page</a>.
+                  For event registration, visit our
+                  <a href="events.html">Events page</a>.
+                </p>
+              </div>
+            </div>
+
+            <!-- FAQ quick links -->
+            <div style="margin-top:24px;">
+              <p class="eyebrow" style="margin-bottom:16px;">Common enquiries</p>
+              <div style="display:flex; flex-direction:column; gap:8px;">
+                <a href="events.html#section-class" style="display:flex; justify-content:space-between; align-items:center; padding:14px 16px; background:var(--white); border:0.5px solid rgba(26,39,68,0.1); border-radius:var(--radius-md); font-size:13px; color:var(--navy-primary); text-decoration:none; transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(201,168,76,0.4)'" onmouseout="this.style.borderColor='rgba(26,39,68,0.1)'">
+                  <span>When are Sunday classes held?</span>
+                  <span style="color:var(--brass-gold);">→</span>
+                </a>
+                <a href="events.html#section-ritual" style="display:flex; justify-content:space-between; align-items:center; padding:14px 16px; background:var(--white); border:0.5px solid rgba(26,39,68,0.1); border-radius:var(--radius-md); font-size:13px; color:var(--navy-primary); text-decoration:none; transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(201,168,76,0.4)'" onmouseout="this.style.borderColor='rgba(26,39,68,0.1)'">
+                  <span>How do I register for the Lidou ritual?</span>
+                  <span style="color:var(--brass-gold);">→</span>
+                </a>
+                <a href="join.html#membership-form" style="display:flex; justify-content:space-between; align-items:center; padding:14px 16px; background:var(--white); border:0.5px solid rgba(26,39,68,0.1); border-radius:var(--radius-md); font-size:13px; color:var(--navy-primary); text-decoration:none; transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(201,168,76,0.4)'" onmouseout="this.style.borderColor='rgba(26,39,68,0.1)'">
+                  <span>How do I become a member?</span>
+                  <span style="color:var(--brass-gold);">→</span>
+                </a>
+                <a href="join.html#volunteer-form" style="display:flex; justify-content:space-between; align-items:center; padding:14px 16px; background:var(--white); border:0.5px solid rgba(26,39,68,0.1); border-radius:var(--radius-md); font-size:13px; color:var(--navy-primary); text-decoration:none; transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(201,168,76,0.4)'" onmouseout="this.style.borderColor='rgba(26,39,68,0.1)'">
+                  <span>How can I volunteer?</span>
+                  <span style="color:var(--brass-gold);">→</span>
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CTA ────────────────────────────────────────────── -->
+    <section class="section-sm section-navy" style="text-align:center;">
+      <div class="container" style="max-width:560px;">
+        <p class="eyebrow" style="margin-bottom:12px;">New here?</p>
+        <h2 style="color:var(--rice-paper); margin-bottom:16px;">Start with a Sunday class</h2>
+        <p style="color:var(--muted-sky); margin-bottom:32px;">
+          The easiest way to experience our community is to join us on a Sunday. No prior knowledge or commitment needed.
+        </p>
+        <a href="events.html" class="btn btn-gold">See our events</a>
+      </div>
+    </section>

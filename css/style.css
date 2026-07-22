@@ -906,3 +906,13 @@ p {
     justify-content: center;
   }
 }
+
+/* ── Event type badges — added for CMS event types beyond ritual/class ── */
+.event-type-annual {
+  background: rgba(201,168,76,0.12);
+  color: #7A5F1A;
+}
+.event-type-community {
+  background: rgba(15,110,86,0.1);
+  color: #0F6E56;
+}

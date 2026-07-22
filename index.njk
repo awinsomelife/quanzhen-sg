@@ -1,0 +1,230 @@
+---
+layout: layout.njk
+permalink: "/"
+title: "Quan Zhen Cultural Society — 全真教化協會"
+description: "Quan Zhen Cultural Society (全真教化協會) — A Singapore Quanzhen Longmen organisation dedicated to the study, practice, and cultural preservation of the Taoist tradition. Est. 2016."
+activeNav: home
+bilingualNav: true
+showOfferings: true
+pageStyle: |
+  .tradition-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+    text-align: left;
+  }
+  @media (max-width: 768px) {
+    .tradition-grid { grid-template-columns: 1fr; }
+  }
+---
+
+    <!-- ── Hero ── -->
+    <section class="hero section-navy">
+      <div class="hero-bg-chars" aria-hidden="true">
+        <span class="hero-bg-char">化</span>
+        <span class="hero-bg-char">教</span>
+        <span class="hero-bg-char">真</span>
+        <span class="hero-bg-char">全</span>
+      </div>
+      <div class="container">
+        <div class="hero-content">
+          <p class="eyebrow">
+            <span data-en>Quanzhen Longmen Tradition · 全真龍門道統</span>
+            <span data-zh>全真龍門道統</span>
+          </p>
+          <h1 class="hero-title">
+            <span data-en>Heritage in<br><em>Motion.</em></span>
+            <span data-zh>薪火相傳，<br><em>道統永續。</em></span>
+          </h1>
+          <p class="hero-subtitle">
+            <span data-en>Preserving the scholarly depth of Taoist culture within the heartbeat of modern Singapore. A community rooted in the Quanzhen Longmen tradition since 2016.</span>
+            <span data-zh>在現代新加坡的脈搏中，守護道教文化的學術深度。一個植根於全真龍門道統的社群，自2016年起薪火相傳。</span>
+          </p>
+          <div class="hero-buttons">
+            <a href="/tradition.html" class="btn btn-gold">
+              <span data-en>Explore Our Tradition</span><span data-zh>探索道統傳承</span>
+            </a>
+            <a href="/events.html" class="btn btn-outline-light">
+              <span data-en>Upcoming Events</span><span data-zh>即將舉行的活動</span>
+            </a>
+          </div>
+          <div class="hero-tags">
+            <span class="hero-tag">Quanzhen Longmen · 全真龍門</span>
+            <span class="hero-tag"><span data-en>Est. 2016 · Singapore</span><span data-zh>創立於2016年 · 新加坡</span></span>
+            <span class="hero-tag"><span data-en>Open to all</span><span data-zh>歡迎各界</span></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Stats Bar ── -->
+    <div class="stats-bar">
+      <div class="container">
+        <div class="stats-inner">
+          <div class="stat-item">
+            <div class="stat-value">10+</div>
+            <div class="stat-label"><span data-en>Years in Singapore</span><span data-zh>年紮根新加坡</span></div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value cn-text" style="font-size:32px;">道</div>
+            <div class="stat-label"><span data-en>Quanzhen Longmen tradition</span><span data-zh>全真龍門道統</span></div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value cn-text" style="font-size:32px;">全</div>
+            <div class="stat-label"><span data-en>Open to all practitioners</span><span data-zh>歡迎各界修道者</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Events (dynamic — sourced from content/events/*.md) ── -->
+    <section class="section section-paper">
+      <div class="container">
+        <p class="eyebrow" style="margin-bottom:8px;">
+          <span data-en>Upcoming</span><span data-zh>即將舉行</span>
+        </p>
+        <h2 style="margin-bottom:6px;">
+          <span data-en>Events and Activities <span class="cn-text" style="font-size:18px; margin-left:12px;">活動</span></span>
+          <span data-zh>活動與科儀</span>
+        </h2>
+        <p style="color:#666; margin-bottom:40px; max-width:520px;">
+          <span data-en>Join us for rituals, classes, and community gatherings — open to members and the public.</span>
+          <span data-zh>歡迎參加我們的科儀、課程及社群聚會，對會員及公眾開放。</span>
+        </p>
+
+        <div class="grid-2" style="margin-bottom:32px;">
+          {% for event in collections.upcomingEvents.slice(0, 2) %}
+          <div class="event-card">
+            <div class="event-date-block">
+              <div class="event-day">{{ event.data.date | dayOfMonth }}</div>
+              <div class="event-month">{{ event.data.date | monthShort }}</div>
+            </div>
+            <div class="event-body">
+              <div class="event-title">
+                {% if event.data.title_cn %}{{ event.data.title_cn }} · {% endif %}{{ event.data.title }}
+              </div>
+              <div class="event-desc">{{ event.data.description }}</div>
+              <span class="event-type event-type-{{ event.data.type }}">{{ event.data.type | capitalize }}</span>
+            </div>
+          </div>
+          {% else %}
+          <p style="color:#888;">No upcoming events are scheduled right now — check back soon, or follow us on Facebook for updates.</p>
+          {% endfor %}
+        </div>
+        <a href="/events.html" class="btn btn-outline-gold">
+          <span data-en>View full calendar</span><span data-zh>查看完整活動日曆</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ── Three Pillars ── -->
+    <section class="section" style="background:#F0E6CF;">
+      <div class="container">
+        <p class="eyebrow" style="margin-bottom:8px;">
+          <span data-en>Who we are</span><span data-zh>我們是誰</span>
+        </p>
+        <h2 style="margin-bottom:6px;">
+          <span data-en>Three Foundations</span><span data-zh>三大根基</span>
+        </h2>
+        <p class="cn-text" style="font-size:14px; margin-bottom:40px;">三大根基</p>
+        <div class="grid-3">
+          <div class="pillar-card">
+            <div class="pillar-title"><span data-en>Study · 學</span><span data-zh>學 · Study</span></div>
+            <div class="pillar-cn">研習道學</div>
+            <p class="pillar-text">
+              <span data-en>Structured learning of Taoist scripture, philosophy, and the Quanzhen Longmen tradition — for new and experienced practitioners alike.</span>
+              <span data-zh>系統研習道教經典、哲理及全真龍門道統，適合初學者及資深修道者。</span>
+            </p>
+          </div>
+          <div class="pillar-card">
+            <div class="pillar-title"><span data-en>Practice · 修</span><span data-zh>修 · Practice</span></div>
+            <div class="pillar-cn">修持科儀</div>
+            <p class="pillar-text">
+              <span data-en>Regular ritual observance, scripture recitation, and inner cultivation following the Quanzhen lineage's living tradition.</span>
+              <span data-zh>定期舉行科儀、誦經及內在修煉，依循全真龍門的活生生道統傳承。</span>
+            </p>
+          </div>
+          <div class="pillar-card">
+            <div class="pillar-title"><span data-en>Preservation · 傳</span><span data-zh>傳 · Preservation</span></div>
+            <div class="pillar-cn">文化傳承</div>
+            <p class="pillar-text">
+              <span data-en>Documenting and transmitting Taoist heritage — cultural education, community outreach, and passing the tradition to the next generation.</span>
+              <span data-zh>記錄並傳承道教文化遺產，透過文化教育、社區外展，將道統薪火傳承給下一代。</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Tradition Intro ── -->
+    <section class="section section-paper">
+      <div class="container">
+        <div class="tradition-grid">
+          <div>
+            <p class="eyebrow" style="margin-bottom:8px;">
+              <span data-en>Our lineage</span><span data-zh>道統傳承</span>
+            </p>
+            <h2 style="margin-bottom:6px;">
+              <span data-en>The Quanzhen Longmen Tradition</span><span data-zh>全真龍門道統</span>
+            </h2>
+            <p class="cn-text" style="font-size:14px; margin-bottom:24px;">全真龍門道統</p>
+            <div class="gold-divider"></div>
+            <p style="color:#555; margin-bottom:32px;">
+              <span data-en>Rooted in one of Taoism's great scholastic lineages, Quan Zhen Cultural Society carries forward a tradition of self-cultivation, communal ritual, and textual study that has endured for centuries. The Quanzhen Longmen school traces its heritage through Wang Chongyang and the Seven Perfected, emphasising inner alchemy, scriptural learning, and ethical conduct.</span>
+              <span data-zh>全真教化協會植根於道教偉大的學術道統之一，傳承自我修煉、集體科儀及典籍研習的千年傳統。全真龍門道統溯源至王重陽及全真七子，著重內丹修煉、經典學習及道德修養。</span>
+            </p>
+            <a href="/tradition.html" class="btn btn-gold">
+              <span data-en>Learn about our tradition</span><span data-zh>了解我們的道統</span>
+            </a>
+          </div>
+          <div class="ritual-image-wrapper ratio-3-2">
+            <img
+              src="https://lh3.googleusercontent.com/d/1umuCwlHW_xWYJOvHcxuqbOBqL52fqF9C"
+              alt="Altar and incense ritual setup - 道壇或香火照片"
+              style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;"
+            >
+          </div>
+      </div>
+    </section>
+
+    <!-- ── CTA Band ── -->
+    <section class="section section-navy">
+      <div class="container">
+        <p class="eyebrow" style="margin-bottom:8px;">
+          <span data-en>Get involved</span><span data-zh>加入我們</span>
+        </p>
+        <h2 style="color:var(--rice-paper); margin-bottom:8px;">
+          <span data-en>Become Part of the Community</span><span data-zh>成為我們社群的一分子</span>
+        </h2>
+        <p style="color:var(--muted-sky); margin-bottom:40px; max-width:520px;">
+          <span data-en>Whether you are a seasoned practitioner or simply curious about Taoism, there is a place for you at Quan Zhen Cultural Society.</span>
+          <span data-zh>無論您是資深修道者，還是對道教抱有好奇，全真教化協會歡迎您的加入。</span>
+        </p>
+        <div class="cta-grid" style="margin-bottom:40px;">
+          <div class="cta-card">
+            <div class="cta-card-title"><span data-en>Membership</span><span data-zh>入會申請</span></div>
+            <p class="cta-card-text">
+              <span data-en>Join as a member and access events, classes, and community resources. Registration and payment handled online.</span>
+              <span data-zh>成為會員，參加活動、課程及社群資源，網上登記及繳費。</span>
+            </p>
+            <a href="/join.html" class="btn btn-outline-gold">
+              <span data-en>Join now</span><span data-zh>立即申請</span>
+            </a>
+          </div>
+          <div class="cta-card">
+            <div class="cta-card-title"><span data-en>Volunteer with us</span><span data-zh>成為義工</span></div>
+            <p class="cta-card-text">
+              <span data-en>Support our events, ritual activities, and cultural preservation work. Register your interest via our volunteer form.</span>
+              <span data-zh>支援我們的活動、科儀及文化傳承工作，透過義工登記表格表達意願。</span>
+            </p>
+            <a href="/join.html#volunteer-form" class="btn btn-outline-light">
+              <span data-en>Register interest</span><span data-zh>登記意向</span>
+            </a>
+          </div>
+        </div>
+        <a href="/contact.html" class="btn btn-outline-light" style="margin-top:8px;">
+          <span data-en>Get in touch</span><span data-zh>聯絡我們</span>
+        </a>
+      </div>
+    </section>
