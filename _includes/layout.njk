@@ -73,11 +73,7 @@
             <button class="lang-en-btn active" onclick="qzSetLang('en')" aria-label="Switch to English">EN</button>
             <span class="divider">/</span>
             <button class="lang-zh-btn" onclick="qzSetLang('zh')" aria-label="切換至中文">中文</button>
-          {% else %}
-            <a href="#" class="active">EN</a>
-            <span class="divider">/</span>
-            <a href="/zh/">中文</a>
-          {% endif %}
+         {% endif %}
           </div>
           <a href="/contact.html" class="btn btn-outline-gold">
             {% if bilingualNav %}<span data-en>Contact Us</span><span data-zh>聯絡我們</span>{% else %}Contact Us{% endif %}
