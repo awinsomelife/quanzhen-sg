@@ -199,6 +199,7 @@ collections:
       - label: "Date"
         name: "date"
         widget: "datetime"
+        required: false
         date_format: "DD MMM YYYY"
         time_format: false
 

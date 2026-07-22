@@ -65,7 +65,7 @@ module.exports = function (eleventyConfig) {
     return collectionApi
       .getFilteredByTag("gallery")
       .filter((item) => item.data.published !== false)
-      .sort((a, b) => b.data.date - a.data.date);
+      .sort((a, b) => (b.data.date || 0) - (a.data.date || 0));
   });
 
   return {
