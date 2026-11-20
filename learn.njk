@@ -113,7 +113,7 @@ pageStyle: |
         {% if collections.articles and collections.articles.length %}
         <div class="article-grid">
           {% for article in collections.articles %}
-          <a href="#" class="article-card">
+          <a href="{{ article.url }}" class="article-card">
             <div class="article-card-cover">
               {% if article.data.photo %}<img src="{{ article.data.photo }}" alt="{{ article.data.title }}">{% else %}{{ article.data.title_cn[0] if article.data.title_cn else "道" }}{% endif %}
             </div>

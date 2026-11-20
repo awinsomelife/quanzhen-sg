@@ -1,6 +1,7 @@
 /**
  * Quan Zhen Cultural Society — Bilingual Toggle v1.1
  * Fixed: uses 'inline' instead of '' to properly show spans
+ * v1.2: elements with data-display="block" (e.g. post bodies) show as blocks
  */
 
 (function () {
@@ -18,12 +19,12 @@
   function applyLang(lang) {
     // Show/hide English spans
     document.querySelectorAll('[data-en]').forEach(el => {
-      el.style.display = lang === 'en' ? 'inline' : 'none';
+      el.style.display = lang === 'en' ? (el.getAttribute('data-display') || 'inline') : 'none';
     });
 
     // Show/hide Chinese spans
     document.querySelectorAll('[data-zh]').forEach(el => {
-      el.style.display = lang === 'zh' ? 'inline' : 'none';
+      el.style.display = lang === 'zh' ? (el.getAttribute('data-display') || 'inline') : 'none';
     });
 
     // Update toggle button active states

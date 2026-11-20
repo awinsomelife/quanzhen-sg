@@ -101,6 +101,167 @@ collections:
         default: true
         hint: "Uncheck to save as draft without showing on the site."
 
+  # ── SG TAOIST JOURNAL · 星洲道誌 ──────────────────────────
+  # One entry per story. English body is required-ish; the Chinese body
+  # is optional — if it's empty, Chinese readers see the English with a note
+  # (and vice versa for Chinese-only stories).
+  # Category/region values must match _data/journal.js.
+  - name: "journal"
+    label: "SG Taoist Journal · 星洲道誌"
+    label_singular: "Journal story"
+    folder: "content/journal"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    preview_path: "journal/{{slug}}/"
+    summary: "{{title}} — {{date}}"
+    sortable_fields: ["date", "title", "category"]
+    view_filters:
+      - { label: "Drafts", field: "published", pattern: false }
+      - { label: "Featured", field: "featured", pattern: true }
+    fields:
+      - label: "Headline (English)"
+        name: "title"
+        widget: "string"
+        hint: "English headline only — it also becomes the page address, e.g. /journal/your-headline/. Use a unique headline for each story."
+
+      - label: "Headline (Chinese)"
+        name: "title_cn"
+        widget: "string"
+        required: false
+        hint: "Traditional Chinese headline, e.g. 馬來西亞道教總會舉辦國際論壇"
+
+      - label: "Publish date"
+        name: "date"
+        widget: "datetime"
+        date_format: "DD MMM YYYY"
+        time_format: false
+        format: "YYYY-MM-DD"
+        picker_utc: true
+
+      - label: "Lunar date (optional)"
+        name: "lunar_date"
+        widget: "string"
+        required: false
+        hint: "e.g. 農曆十月初一"
+
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        options:
+          - { label: "News · 新聞", value: "news" }
+          - { label: "Ceremonies & Rituals · 科儀", value: "ceremonies" }
+          - { label: "Heritage & Culture · 文化傳承", value: "heritage" }
+          - { label: "Interfaith · 宗教交流", value: "interfaith" }
+          - { label: "Education · 教育", value: "education" }
+          - { label: "Community Service · 社會服務", value: "community" }
+          - { label: "Profiles (people & temples) · 人物與宮觀", value: "profiles" }
+          - { label: "Perspectives · 觀點", value: "perspectives" }
+
+      - label: "Region"
+        name: "region"
+        widget: "select"
+        required: false
+        options:
+          - { label: "Singapore · 新加坡", value: "singapore" }
+          - { label: "Southeast Asia · 東南亞", value: "southeast-asia" }
+          - { label: "East Asia · 東亞", value: "east-asia" }
+          - { label: "Oceania · 大洋洲", value: "oceania" }
+          - { label: "Europe · 歐洲", value: "europe" }
+          - { label: "Americas · 美洲", value: "americas" }
+          - { label: "Global · 全球", value: "global" }
+
+      - label: "Location (optional)"
+        name: "location"
+        widget: "string"
+        required: false
+        hint: "Where the story took place, e.g. Kuala Lumpur, Malaysia"
+
+      - label: "Summary (English)"
+        name: "summary"
+        widget: "text"
+        hint: "2–3 sentences shown on story cards and in link previews on WhatsApp/Facebook."
+
+      - label: "Summary (Chinese)"
+        name: "summary_cn"
+        widget: "text"
+        required: false
+
+      - label: "Cover photo"
+        name: "cover"
+        widget: "image"
+        required: false
+        hint: "Best size: 1600×900px (16:9). Please resize phone photos before uploading — aim for under 500 KB."
+
+      - label: "Cover photo description"
+        name: "cover_alt"
+        widget: "string"
+        required: false
+        hint: "Briefly describe the photo for visually impaired readers, e.g. Priests performing the Lidou ritual at the altar"
+
+      - label: "Photo credit (optional)"
+        name: "photo_credit"
+        widget: "string"
+        required: false
+        hint: "e.g. Taoist Federation (Singapore)"
+
+      - label: "Story (English)"
+        name: "body"
+        widget: "markdown"
+        required: false
+        hint: "Full story in English. Use headings, quotes and photos as needed."
+
+      - label: "Story (Chinese)"
+        name: "body_cn"
+        widget: "markdown"
+        required: false
+        hint: "Full story in Traditional Chinese. Leave empty if there is no Chinese version yet."
+
+      - label: "Source name (optional)"
+        name: "source_name"
+        widget: "string"
+        required: false
+        hint: "Credit the original report if this story is based on one, e.g. Lianhe Zaobao"
+
+      - label: "Source link (optional)"
+        name: "source_url"
+        widget: "string"
+        required: false
+        hint: "Link to the original report"
+
+      - label: "Author"
+        name: "author"
+        widget: "string"
+        default: "Quan Zhen Cultural Society"
+
+      - label: "Author (Chinese)"
+        name: "author_cn"
+        widget: "string"
+        required: false
+        default: "全真教化協會"
+
+      - label: "Related QZCS event (optional)"
+        name: "related_event"
+        widget: "relation"
+        collection: "events"
+        required: false
+        search_fields: ["title", "title_cn"]
+        value_field: "{{slug}}"
+        display_fields: ["title", "date"]
+        hint: "Link this story to one of our events, e.g. a write-up after a ritual."
+
+      - label: "Featured story?"
+        name: "featured"
+        widget: "boolean"
+        default: false
+        hint: "The newest featured story is shown large at the top of the Journal page."
+
+      - label: "Published?"
+        name: "published"
+        widget: "boolean"
+        default: true
+        hint: "Uncheck to save as a draft — it won't appear on the site."
+
   # ── ARTICLES ─────────────────────────────────────────────
   - name: "articles"
     label: "Articles"
@@ -109,6 +270,7 @@ collections:
     create: true
     delete: true
     slug: "{{slug}}"
+    preview_path: "learn/{{slug}}/"
     fields:
       - label: "Article title (English)"
         name: "title"

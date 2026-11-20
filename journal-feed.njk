@@ -1,0 +1,27 @@
+---
+permalink: "/journal/feed.xml"
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+  <title>SG Taoist Journal · 星洲道誌</title>
+  <subtitle>Connecting Taoism Around the World — Quan Zhen Cultural Society</subtitle>
+  <link href="https://quanzhen.sg/journal/feed.xml" rel="self"/>
+  <link href="https://quanzhen.sg/journal/"/>
+  {%- if collections.journal.length %}
+  <updated>{{ collections.journal | getNewestCollectionItemDate | dateToRfc3339 }}</updated>
+  {%- endif %}
+  <id>https://quanzhen.sg/journal/</id>
+  <author><name>Quan Zhen Cultural Society</name></author>
+  {%- for post in collections.journal.slice(0, 30) %}
+  {%- set absolutePostUrl = post.url | absoluteUrl("https://quanzhen.sg") %}
+  <entry>
+    <title>{{ post.data.title | escape }}{% if post.data.title_cn %} · {{ post.data.title_cn | escape }}{% endif %}</title>
+    <link href="{{ absolutePostUrl }}"/>
+    <updated>{{ post.date | dateToRfc3339 }}</updated>
+    <id>{{ absolutePostUrl }}</id>
+    <summary>{{ post.data.summary | escape }}</summary>
+    <content type="html">{{ post.templateContent | htmlToAbsoluteUrls(absolutePostUrl) | escape }}</content>
+  </entry>
+  {%- endfor %}
+</feed>
