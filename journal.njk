@@ -1,0 +1,122 @@
+---
+layout: layout.njk
+permalink: "/journal/index.html"
+title: "SG Taoist Journal · 星洲道誌 — Quan Zhen Cultural Society"
+pageTitleZh: "星洲道誌 · SG Taoist Journal — 全真教化協會"
+description: "SG Taoist Journal (星洲道誌) is an international platform documenting Taoist news, developments, traditions and community initiatives around the world, with a particular focus on stories beyond mainland China."
+ogTitle: "SG Taoist Journal · 星洲道誌"
+ogDescription: "Connecting Taoism Around the World — Taoist news, traditions and community stories from around the globe."
+activeNav: journal
+bilingualNav: true
+showOfferings: false
+extraCss: /css/journal.css
+---
+{% set cats = journal.categories %}
+{% set posts = collections.journal %}
+
+    <!-- ── Hero ────────────────────────────────────────────── -->
+    <section class="jr-hero" data-mark="誌">
+      <div class="container">
+        <div class="jr-hero-inner">
+          <h1>SG Taoist Journal</h1>
+          <span class="jr-hero-cn">星洲道誌</span>
+          <p class="jr-tagline"><span data-en>Connecting Taoism Around the World.</span><span data-zh>連結世界各地的道教。</span></p>
+          <p>
+            <span data-en>SG Taoist Journal is an international platform dedicated to documenting Taoist news, developments, traditions and community initiatives around the world.</span>
+            <span data-zh>星洲道誌是一個國際平台，致力記錄世界各地的道教新聞、發展、傳統與社群活動。</span>
+          </p>
+          <p>
+            <span data-en>With a particular focus on stories beyond mainland China, the Journal seeks to highlight the people, organisations, temples, religious communities and practitioners who contribute to the preservation, transmission and contemporary development of Taoism.</span>
+            <span data-zh>本刊特別關注中國大陸以外的故事，介紹為道教的保存、傳承與當代發展作出貢獻的人物、組織、宮觀、宗教團體及修道者。</span>
+          </p>
+          <p>
+            <span data-en>From religious ceremonies and cultural heritage to interfaith engagement, education, community service and the evolving role of Taoism in modern society, SG Taoist Journal aims to provide a platform for sharing knowledge, perspectives and stories from the global Taoist community.</span>
+            <span data-zh>從宗教科儀、文化傳承，到宗教交流、教育、社會服務，以及道教在現代社會中不斷演變的角色，星洲道誌希望成為全球道教社群分享知識、觀點與故事的平台。</span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    {% if posts.length %}
+    <!-- ── Category filter ─────────────────────────────────── -->
+    <div class="jr-filter">
+      <div class="container">
+        <div class="jr-filter-inner">
+          <button class="jr-filter-tab active" data-filter="all"><span data-en>All stories</span><span data-zh>全部</span></button>
+          {% set used = posts | usedCategories %}
+          {% for key, c in cats %}{% if key in used %}
+          <button class="jr-filter-tab" data-filter="{{ key }}"><span data-en>{{ c.en }}</span><span data-zh>{{ c.zh }}</span></button>
+          {% endif %}{% endfor %}
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+    <!-- ── Stories (dynamic — sourced from content/journal/*.md) ── -->
+    <section class="section section-paper">
+      <div class="container">
+      {% if posts.length %}
+
+        {# Lead story: the newest post marked "featured", else simply the newest post #}
+        {% set lead = posts | leadStory %}
+        {% set lc = cats[lead.data.category] %}
+        {% set lr = journal.regions[lead.data.region] if lead.data.region else null %}
+
+        <a href="{{ lead.url }}" class="jr-featured jr-item" data-category="{{ lead.data.category }}">
+          <div class="jr-cover">
+            {% if lead.data.cover %}<img src="{{ lead.data.cover }}" alt="{{ lead.data.cover_alt or lead.data.title }}">{% else %}{{ lc.icon if lc else "誌" }}{% endif %}
+          </div>
+          <div class="jr-featured-body">
+            <div class="jr-featured-label"><span data-en>Featured story</span><span data-zh>焦點報導</span></div>
+            <div class="jr-tags">
+              {% if lc %}<span class="jr-cat"><span data-en>{{ lc.en }}</span><span data-zh>{{ lc.zh }}</span></span>{% endif %}
+              {% if lr %}<span class="jr-region"><span data-en>{{ lr.en }}</span><span data-zh>{{ lr.zh }}</span></span>{% endif %}
+            </div>
+            <div class="jr-featured-title"><span data-en>{{ lead.data.title }}</span><span data-zh>{{ lead.data.title_cn or lead.data.title }}</span></div>
+            {% if lead.data.title_cn %}<div class="jr-featured-title-alt"><span data-en>{{ lead.data.title_cn }}</span><span data-zh>{{ lead.data.title }}</span></div>{% endif %}
+            <p class="jr-featured-excerpt"><span data-en>{{ lead.data.summary }}</span><span data-zh>{{ lead.data.summary_cn or lead.data.summary }}</span></p>
+            <div class="jr-card-meta">
+              <span data-en>{{ lead.data.date | readableDate }}</span><span data-zh>{{ lead.data.date | zhDate }}</span>{% if lead.data.location %} · {{ lead.data.location }}{% endif %}
+            </div>
+          </div>
+        </a>
+
+        <div class="jr-grid">
+          {% for p in posts %}{% if p.url != lead.url %}
+            {% include "journal-card.njk" %}
+          {% endif %}{% endfor %}
+        </div>
+        <p class="jr-empty-filter" id="jr-empty-filter"><span data-en>No stories in this category yet.</span><span data-zh>此類別暫無文章。</span></p>
+
+      {% else %}
+        <div class="jr-soon">
+          <div class="jr-soon-cn">誌</div>
+          <div class="jr-soon-title"><span data-en>The first stories are on their way</span><span data-zh>首批文章即將刊出</span></div>
+          <p class="jr-soon-desc">
+            <span data-en>We are gathering news and stories from Taoist communities in Singapore and around the world. Follow us on Facebook to be notified when the Journal launches.</span>
+            <span data-zh>我們正在收集新加坡及世界各地道教社群的新聞與故事。歡迎關注我們的 Facebook 專頁，第一時間獲取最新消息。</span>
+          </p>
+        </div>
+      {% endif %}
+      </div>
+    </section>
+
+    <script>
+      (function () {
+        var tabs = document.querySelectorAll('.jr-filter-tab');
+        var items = document.querySelectorAll('.jr-item');
+        var empty = document.getElementById('jr-empty-filter');
+        tabs.forEach(function (tab) {
+          tab.addEventListener('click', function () {
+            var f = tab.dataset.filter, shown = 0;
+            tabs.forEach(function (t) { t.classList.toggle('active', t === tab); });
+            items.forEach(function (el) {
+              var match = f === 'all' || el.dataset.category === f;
+              el.hidden = !match;
+              if (match) shown++;
+            });
+            if (empty) empty.style.display = shown ? 'none' : 'block';
+          });
+        });
+      })();
+    </script>

@@ -1,0 +1,149 @@
+---
+layout: layout.njk
+extraCss: /css/journal.css
+showOfferings: false
+---
+{#
+  Shared post template — SG Taoist Journal (postSection "journal")
+  and Learn articles (postSection "learn").
+  English body = the Markdown body of the file (`content`).
+  Chinese body = the `body_cn` front matter field.
+  If only one language exists, it is shown in both modes with a note.
+#}
+{% set isJournal = postSection == "journal" %}
+{% set cats = journal.categories if isJournal else journal.learnCategories %}
+{% set cat = cats[category] %}
+{% set reg = journal.regions[region] if region else null %}
+{% set coverImg = cover or photo %}
+{% set postCollection = collections.journal if isJournal else collections.articles %}
+{% set absUrl = "https://quanzhen.sg" + page.url %}
+
+{% set enHtml = content | trim %}
+{% set zhHtml = body_cn | markdown | trim %}
+{% set hasEn = enHtml | length > 0 %}
+{% set hasZh = zhHtml | length > 0 %}
+
+    <!-- ── Post header ─────────────────────────────────────── -->
+    <section class="jr-hero post-hero" data-mark="{{ cat.icon if cat else '道' }}">
+      <div class="container">
+        <div class="jr-hero-inner">
+          {% if isJournal %}
+          <a href="/journal/" class="post-back"><span data-en>← SG Taoist Journal</span><span data-zh>← 星洲道誌</span></a>
+          {% else %}
+          <a href="/learn.html" class="post-back"><span data-en>← Learn</span><span data-zh>← 學習</span></a>
+          {% endif %}
+
+          <div class="jr-tags">
+            {% if cat %}<span class="jr-cat"><span data-en>{{ cat.en }}</span><span data-zh>{{ cat.zh }}</span></span>{% endif %}
+            {% if reg %}<span class="jr-region"><span data-en>{{ reg.en }}</span><span data-zh>{{ reg.zh }}</span></span>{% endif %}
+          </div>
+
+          <h1>
+            <span data-en>{{ title }}</span>
+            <span data-zh>{{ title_cn or title }}</span>
+          </h1>
+          {# the other language's title, shown underneath #}
+          <div class="post-title-alt">{% if title_cn %}<span data-en lang="zh-Hant">{{ title_cn }}</span><span data-zh lang="en">{{ title }}</span>{% endif %}</div>
+
+          <div class="post-meta">
+            {% if date %}<span class="post-meta-item"><span data-en>{{ date | readableDate }}</span><span data-zh>{{ date | zhDate }}</span></span>{% endif %}
+            {% if lunar_date %}<span class="post-meta-item">{{ lunar_date }}</span>{% endif %}
+            {% if location %}<span class="post-meta-item">📍 {{ location }}</span>{% endif %}
+            {% if author %}<span class="post-meta-item"><span data-en>By {{ author }}</span><span data-zh>{{ author_cn or author }}</span></span>{% endif %}
+            <span class="post-meta-item">
+              <span data-en>{{ (enHtml if hasEn else zhHtml) | readingMinutes }} min read</span>
+              <span data-zh>閱讀約 {{ (zhHtml if hasZh else enHtml) | readingMinutes }} 分鐘</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-paper">
+      {% if coverImg %}
+      <figure class="post-cover">
+        <img src="{{ coverImg }}" alt="{{ cover_alt or title }}">
+        {% if photo_credit %}<figcaption><span data-en>Photo: </span><span data-zh>圖片：</span>{{ photo_credit }}</figcaption>{% endif %}
+      </figure>
+      {% endif %}
+
+      <article class="post-wrap">
+        {% if hasEn and hasZh %}
+          <div class="post-body" lang="en" data-en data-display="block">{{ enHtml | safe }}</div>
+          <div class="post-body" lang="zh-Hant" data-zh data-display="block">{{ zhHtml | safe }}</div>
+        {% elif hasEn %}
+          <p class="post-lang-note" data-zh data-display="block">此文暫無中文版，以下為英文原文。</p>
+          <div class="post-body" lang="en">{{ enHtml | safe }}</div>
+        {% elif hasZh %}
+          <p class="post-lang-note" data-en data-display="block">This story is currently available in Chinese only.</p>
+          <div class="post-body" lang="zh-Hant">{{ zhHtml | safe }}</div>
+        {% endif %}
+
+        {% if source_name or source_url %}
+        <div class="post-source">
+          <span data-en>Source: </span><span data-zh>資料來源：</span>
+          {% if source_url %}<a href="{{ source_url }}" target="_blank" rel="noopener">{{ source_name or source_url }}</a>{% else %}{{ source_name }}{% endif %}
+        </div>
+        {% endif %}
+
+        {% if related_event %}
+          {% for ev in collections.allEvents %}
+            {% if ev.inputPath.endsWith("/" + related_event + ".md") %}
+            <a href="/events.html" class="post-event">
+              <div class="post-event-date">
+                <div class="post-event-day">{{ ev.data.date | dayOfMonth }}</div>
+                <div class="post-event-month">{{ ev.data.date | monthShort }}</div>
+              </div>
+              <div>
+                <div class="post-event-label"><span data-en>Related event</span><span data-zh>相關活動</span></div>
+                <div class="post-event-title">{% if ev.data.title_cn %}{{ ev.data.title_cn }} · {% endif %}{{ ev.data.title }}</div>
+              </div>
+            </a>
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+
+        <div class="post-share">
+          <span class="post-share-label"><span data-en>Share</span><span data-zh>分享</span></span>
+          <a href="https://wa.me/?text={{ (title + ' ' + absUrl) | urlencode }}" target="_blank" rel="noopener">WhatsApp</a>
+          <a href="https://t.me/share/url?url={{ absUrl | urlencode }}&text={{ title | urlencode }}" target="_blank" rel="noopener">Telegram</a>
+          <a href="https://www.facebook.com/sharer/sharer.php?u={{ absUrl | urlencode }}" target="_blank" rel="noopener">Facebook</a>
+          <button type="button" class="post-copy-link" data-url="{{ absUrl }}"><span data-en>Copy link</span><span data-zh>複製連結</span></button>
+        </div>
+      </article>
+
+      {% set newer = postCollection | getPreviousCollectionItem(page) %}
+      {% set older = postCollection | getNextCollectionItem(page) %}
+      {% if newer or older %}
+      <nav class="post-nav" aria-label="More stories">
+        {% if older %}
+        <a href="{{ older.url }}" class="prev">
+          <div class="post-nav-dir"><span data-en>← Older</span><span data-zh>← 較早</span></div>
+          <div class="post-nav-title"><span data-en>{{ older.data.title }}</span><span data-zh>{{ older.data.title_cn or older.data.title }}</span></div>
+        </a>
+        {% endif %}
+        {% if newer %}
+        <a href="{{ newer.url }}" class="next">
+          <div class="post-nav-dir"><span data-en>Newer →</span><span data-zh>較新 →</span></div>
+          <div class="post-nav-title"><span data-en>{{ newer.data.title }}</span><span data-zh>{{ newer.data.title_cn or newer.data.title }}</span></div>
+        </a>
+        {% endif %}
+      </nav>
+      {% else %}
+      <div style="height:56px;"></div>
+      {% endif %}
+    </div>
+
+    <script>
+      document.querySelectorAll('.post-copy-link').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var done = function () {
+            var orig = btn.innerHTML;
+            btn.textContent = document.documentElement.lang === 'zh-Hant' ? '已複製 ✓' : 'Copied ✓';
+            setTimeout(function () { btn.innerHTML = orig; if (window.qzSetLang) { window.qzSetLang(localStorage.getItem('qzcs_lang') || 'en'); } }, 1800);
+          };
+          if (navigator.clipboard) { navigator.clipboard.writeText(btn.dataset.url).then(done); }
+          else { window.prompt('Copy this link:', btn.dataset.url); }
+        });
+      });
+    </script>

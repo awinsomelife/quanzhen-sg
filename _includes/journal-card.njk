@@ -1,0 +1,19 @@
+{# One Journal story card. Expects `p` (a collection item) in scope. #}
+{% set c = journal.categories[p.data.category] %}
+{% set r = journal.regions[p.data.region] if p.data.region else null %}
+<a href="{{ p.url }}" class="jr-card jr-item" data-category="{{ p.data.category }}">
+  <div class="jr-cover">
+    {% if p.data.cover %}<img src="{{ p.data.cover }}" alt="{{ p.data.cover_alt or p.data.title }}" loading="lazy">{% else %}{{ c.icon if c else "誌" }}{% endif %}
+  </div>
+  <div class="jr-card-body">
+    <div class="jr-tags">
+      {% if c %}<span class="jr-cat"><span data-en>{{ c.en }}</span><span data-zh>{{ c.zh }}</span></span>{% endif %}
+      {% if r %}<span class="jr-region"><span data-en>{{ r.en }}</span><span data-zh>{{ r.zh }}</span></span>{% endif %}
+    </div>
+    <div class="jr-card-title"><span data-en>{{ p.data.title }}</span><span data-zh>{{ p.data.title_cn or p.data.title }}</span></div>
+    <p class="jr-card-excerpt"><span data-en>{{ p.data.summary }}</span><span data-zh>{{ p.data.summary_cn or p.data.summary }}</span></p>
+    <div class="jr-card-meta">
+      <span data-en>{{ p.data.date | readableDate }}</span><span data-zh>{{ p.data.date | zhDate }}</span>{% if p.data.location %} · {{ p.data.location }}{% endif %}
+    </div>
+  </div>
+</a>

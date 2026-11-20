@@ -6,6 +6,7 @@ description: "Quan Zhen Cultural Society (全真教化協會) — A Singapore Qu
 activeNav: home
 bilingualNav: true
 showOfferings: true
+extraCss: /css/journal.css
 pageStyle: |
   .tradition-grid {
     display: grid;
@@ -187,6 +188,33 @@ pageStyle: |
           </div>
       </div>
     </section>
+
+    <!-- ── SG Taoist Journal (dynamic — latest 3 from content/journal/*.md; hidden until the first post) ── -->
+    {% if collections.journal.length %}
+    <section class="section" style="background:#F0E6CF;">
+      <div class="container">
+        <p class="eyebrow" style="margin-bottom:8px;">
+          <span data-en>SG Taoist Journal</span><span data-zh>星洲道誌</span>
+        </p>
+        <h2 style="margin-bottom:6px;">
+          <span data-en>Taoism Around the World <span class="cn-text" style="font-size:18px; margin-left:12px;">星洲道誌</span></span>
+          <span data-zh>連結世界各地的道教</span>
+        </h2>
+        <p style="color:#666; margin-bottom:40px; max-width:560px;">
+          <span data-en>News, traditions and community stories from Taoist communities in Singapore and beyond.</span>
+          <span data-zh>來自新加坡及世界各地道教社群的新聞、傳統與故事。</span>
+        </p>
+        <div class="jr-grid" style="margin-bottom:32px;">
+          {% for p in collections.journal.slice(0, 3) %}
+            {% include "journal-card.njk" %}
+          {% endfor %}
+        </div>
+        <a href="/journal/" class="btn btn-outline-gold">
+          <span data-en>Read the Journal</span><span data-zh>閱讀星洲道誌</span>
+        </a>
+      </div>
+    </section>
+    {% endif %}
 
     <!-- ── CTA Band ── -->
     <section class="section section-navy">
