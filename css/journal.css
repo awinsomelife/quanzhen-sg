@@ -184,6 +184,8 @@
 .nl-field input::placeholder { color: rgba(245,237,216,0.35); }
 .nl-field input:focus { outline: none; border-color: var(--brass-gold); background: rgba(245,237,216,0.1); }
 .nl-submit { white-space: nowrap; height: 46px; cursor: pointer; }
+.nl-turnstile { grid-column: 1 / -1; order: 1; min-height: 0; }
+.nl-turnstile:empty { display: none; }
 .nl-submit:disabled { opacity: 0.6; cursor: wait; }
 .nl-trap { position: absolute !important; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 .nl-consent { font-size: 11.5px; line-height: 1.6; color: rgba(245,237,216,0.5); margin: 12px 0 0; }

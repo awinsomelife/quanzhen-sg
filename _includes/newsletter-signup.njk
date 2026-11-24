@@ -1,6 +1,6 @@
 {# Email sign-up box for the SG Taoist Newsletter. Shown only when
-   journal.signupUrl is set (see _data/journal.js). #}
-{% if journal.signupUrl %}
+   journal.signupUrl and journal.turnstileSiteKey are set (_data/journal.js). #}
+{% if journal.signupUrl and journal.turnstileSiteKey %}
 <section class="nl-signup" id="subscribe">
   <div class="nl-signup-inner">
     <div class="nl-signup-text">
@@ -27,6 +27,7 @@
         </label>
         {# spam trap: hidden from people, filled in by bots #}
         <label class="nl-trap" aria-hidden="true">Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+        <div class="nl-turnstile cf-turnstile" data-sitekey="{{ journal.turnstileSiteKey }}" data-theme="dark" data-size="flexible" data-language="auto"></div>
         <button type="submit" class="btn btn-gold nl-submit">
           <span data-en>Subscribe</span><span data-zh>訂閱</span>
         </button>
@@ -41,12 +42,16 @@
       <p class="nl-msg nl-msg-bad" role="alert" hidden>
         <span data-en>Please enter a valid email address.</span><span data-zh>請輸入有效的電郵地址。</span>
       </p>
+      <p class="nl-msg nl-msg-wait" role="alert" hidden>
+        <span data-en>Please wait a moment for the security check to finish, then try again.</span><span data-zh>請稍候安全驗證完成後再試。</span>
+      </p>
       <p class="nl-msg nl-msg-err" role="alert" hidden>
         <span data-en>Sorry, something went wrong. Please try again.</span><span data-zh>抱歉，系統出現問題，請稍後再試。</span>
       </p>
     </form>
   </div>
 </section>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 <script>
   (function () {
     document.querySelectorAll('.nl-form').forEach(function (form) {
@@ -58,7 +63,11 @@
         ev.preventDefault();
         var email = form.email.value.trim();
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { show('nl-msg-bad'); form.email.focus(); return; }
+        var tokenEl = form.querySelector('[name="cf-turnstile-response"]');
+        var token = tokenEl ? tokenEl.value : '';
+        if (!token) { show('nl-msg-wait'); return; }
         var data = new URLSearchParams({
+          'cf-turnstile-response': token,
           email: email,
           name: form.name.value.trim(),
           website: form.website.value,
@@ -71,7 +80,11 @@
         fetch(form.action, { method: 'POST', mode: 'no-cors', body: data })
           .then(function () { show('nl-msg-ok'); form.reset(); })
           .catch(function () { show('nl-msg-err'); })
-          .then(function () { btn.disabled = false; });
+          .then(function () {
+            btn.disabled = false;
+            // each security token works once; get a fresh one for any retry
+            if (window.turnstile) { window.turnstile.reset(form.querySelector('.cf-turnstile')); }
+          });
       });
     });
   })();
