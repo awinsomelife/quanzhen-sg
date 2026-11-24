@@ -9,8 +9,8 @@ module.exports = {
   // turnstileSiteKey: the Cloudflare Turnstile SITE key (public; the
   //   secret key goes only into the Apps Script's Script Properties).
   // The sign-up box is shown only when both are set.
-  signupUrl: "",
-  turnstileSiteKey: "",
+  signupUrl: "https://script.google.com/macros/s/AKfycbymXT6hB-FghdH6z7Unp_hYcZtWtl3ZbJ-IyxN27KimK-gtyMLGalaE1OLOiRp1HDDnGw/exec",
+  turnstileSiteKey: "0x4AAAAAAGQmxkVrRYRaMxZa",
 
   categories: {
     news:       { en: "News",                 zh: "新聞",     icon: "訊" },
