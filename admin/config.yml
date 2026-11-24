@@ -106,10 +106,10 @@ collections:
   # is optional — if it's empty, Chinese readers see the English with a note
   # (and vice versa for Chinese-only stories).
   # Category/region values must match _data/journal.js.
-  - name: "journal"
-    label: "SG Taoist Journal · 星洲道誌"
-    label_singular: "Journal story"
-    folder: "content/journal"
+  - name: "newsletter"
+    label: "SG Taoist Newsletter · 星洲道誌"
+    label_singular: "Newsletter story"
+    folder: "content/newsletter"
     create: true
     delete: true
     slug: "{{slug}}"
@@ -123,7 +123,7 @@ collections:
       - label: "Headline (English)"
         name: "title"
         widget: "string"
-        hint: "English headline only — it also becomes the page address, e.g. /journal/your-headline/. Use a unique headline for each story."
+        hint: "English headline only — it also becomes the page address, e.g. /newsletter/your-headline/. Use a unique headline for each story."
 
       - label: "Headline (Chinese)"
         name: "title_cn"
@@ -254,7 +254,7 @@ collections:
         name: "featured"
         widget: "boolean"
         default: false
-        hint: "The newest featured story is shown large at the top of the Journal page."
+        hint: "The newest featured story is shown large at the top of the Newsletter page."
 
       - label: "Published?"
         name: "published"

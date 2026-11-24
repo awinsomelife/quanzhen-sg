@@ -1,0 +1,2 @@
+/journal /newsletter/ 301
+/journal/* /newsletter/:splat 301

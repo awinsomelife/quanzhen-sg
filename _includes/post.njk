@@ -4,7 +4,7 @@ extraCss: /css/journal.css
 showOfferings: false
 ---
 {#
-  Shared post template — SG Taoist Journal (postSection "journal")
+  Shared post template — SG Taoist Newsletter (postSection "journal")
   and Learn articles (postSection "learn").
   English body = the Markdown body of the file (`content`).
   Chinese body = the `body_cn` front matter field.
@@ -28,7 +28,7 @@ showOfferings: false
       <div class="container">
         <div class="jr-hero-inner">
           {% if isJournal %}
-          <a href="/journal/" class="post-back"><span data-en>← SG Taoist Journal</span><span data-zh>← 星洲道誌</span></a>
+          <a href="/newsletter/" class="post-back"><span data-en>← SG Taoist Newsletter</span><span data-zh>← 星洲道誌</span></a>
           {% else %}
           <a href="/learn.html" class="post-back"><span data-en>← Learn</span><span data-zh>← 學習</span></a>
           {% endif %}
@@ -111,6 +111,8 @@ showOfferings: false
           <button type="button" class="post-copy-link" data-url="{{ absUrl }}"><span data-en>Copy link</span><span data-zh>複製連結</span></button>
         </div>
       </article>
+
+      {% if isJournal %}<div class="nl-signup-wrap">{% include "newsletter-signup.njk" %}</div>{% endif %}
 
       {% set newer = postCollection | getPreviousCollectionItem(page) %}
       {% set older = postCollection | getNextCollectionItem(page) %}

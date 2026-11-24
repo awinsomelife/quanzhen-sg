@@ -1,8 +1,16 @@
-// Labels shared by the Journal listing, post pages and homepage strip.
+// Labels shared by the Newsletter listing, post pages and homepage strip.
 // Keep the keys in sync with the select options in admin/config.yml.
 module.exports = {
-  name: { en: "SG Taoist Journal", zh: "星洲道誌" },
+  name: { en: "SG Taoist Newsletter", zh: "星洲道誌" },
   tagline: { en: "Connecting Taoism Around the World.", zh: "連結世界各地的道教。" },
+
+  // Email sign-up (see tools/newsletter-signup.gs).
+  // signupUrl: the Google Apps Script web app URL (ends in /exec).
+  // turnstileSiteKey: the Cloudflare Turnstile SITE key (public; the
+  //   secret key goes only into the Apps Script's Script Properties).
+  // The sign-up box is shown only when both are set.
+  signupUrl: "https://script.google.com/macros/s/AKfycbwhscq0PLCT-6oPYkj24rb4ywZ5293abpENjweHGWldZlHpWcbxQ3xUmfxLm0kZ4d9zrQ/exec",
+  turnstileSiteKey: "0x4AAAAAAGQmxkVrRYRaMxZa",
 
   categories: {
     news:       { en: "News",                 zh: "新聞",     icon: "訊" },

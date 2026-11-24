@@ -1,10 +1,10 @@
 ---
 layout: layout.njk
-permalink: "/journal/index.html"
-title: "SG Taoist Journal · 星洲道誌 — Quan Zhen Cultural Society"
-pageTitleZh: "星洲道誌 · SG Taoist Journal — 全真教化協會"
-description: "SG Taoist Journal (星洲道誌) is an international platform documenting Taoist news, developments, traditions and community initiatives around the world, with a particular focus on stories beyond mainland China."
-ogTitle: "SG Taoist Journal · 星洲道誌"
+permalink: "/newsletter/index.html"
+title: "SG Taoist Newsletter · 星洲道誌 — Quan Zhen Cultural Society"
+pageTitleZh: "星洲道誌 · SG Taoist Newsletter — 全真教化協會"
+description: "SG Taoist Newsletter (星洲道誌) is an international platform documenting Taoist news, developments, traditions and community initiatives around the world, with a particular focus on stories beyond mainland China."
+ogTitle: "SG Taoist Newsletter · 星洲道誌"
 ogDescription: "Connecting Taoism Around the World — Taoist news, traditions and community stories from around the globe."
 activeNav: journal
 bilingualNav: true
@@ -18,19 +18,19 @@ extraCss: /css/journal.css
     <section class="jr-hero" data-mark="誌">
       <div class="container">
         <div class="jr-hero-inner">
-          <h1>SG Taoist Journal</h1>
+          <h1>SG Taoist Newsletter</h1>
           <span class="jr-hero-cn">星洲道誌</span>
           <p class="jr-tagline"><span data-en>Connecting Taoism Around the World.</span><span data-zh>連結世界各地的道教。</span></p>
           <p>
-            <span data-en>SG Taoist Journal is an international platform dedicated to documenting Taoist news, developments, traditions and community initiatives around the world.</span>
+            <span data-en>SG Taoist Newsletter is an international platform dedicated to documenting Taoist news, developments, traditions and community initiatives around the world.</span>
             <span data-zh>星洲道誌是一個國際平台，致力記錄世界各地的道教新聞、發展、傳統與社群活動。</span>
           </p>
           <p>
-            <span data-en>With a particular focus on stories beyond mainland China, the Journal seeks to highlight the people, organisations, temples, religious communities and practitioners who contribute to the preservation, transmission and contemporary development of Taoism.</span>
+            <span data-en>With a particular focus on stories beyond mainland China, the Newsletter seeks to highlight the people, organisations, temples, religious communities and practitioners who contribute to the preservation, transmission and contemporary development of Taoism.</span>
             <span data-zh>本刊特別關注中國大陸以外的故事，介紹為道教的保存、傳承與當代發展作出貢獻的人物、組織、宮觀、宗教團體及修道者。</span>
           </p>
           <p>
-            <span data-en>From religious ceremonies and cultural heritage to interfaith engagement, education, community service and the evolving role of Taoism in modern society, SG Taoist Journal aims to provide a platform for sharing knowledge, perspectives and stories from the global Taoist community.</span>
+            <span data-en>From religious ceremonies and cultural heritage to interfaith engagement, education, community service and the evolving role of Taoism in modern society, SG Taoist Newsletter aims to provide a platform for sharing knowledge, perspectives and stories from the global Taoist community.</span>
             <span data-zh>從宗教科儀、文化傳承，到宗教交流、教育、社會服務，以及道教在現代社會中不斷演變的角色，星洲道誌希望成為全球道教社群分享知識、觀點與故事的平台。</span>
           </p>
         </div>
@@ -52,7 +52,7 @@ extraCss: /css/journal.css
     </div>
     {% endif %}
 
-    <!-- ── Stories (dynamic — sourced from content/journal/*.md) ── -->
+    <!-- ── Stories (dynamic — sourced from content/newsletter/*.md) ── -->
     <section class="section section-paper">
       <div class="container">
       {% if posts.length %}
@@ -93,11 +93,13 @@ extraCss: /css/journal.css
           <div class="jr-soon-cn">誌</div>
           <div class="jr-soon-title"><span data-en>The first stories are on their way</span><span data-zh>首批文章即將刊出</span></div>
           <p class="jr-soon-desc">
-            <span data-en>We are gathering news and stories from Taoist communities in Singapore and around the world. Follow us on Facebook to be notified when the Journal launches.</span>
-            <span data-zh>我們正在收集新加坡及世界各地道教社群的新聞與故事。歡迎關注我們的 Facebook 專頁，第一時間獲取最新消息。</span>
+            <span data-en>We are gathering news and stories from Taoist communities in Singapore and around the world. {% if journal.signupUrl %}Sign up below to get the first stories by email.{% else %}Follow us on Facebook to be notified when the Newsletter launches.{% endif %}</span>
+            <span data-zh>我們正在收集新加坡及世界各地道教社群的新聞與故事。{% if journal.signupUrl %}歡迎在下方訂閱，第一時間以電郵收到首批文章。{% else %}歡迎關注我們的 Facebook 專頁，第一時間獲取最新消息。{% endif %}</span>
           </p>
         </div>
       {% endif %}
+
+      {% include "newsletter-signup.njk" %}
       </div>
     </section>
 
