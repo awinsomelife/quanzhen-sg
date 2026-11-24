@@ -1,0 +1,79 @@
+{# Email sign-up box for the SG Taoist Newsletter. Shown only when
+   journal.signupUrl is set (see _data/journal.js). #}
+{% if journal.signupUrl %}
+<section class="nl-signup" id="subscribe">
+  <div class="nl-signup-inner">
+    <div class="nl-signup-text">
+      <div class="nl-signup-cn">星洲道誌</div>
+      <h2>
+        <span data-en>Get the Newsletter by email</span>
+        <span data-zh>訂閱星洲道誌電子報</span>
+      </h2>
+      <p>
+        <span data-en>New stories from Taoist communities in Singapore and around the world, sent to your inbox.</span>
+        <span data-zh>新加坡及世界各地道教社群的最新故事，直接寄到您的電郵信箱。</span>
+      </p>
+    </div>
+
+    <form class="nl-form" action="{{ journal.signupUrl }}" method="post" novalidate>
+      <div class="nl-fields">
+        <label class="nl-field">
+          <span class="nl-label"><span data-en>Name (optional)</span><span data-zh>姓名（選填）</span></span>
+          <input type="text" name="name" autocomplete="name" maxlength="120">
+        </label>
+        <label class="nl-field">
+          <span class="nl-label"><span data-en>Email</span><span data-zh>電郵</span></span>
+          <input type="email" name="email" autocomplete="email" required maxlength="254" placeholder="you@example.com">
+        </label>
+        {# spam trap: hidden from people, filled in by bots #}
+        <label class="nl-trap" aria-hidden="true">Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+        <button type="submit" class="btn btn-gold nl-submit">
+          <span data-en>Subscribe</span><span data-zh>訂閱</span>
+        </button>
+      </div>
+      <p class="nl-consent">
+        <span data-en>By subscribing, you agree to receive the SG Taoist Newsletter from Quan Zhen Cultural Society by email. You can unsubscribe at any time by replying to any newsletter.</span>
+        <span data-zh>訂閱即表示您同意透過電郵接收全真教化協會的星洲道誌。您可隨時回覆任何一期電子報以取消訂閱。</span>
+      </p>
+      <p class="nl-msg nl-msg-ok" role="status" hidden>
+        <span data-en>Thank you! You're on the list.</span><span data-zh>謝謝！您已成功訂閱。</span>
+      </p>
+      <p class="nl-msg nl-msg-bad" role="alert" hidden>
+        <span data-en>Please enter a valid email address.</span><span data-zh>請輸入有效的電郵地址。</span>
+      </p>
+      <p class="nl-msg nl-msg-err" role="alert" hidden>
+        <span data-en>Sorry, something went wrong. Please try again.</span><span data-zh>抱歉，系統出現問題，請稍後再試。</span>
+      </p>
+    </form>
+  </div>
+</section>
+<script>
+  (function () {
+    document.querySelectorAll('.nl-form').forEach(function (form) {
+      var btn = form.querySelector('.nl-submit');
+      var show = function (cls) {
+        form.querySelectorAll('.nl-msg').forEach(function (m) { m.hidden = !m.classList.contains(cls); });
+      };
+      form.addEventListener('submit', function (ev) {
+        ev.preventDefault();
+        var email = form.email.value.trim();
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { show('nl-msg-bad'); form.email.focus(); return; }
+        var data = new URLSearchParams({
+          email: email,
+          name: form.name.value.trim(),
+          website: form.website.value,
+          lang: localStorage.getItem('qzcs_lang') === 'zh' ? 'zh' : 'en',
+          page: location.pathname
+        });
+        btn.disabled = true;
+        // Google Apps Script doesn't allow reading the reply from another
+        // site, so a successful send is treated as a successful sign-up.
+        fetch(form.action, { method: 'POST', mode: 'no-cors', body: data })
+          .then(function () { show('nl-msg-ok'); form.reset(); })
+          .catch(function () { show('nl-msg-err'); })
+          .then(function () { btn.disabled = false; });
+      });
+    });
+  })();
+</script>
+{% endif %}

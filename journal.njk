@@ -93,11 +93,13 @@ extraCss: /css/journal.css
           <div class="jr-soon-cn">誌</div>
           <div class="jr-soon-title"><span data-en>The first stories are on their way</span><span data-zh>首批文章即將刊出</span></div>
           <p class="jr-soon-desc">
-            <span data-en>We are gathering news and stories from Taoist communities in Singapore and around the world. Follow us on Facebook to be notified when the Newsletter launches.</span>
-            <span data-zh>我們正在收集新加坡及世界各地道教社群的新聞與故事。歡迎關注我們的 Facebook 專頁，第一時間獲取最新消息。</span>
+            <span data-en>We are gathering news and stories from Taoist communities in Singapore and around the world. {% if journal.signupUrl %}Sign up below to get the first stories by email.{% else %}Follow us on Facebook to be notified when the Newsletter launches.{% endif %}</span>
+            <span data-zh>我們正在收集新加坡及世界各地道教社群的新聞與故事。{% if journal.signupUrl %}歡迎在下方訂閱，第一時間以電郵收到首批文章。{% else %}歡迎關注我們的 Facebook 專頁，第一時間獲取最新消息。{% endif %}</span>
           </p>
         </div>
       {% endif %}
+
+      {% include "newsletter-signup.njk" %}
       </div>
     </section>
 

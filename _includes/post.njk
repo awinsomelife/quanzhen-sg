@@ -112,6 +112,8 @@ showOfferings: false
         </div>
       </article>
 
+      {% if isJournal %}<div class="nl-signup-wrap">{% include "newsletter-signup.njk" %}</div>{% endif %}
+
       {% set newer = postCollection | getPreviousCollectionItem(page) %}
       {% set older = postCollection | getNextCollectionItem(page) %}
       {% if newer or older %}

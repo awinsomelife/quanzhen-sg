@@ -4,6 +4,11 @@ module.exports = {
   name: { en: "SG Taoist Newsletter", zh: "星洲道誌" },
   tagline: { en: "Connecting Taoism Around the World.", zh: "連結世界各地的道教。" },
 
+  // Email sign-up: the Google Apps Script web app URL (ends in /exec).
+  // See tools/newsletter-signup.gs. While this is empty, the sign-up box
+  // is not shown on the site.
+  signupUrl: "",
+
   categories: {
     news:       { en: "News",                 zh: "新聞",     icon: "訊" },
     ceremonies: { en: "Ceremonies & Rituals", zh: "科儀",     icon: "禮" },

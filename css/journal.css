@@ -169,3 +169,38 @@
   .post-nav { grid-template-columns: 1fr; padding: 8px 20px 64px; }
   .post-nav .next { grid-column: 1; }
 }
+
+/* ── Newsletter email sign-up ────────────────────────────── */
+.nl-signup { background: var(--navy-primary); border-radius: var(--radius-lg); padding: 44px; margin: 56px 0 0; position: relative; overflow: hidden; }
+.nl-signup::after { content: "誌"; position: absolute; right: -10px; bottom: -60px; font-family: var(--font-cn); font-size: 220px; line-height: 1; color: rgba(201,168,76,0.06); pointer-events: none; }
+.nl-signup-inner { display: grid; grid-template-columns: 1fr 1.15fr; gap: 40px; align-items: center; position: relative; z-index: 1; }
+.nl-signup-cn { font-family: var(--font-cn); color: var(--brass-gold); font-size: 15px; letter-spacing: 0.14em; margin-bottom: 8px; }
+.nl-signup h2 { color: var(--rice-paper); font-size: 28px; line-height: 1.2; margin-bottom: 10px; }
+.nl-signup-text p { color: var(--muted-sky); font-size: 15px; line-height: 1.7; margin: 0; }
+.nl-fields { display: grid; grid-template-columns: 1fr 1.3fr auto; gap: 10px; align-items: end; }
+.nl-field { display: flex; flex-direction: column; gap: 6px; }
+.nl-label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted-sky); }
+.nl-field input { font-family: var(--font-body); font-size: 15px; padding: 12px 14px; border-radius: var(--radius-md); border: 1px solid rgba(201,168,76,0.3); background: rgba(245,237,216,0.06); color: var(--rice-paper); width: 100%; box-sizing: border-box; }
+.nl-field input::placeholder { color: rgba(245,237,216,0.35); }
+.nl-field input:focus { outline: none; border-color: var(--brass-gold); background: rgba(245,237,216,0.1); }
+.nl-submit { white-space: nowrap; height: 46px; cursor: pointer; }
+.nl-submit:disabled { opacity: 0.6; cursor: wait; }
+.nl-trap { position: absolute !important; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.nl-consent { font-size: 11.5px; line-height: 1.6; color: rgba(245,237,216,0.5); margin: 12px 0 0; }
+.nl-msg { font-size: 14px; margin: 12px 0 0; }
+.nl-msg[hidden] { display: none; }
+.nl-msg-ok { color: var(--brass-gold); }
+.nl-msg-bad, .nl-msg-err { color: #F2A7A0; }
+.post-wrap + .nl-signup-wrap, .nl-signup-wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+.nl-signup-wrap .nl-signup { margin-top: 24px; margin-bottom: 40px; }
+.nl-signup-wrap .nl-signup-inner { grid-template-columns: 1fr; gap: 22px; }
+
+@media (max-width: 900px) {
+  .nl-signup-inner { grid-template-columns: 1fr; gap: 24px; }
+}
+@media (max-width: 600px) {
+  .nl-signup { padding: 30px 22px; }
+  .nl-signup h2 { font-size: 24px; }
+  .nl-fields { grid-template-columns: 1fr; }
+  .nl-submit { width: 100%; }
+}
