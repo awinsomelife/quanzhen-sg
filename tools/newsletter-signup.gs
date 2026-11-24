@@ -32,6 +32,7 @@
  *        Who has access: Anyone
  *      Click Deploy and allow access when Google asks.
  *   5. Copy the Web app URL (ends in /exec) for the website.
+ *   6. Optional: run checkSetup (see below) to confirm everything is set.
  *
  * If you edit this script later, use Deploy → Manage deployments →
  * Edit → Version: New version, so the URL stays the same.
@@ -109,15 +110,66 @@ function isEmail_(email) {
     !/^[=+\-@]/.test(email);
 }
 
-// Logs why a sign-up was turned away (shown under Executions). Never logs
-// the email address or name.
+// Records why a sign-up was turned away in the "Log" tab (created
+// automatically). Never records the email address or name. Capped at
+// 50 entries per 6 hours so bots can't fill it up.
 function reject_(reason) {
   console.log('not added: ' + reason);
+  writeLog_('not added: ' + reason);
+}
+
+function writeLog_(text) {
+  try {
+    const cache = CacheService.getScriptCache();
+    const key = 'log_' + Math.floor(Date.now() / 21600000);
+    const n = Number(cache.get(key) || 0);
+    if (n >= 50) return;
+    cache.put(key, String(n + 1), 21600);
+    const ss = SpreadsheetApp.getActive();
+    const log = ss.getSheetByName('Log') || ss.insertSheet('Log');
+    if (log.getLastRow() === 0) log.appendRow(['Time', 'What happened']);
+    log.appendRow([new Date(), text]);
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+/**
+ * Setup check — run this from the editor: choose "checkSetup" in the
+ * function list at the top, then click Run. The result appears in the
+ * Execution log at the bottom and in the "Log" tab of the sheet.
+ */
+function checkSetup() {
+  const lines = [];
+  const ss = SpreadsheetApp.getActive();
+  lines.push(ss ? 'Sheet: OK (' + ss.getName() + ')' : 'Sheet: NOT FOUND — open Apps Script from the sheet (Extensions → Apps Script)');
+  if (ss) lines.push(ss.getSheetByName(SHEET_NAME) ? 'Subscribers tab: OK' : 'Subscribers tab: MISSING — a tab named "' + SHEET_NAME + '" is needed');
+
+  const props = PropertiesService.getScriptProperties().getProperties();
+  const names = Object.keys(props);
+  const secret = props.TURNSTILE_SECRET;
+  if (!secret) {
+    lines.push('TURNSTILE_SECRET: MISSING. Script properties found: ' + (names.length ? names.map(function (n) { return '"' + n + '"'; }).join(', ') : 'none'));
+  } else {
+    lines.push('TURNSTILE_SECRET: present, ' + secret.length + ' characters' +
+      (secret !== secret.trim() ? ' — WARNING: has spaces at the start or end' : '') +
+      (secret.indexOf('0x') === 0 ? '' : ' — WARNING: Turnstile secret keys start with 0x'));
+    // A made-up token: Cloudflare will reject the token, but tells us
+    // whether it accepted the secret key.
+    const res = UrlFetchApp.fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+      method: 'post', payload: { secret: secret.trim(), response: 'setup-check' }, muteHttpExceptions: true,
+    });
+    const codes = (JSON.parse(res.getContentText())['error-codes'] || []).join(', ');
+    lines.push(codes.indexOf('invalid-input-secret') !== -1
+      ? 'Secret key: REJECTED by Cloudflare — re-copy the secret key from Cloudflare'
+      : 'Secret key: accepted by Cloudflare (' + codes + ')');
+  }
+  lines.forEach(function (l) { console.log(l); writeLog_('setup check — ' + l); });
 }
 
 // Returns 'ok', or a short reason the security check failed.
 function turnstileCheck_(token) {
-  const secret = PropertiesService.getScriptProperties().getProperty('TURNSTILE_SECRET');
+  const secret = String(PropertiesService.getScriptProperties().getProperty('TURNSTILE_SECRET') || '').trim();
   if (!secret) return 'TURNSTILE_SECRET script property is missing';
   if (!token) return 'no token sent';
   if (token.length > 2048) return 'token too long';
