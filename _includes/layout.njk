@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/interactions.css">
 {% if extraCss %}  <link rel="stylesheet" href="{{ extraCss }}">
-{% endif %}  <link rel="alternate" type="application/atom+xml" href="/journal/feed.xml" title="SG Taoist Journal · 星洲道誌">
+{% endif %}  <link rel="alternate" type="application/atom+xml" href="/newsletter/feed.xml" title="SG Taoist Newsletter · 星洲道誌">
   <link rel="icon" type="image/png" href="/assets/images/logo-transparent-512.png">
 {% if pageStyle %}  <style>
 {{ pageStyle | safe }}
@@ -75,7 +75,7 @@
           <li><a href="/tradition.html"{% if activeNav == "tradition" %} class="active"{% endif %}>{% if bilingualNav %}<span data-en>Our Tradition</span><span data-zh>道統傳承</span>{% else %}Our Tradition{% endif %}</a></li>
           <li><a href="/events.html"{% if activeNav == "events" %} class="active"{% endif %}>{% if bilingualNav %}<span data-en>Events</span><span data-zh>活動</span>{% else %}Events{% endif %}</a></li>
           <li><a href="/learn.html"{% if activeNav == "learn" %} class="active"{% endif %}>{% if bilingualNav %}<span data-en>Learn</span><span data-zh>學習</span>{% else %}Learn{% endif %}</a></li>
-          <li><a href="/journal/"{% if activeNav == "journal" %} class="active"{% endif %}>{% if bilingualNav %}<span data-en>Journal</span><span data-zh>道誌</span>{% else %}Journal{% endif %}</a></li>
+          <li><a href="/newsletter/"{% if activeNav == "journal" %} class="active"{% endif %}>{% if bilingualNav %}<span data-en>Newsletter</span><span data-zh>道誌</span>{% else %}Newsletter{% endif %}</a></li>
           <li><a href="/services.html"{% if activeNav == "services" %} class="active"{% endif %}>{% if bilingualNav %}<span data-en>Services</span><span data-zh>服務項目</span>{% else %}Services{% endif %}</a></li>
           <li><a href="/gallery.html"{% if activeNav == "gallery" %} class="active"{% endif %}>{% if bilingualNav %}<span data-en>Gallery</span><span data-zh>圖集</span>{% else %}Gallery{% endif %}</a></li>
           <li><a href="https://events.quanzhen.sg" target="_blank" rel="noopener"><span data-en>Offerings</span><span data-zh>請購</span></a></li>
@@ -106,7 +106,7 @@
     <a href="/tradition.html">{% if bilingualNav %}<span data-en>Our Tradition</span><span data-zh>道統傳承</span>{% else %}Our Tradition{% endif %}</a>
     <a href="/events.html">{% if bilingualNav %}<span data-en>Events</span><span data-zh>活動</span>{% else %}Events{% endif %}</a>
     <a href="/learn.html">{% if bilingualNav %}<span data-en>Learn</span><span data-zh>學習</span>{% else %}Learn{% endif %}</a>
-    <a href="/journal/">{% if bilingualNav %}<span data-en>Journal</span><span data-zh>道誌</span>{% else %}Journal{% endif %}</a>
+    <a href="/newsletter/">{% if bilingualNav %}<span data-en>Newsletter</span><span data-zh>道誌</span>{% else %}Newsletter{% endif %}</a>
     <a href="/services.html">{% if bilingualNav %}<span data-en>Services</span><span data-zh>服務項目</span>{% else %}Services{% endif %}</a>
     <a href="/gallery.html">{% if bilingualNav %}<span data-en>Gallery</span><span data-zh>圖集</span>{% else %}Gallery{% endif %}</a>
     <a href="https://events.quanzhen.sg" target="_blank" rel="noopener">{% if bilingualNav %}<span data-en>Offerings</span><span data-zh>請購</span>{% else %}Offerings{% endif %}</a>
@@ -144,7 +144,7 @@
             <a href="/tradition.html">Our Tradition</a>
             <a href="/events.html">Events</a>
             <a href="/learn.html">Learn</a>
-            <a href="/journal/">SG Taoist Journal</a>
+            <a href="/newsletter/">SG Taoist Newsletter</a>
             <a href="/services.html">Services</a>
             <a href="/gallery.html">Gallery</a>
           </div>

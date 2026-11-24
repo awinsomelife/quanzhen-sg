@@ -1,7 +1,7 @@
-// Labels shared by the Journal listing, post pages and homepage strip.
+// Labels shared by the Newsletter listing, post pages and homepage strip.
 // Keep the keys in sync with the select options in admin/config.yml.
 module.exports = {
-  name: { en: "SG Taoist Journal", zh: "星洲道誌" },
+  name: { en: "SG Taoist Newsletter", zh: "星洲道誌" },
   tagline: { en: "Connecting Taoism Around the World.", zh: "連結世界各地的道教。" },
 
   categories: {

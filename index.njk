@@ -189,12 +189,12 @@ pageStyle: |
       </div>
     </section>
 
-    <!-- ── SG Taoist Journal (dynamic — latest 3 from content/journal/*.md; hidden until the first post) ── -->
+    <!-- ── SG Taoist Newsletter (dynamic — latest 3 from content/newsletter/*.md; hidden until the first post) ── -->
     {% if collections.journal.length %}
     <section class="section" style="background:#F0E6CF;">
       <div class="container">
         <p class="eyebrow" style="margin-bottom:8px;">
-          <span data-en>SG Taoist Journal</span><span data-zh>星洲道誌</span>
+          <span data-en>SG Taoist Newsletter</span><span data-zh>星洲道誌</span>
         </p>
         <h2 style="margin-bottom:6px;">
           <span data-en>Taoism Around the World <span class="cn-text" style="font-size:18px; margin-left:12px;">星洲道誌</span></span>
@@ -209,8 +209,8 @@ pageStyle: |
             {% include "journal-card.njk" %}
           {% endfor %}
         </div>
-        <a href="/journal/" class="btn btn-outline-gold">
-          <span data-en>Read the Journal</span><span data-zh>閱讀星洲道誌</span>
+        <a href="/newsletter/" class="btn btn-outline-gold">
+          <span data-en>Read the Newsletter</span><span data-zh>閱讀星洲道誌</span>
         </a>
       </div>
     </section>
