@@ -62,27 +62,28 @@ function doGet() {
 
 function handle_(p) {
   // 1. Spam trap: a hidden field real people never fill in.
-  if (p.website) return;
+  if (p.website) return reject_('spam trap filled');
 
   // 2. Basic checks before spending anything on the request.
   const email = String(p.email || '').trim().toLowerCase();
-  if (!isEmail_(email)) return;
+  if (!isEmail_(email)) return reject_('invalid email');
 
   // 3. Proof the form was filled in on our site by a person.
-  if (!turnstileOk_(String(p['cf-turnstile-response'] || ''))) return;
+  const check = turnstileCheck_(String(p['cf-turnstile-response'] || ''));
+  if (check !== 'ok') return reject_('security check: ' + check);
 
   // 4. Rate limits, then add the row.
   const lock = LockService.getScriptLock();
-  if (!lock.tryLock(10000)) return;
+  if (!lock.tryLock(10000)) return reject_('busy');
   try {
-    if (!withinLimits_()) return;
+    if (!withinLimits_()) return reject_('rate limit reached');
 
     const sheet = SpreadsheetApp.getActive().getSheetByName(SHEET_NAME);
     const lastRow = sheet.getLastRow();
     if (lastRow > 1) {
       const existing = sheet.getRange(2, 2, lastRow - 1, 1).getValues();
       for (let i = 0; i < existing.length; i++) {
-        if (String(existing[i][0]).toLowerCase() === email) return; // already listed
+        if (String(existing[i][0]).toLowerCase() === email) return reject_('already subscribed');
       }
     }
 
@@ -96,6 +97,7 @@ function handle_(p) {
       '',
     ]);
     countSignup_();
+    console.log('added');
   } finally {
     lock.releaseLock();
   }
@@ -107,19 +109,31 @@ function isEmail_(email) {
     !/^[=+\-@]/.test(email);
 }
 
-function turnstileOk_(token) {
+// Logs why a sign-up was turned away (shown under Executions). Never logs
+// the email address or name.
+function reject_(reason) {
+  console.log('not added: ' + reason);
+}
+
+// Returns 'ok', or a short reason the security check failed.
+function turnstileCheck_(token) {
   const secret = PropertiesService.getScriptProperties().getProperty('TURNSTILE_SECRET');
-  if (!secret || !token || token.length > 2048) return false;
+  if (!secret) return 'TURNSTILE_SECRET script property is missing';
+  if (!token) return 'no token sent';
+  if (token.length > 2048) return 'token too long';
   const res = UrlFetchApp.fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
     method: 'post',
     payload: { secret: secret, response: token },
     muteHttpExceptions: true,
   });
-  if (res.getResponseCode() !== 200) return false;
+  if (res.getResponseCode() !== 200) return 'Cloudflare replied ' + res.getResponseCode();
   const data = JSON.parse(res.getContentText());
+  if (data.success !== true) return 'Cloudflare said no (' + (data['error-codes'] || []).join(', ') + ')';
   const host = String(data.hostname || '');
-  return data.success === true &&
-    (ALLOWED_HOSTS.indexOf(host) !== -1 || host.slice(-ALLOWED_HOST_SUFFIX.length) === ALLOWED_HOST_SUFFIX);
+  if (ALLOWED_HOSTS.indexOf(host) === -1 && host.slice(-ALLOWED_HOST_SUFFIX.length) !== ALLOWED_HOST_SUFFIX) {
+    return 'solved on a site that is not allowed (' + host + ')';
+  }
+  return 'ok';
 }
 
 // Counts new rows per 10-minute and 6-hour window (6 hours is the
